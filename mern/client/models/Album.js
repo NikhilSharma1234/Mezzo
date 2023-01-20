@@ -1,9 +1,6 @@
-//import { Artist } from './Artist.js';
-
 const mongoose = require('mongoose');
-const Artist = require('./Artist').schema;
 
-const songSchema = new mongoose.Schema({
+const albumSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -13,11 +10,7 @@ const songSchema = new mongoose.Schema({
     ref: 'Artist',
     required: true
   },
-  album: {
-    type: String,
-    required: true
-  },
-  released: {
+  releaseDate: {
     type: Date,
     required: true
   },
@@ -25,7 +18,15 @@ const songSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  songs: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Song'
+  }],
+  cover: {
+    type: String,
+    required: true
+  },
 });
 
-const Song = mongoose.model('Song', songSchema);
-module.exports = Song;
+const Album = mongoose.model('Album', albumSchema);
+module.exports = Album;

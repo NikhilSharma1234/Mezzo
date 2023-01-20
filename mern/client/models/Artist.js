@@ -1,10 +1,22 @@
 const mongoose = require('mongoose');
 
 const artistSchema = new mongoose.Schema({
-	fullName : { type: String, required: true },
-	biography : { type: String, required: true },
-	coverImg  : { type: String },
-	birthday  : { type: Date, required: true},
+  name: {
+    type: String,
+    required: true
+  },
+  country: {
+    type: String,
+    required: true
+  },
+  genre: {
+    type: String,
+    required: true
+  },
+  albums: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Album'
+  }],
 });
 
 const Artist = mongoose.model('Artist', artistSchema);
