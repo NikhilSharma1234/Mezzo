@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  background-color: #484747;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: black;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
