@@ -87,6 +87,20 @@
 }
 
 /*------------------------------
+        PLAY BAR
+------------------------------*/
+
+.playbar {
+  background-color: #484747 !important;
+  margin-left: 18% !important;
+}
+
+.divider {
+  background-color: #312E2E !important;
+  height: 3px;
+}
+
+/*------------------------------
         SEARCH BAR
 ------------------------------*/
 
