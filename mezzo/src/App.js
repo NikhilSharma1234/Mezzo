@@ -6,6 +6,7 @@ import Discover from "./components/discover";
 import Charts from "./components/charts";
 import Library from "./components/library";
 import Profile from "./components/profile";
+import PlayBar from "./components/playbar"
 import Searchbar from "./components/profile"
 /*import Navbar, Home, Discover, Charts, Library, Profile, Searchbar from "./components"*/
 
@@ -30,7 +31,9 @@ export default function App() {
         <Navbar />
         
         <Outlet /> 
-        {/*Footer? Here...*/}        
+        {/*Footer? Here...*/}       
+
+        <PlayBar /> 
       </>
     );
   }
