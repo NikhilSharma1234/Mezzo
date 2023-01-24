@@ -8,18 +8,21 @@ import Library from "./components/library";
 import Profile from "./components/profile";
 import PlayBar from "./components/playbar"
 import Searchbar from "./components/profile"
+import Master from "./components/master"
+
 /*import Navbar, Home, Discover, Charts, Library, Profile, Searchbar from "./components"*/
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/charts" element={<Charts />} />
-          <Route path="/library" element={<Library />} />
-          <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Master />} />
+        <Route path="/_" element={<Layout />}>
+          <Route path="/_/home" element={<Home />} />
+          <Route path="/_/discover" element={<Discover />} />
+          <Route path="/_/charts" element={<Charts />} />
+          <Route path="/_/library" element={<Library />} />
+          <Route path="/_/profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -29,10 +32,7 @@ export default function App() {
     return (
       <>
         <Navbar />
-        
-        <Outlet /> 
-        {/*Footer? Here...*/}       
-
+        <Outlet />        
         <PlayBar /> 
       </>
     );

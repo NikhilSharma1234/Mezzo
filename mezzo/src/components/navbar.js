@@ -1,24 +1,45 @@
-
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import NavbarPopup from "./navbar_popup"
+
 import './../App.css';
 
 const Navbar = () => {
   let menu = true;
+  function ChangeSelector (section, val) {
+    if (val === 0) {
+      section.classList.remove("main_open");
+      section.classList.add("main_closed");
+    } else {
+      section.classList.add("main_open");
+      section.classList.remove("main_closed");
+    } 
+  }
+
   function ChangeStatus () {
+    let sections = null;
+    sections = document.querySelectorAll("section");
     if (menu === false) {
       menu = true;
       document.querySelector("nav").classList.remove("sidenav_closed");
       document.querySelector("nav").classList.add("sidenav_open");
-      document.querySelector("section").classList.remove("main_open");
-      document.querySelector("section").classList.add("main_closed");
+      sections = document.querySelectorAll("section");
+      sections.forEach(
+        function(section) {
+          ChangeSelector(section, 0);
+        }
+      );
       return <FaChevronLeft />;
     } else {
       menu = false;
       document.querySelector("nav").classList.remove("sidenav_open");
       document.querySelector("nav").classList.add("sidenav_closed");
-      document.querySelector("section").classList.remove("main_closed");
-      document.querySelector("section").classList.add("main_open");
+      sections = document.querySelectorAll("section");
+      sections.forEach(
+        function(section) {
+          ChangeSelector(section, 1);
+        }
+      );
       return <FaChevronRight />;
     }
   }
@@ -28,21 +49,25 @@ const Navbar = () => {
         <ul className="sidenav_headers">
           <button className="closebtn" onClick={ChangeStatus}></button>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/_/home">Home</Link>
           </li>
           <li>
-            <Link to="/discover">Discover</Link>
+            <Link to="/_/discover">Discover</Link>
           </li>
           <li>
-            <Link to="/charts">Charts</Link>
+            <Link to="/_/charts">Charts</Link>
           </li>
           <li>
-            <Link to="/library">Library</Link>
+            <Link to="/_/library">Library</Link>
           </li>
           <li>
-            <Link to="/profile">Profile</Link>
+            <Link to="/_/profile">Profile</Link>
           </li>
         </ul>
+
+        <div className="sidenav_options">
+            <NavbarPopup />
+        </div>
       </nav>
     </>
   );
