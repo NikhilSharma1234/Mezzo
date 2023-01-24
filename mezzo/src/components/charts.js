@@ -1,9 +1,10 @@
+import './../App.css';
 import chart_data from './chart_table.json';
 import DOMPurify from 'dompurify'
 
 const Charts = () => {  
   function createTable() {
-    let table = "<table border=0>";
+    let table = "<table border=1>";
     table += `<tr>
                 <th>Position</th>
                 <th>Title</th>
@@ -29,7 +30,7 @@ const Charts = () => {
 
   return (
     <section className="main_closed main">
-        {<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(Table_html) }} />}
+        {<div className="charts_main" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(Table_html) }} />}
     </section>
   );
 };

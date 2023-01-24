@@ -38,11 +38,11 @@
 }
 
 .main_open {
-  margin-left: 4%;
+  margin-left: 4% !important;
 }
 
 .main_closed {
-  margin-left: 18%;
+  margin-left: 18% !important;
 }
 
 .sidenav a {
@@ -87,17 +87,77 @@
 }
 
 /*------------------------------
+      SIDE NAV BAR POPUP
+------------------------------*/
+.sidenav_options {
+  font-family: Nunito, serif, sans-serif !important;
+  font-size: 15px;
+  bottom: 27px;
+  position: absolute;
+  right: 0px;
+}
+
+/* ... Selector */
+.css-sghohy-MuiButtonBase-root-MuiButton-root {
+  font-family: Nunito, serif, sans-serif !important;
+  color: #60DFF0 !important;
+  font-weight: 500 !important;
+  font-size: 30px !important;
+  border: none !important;
+  border-width: 0 !important;
+  background-color: #312E2E !important;
+  letter-spacing: 0.02857em !important;
+  padding: 2px 4px !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+
+/* ... Popup Text*/
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+    background-color: #211F1F !important;
+    color: #60DFF0 !important;
+}
+
+/* ... Popup Selector Text*/
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-family: Nunito, serif, sans-serif !important;
+  font-size: 12px !important;
+}
+
+/*------------------------------
+        CHARTS TAB
+------------------------------*/
+.charts_main {
+  font-size: 30px;
+}
+
+th {
+  height: 30%;
+  width: 100vw;
+}
+
+td {
+  font-size: 15px;
+  text-align:center;
+}
+
+
+/*------------------------------
         PLAY BAR
 ------------------------------*/
 
 .playbar {
   background-color: #484747 !important;
-  margin-left: 18% !important;
 }
 
 .divider {
   background-color: #312E2E !important;
   height: 3px;
+}
+
+.css-1gzs0su-MuiPaper-root {
+  background-color: #484747 !important; 
+  color: #484747 !important;
 }
 
 /*------------------------------
