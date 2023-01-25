@@ -1,0 +1,54 @@
+
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    font-family: Nunito, serif, sans-serif;
+    background-color: #312E2E;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: 0.5s;
+  }
+  
+  .sidenav_open {
+    width: 18%;
+  
+  }
+  
+  .sidenav_closed {
+    width: 4%;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #60DFF0;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #FFFFFF;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    right: 25px;
+    padding: 3px 8px;
+    background-color: #60dff0;
+    border-radius: 2px;
+    border: none;
+  }
+  
+  .sidenav_headers {
+    list-style-type: none;
+    margin: 20px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 12%px;}
+    .sidenav a {font-size: 16px;}
+  }

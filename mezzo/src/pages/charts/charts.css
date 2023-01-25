@@ -1,0 +1,13 @@
+.charts_main {
+    font-size: 30px;
+  }
+  
+  th {
+    height: 30%;
+    width: 100vw;
+  }
+  
+  td {
+    font-size: 15px;
+    text-align:center;
+  }

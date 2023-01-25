@@ -1,14 +1,14 @@
-import './App.css';
+import './assets/global.css';
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom';
-import Navbar from "./components/navbar";
-import Home from "./components/home";
-import Discover from "./discover/discover";
-import Charts from "./components/charts";
-import Library from "./components/library";
-import Profile from "./components/profile";
-import PlayBar from "./components/playbar"
-import Searchbar from "./components/profile"
-import Master from "./components/master"
+import Navbar from "./components/navbar/navbar";
+import Home from "./pages/home/home";
+import Discover from "./pages/discover/discover";
+import Charts from "./pages/charts/charts";
+import Library from "./pages/library/library";
+import Profile from "./pages/profile/profile";
+import PlayBar from "./components/playbar/playbar"
+import Searchbar from "./components/searchbar/searchbar.js"
+import Master from "./pages/master/master"
 
 /*import Navbar, Home, Discover, Charts, Library, Profile, Searchbar from "./components"*/
 

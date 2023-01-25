@@ -1,7 +1,7 @@
-import SearchBar from "/home/fchau/Documents/TechWiseProjectTwoTeamTwo/mezzo/src/main-components/search-bar/searchbar.js";
-import SongData from '/home/fchau/Documents/TechWiseProjectTwoTeamTwo/mezzo/src/Data.json';
-import SongCards from './song-card/song-card.js'
-import ArtistCards from './artist-card/artist-card.js'
+import SearchBar from "../../components/searchbar/searchbar.js";
+import SongData from '../../data/Data.json';
+import SongCards from '../../components/song-card/song-card.js'
+import ArtistCards from '../../components/artist-card/artist-card.js'
 import './discover.css'
 
 const Discover = () => {

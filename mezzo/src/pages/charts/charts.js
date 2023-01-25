@@ -1,5 +1,6 @@
-import './../App.css';
-import chart_data from './chart_table.json';
+import '../../assets/global.css';
+import './charts.css';
+import chart_data from '../../data/chart_table.json';
 import DOMPurify from 'dompurify'
 
 const Charts = () => {  
