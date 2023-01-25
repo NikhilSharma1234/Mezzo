@@ -143,6 +143,10 @@
   color: #60DFF0;
 }
 
+.textField {
+  border: 2px solid #4CD9C3 !important;
+  border-radius: 5px;
+}
 /*------------------------------
         SCROLLING
 ------------------------------*/
