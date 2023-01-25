@@ -1,0 +1,19 @@
+:root{
+    /*main panel*/
+    --background-color: #FFFFFF;
+    --search-bar-border-color: #DB32B0;
+    --song-card-color: #DB44F2;
+    --artist-card-color: #7739F9;
+    --placeholder-text-color: #898989;
+
+    /*menu*/
+    --menu--background-color: #DFDFDF;
+    --menu-open-icon-color: #DB32B0;
+    --menu-close-icon-color: #717171;
+    --current-tab-icon-color: #717171;;
+    --tab1-title-color: #7739F9;
+    --tab2-title-color: #9732D8;
+    --tab3-title-color: #DB44F2;
+    --tab4-title-color: #DB32B0;
+    --tab5-title-color: #F93968; 
+}

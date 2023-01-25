@@ -1,0 +1,62 @@
+[
+    {
+      "genre": "Country",
+      "song": "Coutry Song",
+      "artist": "Blake Shelton",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Rap",
+      "song": "Rap Song",
+      "artist": "Post Malone",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Pop",
+      "song": "Pop Song",
+      "artist": "A$AP Rocky",
+      "image": "https://via.placeholder.com/30x30"
+    },
+    {
+      "genre": "Pop",
+      "song": "Pop Song",
+      "artist": "Nicki Minaj",
+      "image": "https://via.placeholder.com/40x10"
+    },
+    {
+      "genre": "Rap",
+      "song": "Rap Song",
+      "artist": "Lil Wayne",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Blues",
+      "song": "Blues Song",
+      "artist": "Blues Artist",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Lo-Fi",
+      "song": "Chill Beats 24/7",
+      "artist": "Lo-Fi Girl",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Electronic",
+      "song": "Confusion",
+      "artist": "Electronic Light Orchestra",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Folk-Soul",
+      "song": "Yesterday",
+      "artist": "Beatles",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "genre": "Jazz",
+      "song": "Jazz Song",
+      "artist": "Jazz Artist",
+      "image": "https://via.placeholder.com/600x400"
+    }
+  ]
