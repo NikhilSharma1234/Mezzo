@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 import {useState} from "react"
-import '/home/fchau/Documents/TechWiseProjectTwoTeamTwo/mezzo/src/main-components/search-bar/searchbar.css';
+import './searchbar.css';
 import {AiOutlineSearch} from 'react-icons/ai';
 
 
