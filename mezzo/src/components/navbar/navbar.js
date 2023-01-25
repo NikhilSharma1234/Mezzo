@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import NavbarPopup from "./navbar_popup"
+import NavbarPopup from "./navbar_popup";
 
-import './../App.css';
+import "./navbar.css";
+import '../../assets/global.css';
 
 const Navbar = () => {
   let menu = true;

@@ -1,5 +1,5 @@
 import { FaPlay } from 'react-icons/fa';
-
+import './song-card.css'
 
 function PlayButton (props) {
   return (

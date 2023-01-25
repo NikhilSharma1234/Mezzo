@@ -1,0 +1,34 @@
+.sidenav_options {
+    font-family: Nunito, serif, sans-serif !important;
+    font-size: 15px;
+    bottom: 27px;
+    position: absolute;
+    right: 0px;
+  }
+  
+  /* ... Selector */
+  .css-sghohy-MuiButtonBase-root-MuiButton-root {
+    font-family: Nunito, serif, sans-serif !important;
+    color: #60DFF0 !important;
+    font-weight: 500 !important;
+    font-size: 30px !important;
+    border: none !important;
+    border-width: 0 !important;
+    background-color: #312E2E !important;
+    letter-spacing: 0.02857em !important;
+    padding: 2px 4px !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+  }
+  
+  /* ... Popup Text*/
+  .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+      background-color: #211F1F !important;
+      color: #60DFF0 !important;
+  }
+  
+  /* ... Popup Selector Text*/
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+    font-family: Nunito, serif, sans-serif !important;
+    font-size: 12px !important;
+  }
