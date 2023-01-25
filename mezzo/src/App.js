@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom';
 import Navbar from "./components/navbar";
 import Home from "./components/home";
-import Discover from "./components/discover";
+import Discover from "./discover/discover";
 import Charts from "./components/charts";
 import Library from "./components/library";
 import Profile from "./components/profile";
