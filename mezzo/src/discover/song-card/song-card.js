@@ -1,4 +1,3 @@
-import './../App.css';
 import { FaPlay } from 'react-icons/fa';
 
 
@@ -49,7 +48,7 @@ function SongCards (props) {
         {
           Object
           .keys(props.posts)
-          .map(key => <Card key={key} index={key} details={props.posts[key]}/>)
+          .map(key => <SongCard key={key} index={key} details={props.posts[key]}/>)
         }
       </div>
     </div>
@@ -57,4 +56,4 @@ function SongCards (props) {
 }
 
 
-export default Home;
+export default SongCards;
