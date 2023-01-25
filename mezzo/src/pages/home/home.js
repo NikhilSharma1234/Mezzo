@@ -1,4 +1,4 @@
-import './../App.css';
+import '../../assets/global.css';
 import { FaPlay } from 'react-icons/fa';
 
 const SongData = [

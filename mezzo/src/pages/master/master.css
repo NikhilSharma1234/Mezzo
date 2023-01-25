@@ -27,7 +27,7 @@
 }
 
 .master_main {
-    background: url('./../../public/logo512.png');
+    background: url('./../../assets/logo/logo512.png');
     image-resolution: from-image;
     position: absolute;
     width: 100%;
