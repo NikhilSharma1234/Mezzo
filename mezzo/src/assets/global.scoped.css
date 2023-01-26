@@ -24,7 +24,7 @@
   font-size: 10px;
   color: #60DFF0;
   font-family: Nunito, serif, sans-serif;
-  background-color: #484747;
+  background-color: var(--background-color);
   transition: margin-left 0.5s;
 }
 
@@ -33,7 +33,7 @@
 ------------------------------*/
 ::-webkit-scrollbar{
     width: 10px;
-    background-color: #484747;
+    background-color: var(--background-color);
 }
 ::-webkit-scrollbar-thumb{
     background-color: #60DFF0;

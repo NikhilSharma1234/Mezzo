@@ -11,10 +11,11 @@
     margin: 60px 30px;
     display: inline-block;
     font: 5px;
-    border: 2px solid #60DFF0;
+    border: 2px var(--song-card-color) solid ;
     border-radius: 8px;
     width: 27vh;
     padding: 5px;
+    color: var(--song-card-color)
   }
   
   .app-card-list .card .card-body {
@@ -22,7 +23,7 @@
   }
   
   .card-header {
-    color : #4CD9C3; 
+    color : var(--song-card-color) ; 
     background-color: #484747;
   }
   
@@ -31,7 +32,7 @@
     background-color: transparent;
     outline: none;
     margin-left: 20vh;
-    color: #60DFF0;
+    color: var(--song-card-color);
   }
   
   .textField {
