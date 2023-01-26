@@ -1,11 +1,9 @@
 #SongHeading {
     font-size: 50px;
-    color: yellow;
-
+    color: var(--song-card-color);
 }
 
 #ArtistHeading {
     font-size: 50px;
-    color: yellow;
-
+    color: var(--artist-card-color);
 }

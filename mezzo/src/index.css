@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #484747;
+  background-color: var(--background-color);
 }
 
 .sidebar {
@@ -11,4 +11,56 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+:root{
+  /*main panel*/
+  --background-color: #FFFFFF;
+  --search-bar-border-color: #DB32B0;
+  --song-card-color: #DB44F2;
+  --artist-card-color: #7739F9;
+  --placeholder-text-color: #898989;
+
+  /*menu*/
+  --navbar--background-color: #DFDFDF;
+  --navbar--popup-bg-color: #F93968; 
+  --navbar-open-icon-color: #DB32B0;
+  --navbar-close-icon-color: #717171;
+  --current-tab-icon-color: #717171;;
+  --tab1-title-color: #7739F9;
+  --tab2-title-color: #9732D8;
+  --tab3-title-color: #DB44F2;
+  --tab4-title-color: #DB32B0;
+  --tab5-title-color: #F93968; 
+
+  /*cards*/
+  --artist-card-color: #7739F9;
+  --song-card-color: #DB44F2;
+}
+
+[data-theme='dark'] {
+  /*main panel*/
+  --background-color: #FFFFFF;
+  --search-bar-border-color: #4CA3D9;
+  --song-card-color: #60DFF0;
+  --artist-card-color: #4CD9C3;
+  --placeholder-text-color: #898989;
+
+  /*menu*/
+  --navbar--background-color: #312E2E;
+  --navbar--popup-bg-color: #57F8B1;
+  --navbar-open-icon-color: #4CD9C3;
+  --navbar-close-icon-color: #717171;
+  --current-tab-icon-color: #717171;
+  --tab1-title-color: #5790F8;
+  --tab2-title-color: #4CA3D9;
+  --tab3-title-color: #60DFF0;
+  --tab4-title-color: #4CD9C3;
+  --tab5-title-color: #57F8B1;
+
+  
+  /*cards*/
+  --artist-card-color: #4CD9C3;
+  --song-card-color: #60DFF0;
 }

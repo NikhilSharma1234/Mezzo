@@ -1,4 +1,4 @@
-import '../../assets/global.css';
+import '../../assets/global.scoped.css';
 import './charts.css';
 import chart_data from '../../data/chart_table.json';
 import DOMPurify from 'dompurify'

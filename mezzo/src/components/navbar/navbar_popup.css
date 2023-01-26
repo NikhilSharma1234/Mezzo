@@ -9,12 +9,12 @@
   /* ... Selector */
   .css-sghohy-MuiButtonBase-root-MuiButton-root {
     font-family: Nunito, serif, sans-serif !important;
-    color: #60DFF0 !important;
+    color: var(--navbar-close-icon-color) !important;
     font-weight: 500 !important;
     font-size: 30px !important;
     border: none !important;
     border-width: 0 !important;
-    background-color: #312E2E !important;
+    background-color: transparent !important;
     letter-spacing: 0.02857em !important;
     padding: 2px 4px !important;
     border-radius: 2px !important;
@@ -23,8 +23,8 @@
   
   /* ... Popup Text*/
   .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
-      background-color: #211F1F !important;
-      color: #60DFF0 !important;
+      background-color: var(--navbar--popup-bg-color) !important;
+      color: white !important;
   }
   
   /* ... Popup Selector Text*/
