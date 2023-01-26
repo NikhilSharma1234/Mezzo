@@ -2,7 +2,7 @@ import SearchBar from "../../components/searchbar/searchbar.js";
 import SongData from '../../data/Data.json';
 import SongCards from '../../components/song-card/song-card.js'
 import ArtistCards from '../../components/artist-card/artist-card.js'
-import './discover.css'
+import './discover.scoped.css'
 
 const Discover = () => {
   return (

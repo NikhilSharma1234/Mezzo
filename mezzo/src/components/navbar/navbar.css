@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     font-family: Nunito, serif, sans-serif;
-    background-color: #312E2E;
+    background-color: var(--navbar--background-color);
     overflow-x: hidden;
     padding-top: 20px;
     transition: 0.5s;
@@ -38,7 +38,7 @@
     position: absolute;
     right: 25px;
     padding: 3px 8px;
-    background-color: #60dff0;
+    background-color: var(--navbar-close-icon-color);
     border-radius: 2px;
     border: none;
   }
@@ -51,4 +51,24 @@
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 12%px;}
     .sidenav a {font-size: 16px;}
+  }
+
+  #tab1 {
+    color: var(--tab1-title-color);
+  }
+
+  #tab2 {
+    color: var(--tab2-title-color);
+  }
+
+  #tab3 {
+    color: var(--tab3-title-color);
+  }
+
+  #tab4 {
+    color: var(--tab4-title-color);
+  }
+
+  #tab5 {
+    color: var(--tab5-title-color);
   }
