@@ -1,4 +1,4 @@
-import '../../assets/global.css';
+import '../../assets/global.scoped.css';
 import './playbar.css';
 import * as React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';

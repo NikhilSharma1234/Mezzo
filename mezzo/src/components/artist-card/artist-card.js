@@ -1,14 +1,15 @@
 import profilePic from './profilePic.png'
+import './artist-card.scoped.css'
 
 function ArtistPhoto (props) {
     return (
-        <img className="ArtistPhoto" src={profilePic}/>
+        <img className="artist-photo" src={profilePic}/>
     ); 
 }
 
 function ArtistCard (props) {
     return (
-      <article className="ArtistCard">
+      <article className="artist-card">
         <ArtistPhoto/>
         <h3>{props.details.artist}</h3>
       </article>

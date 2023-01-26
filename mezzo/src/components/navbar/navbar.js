@@ -3,7 +3,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import NavbarPopup from "./navbar_popup";
 
 import "./navbar.css";
-import '../../assets/global.css';
+import '../../assets/global.scoped.css';
 
 const Navbar = () => {
   let menu = true;
@@ -50,19 +50,19 @@ const Navbar = () => {
         <ul className="sidenav_headers">
           <button className="closebtn" onClick={ChangeStatus}></button>
           <li>
-            <Link to="/_/home">Home</Link>
+            <Link id="tab1" to="/_/home">Home</Link>
           </li>
           <li>
-            <Link to="/_/discover">Discover</Link>
+            <Link id="tab2" to="/_/discover">Discover</Link>
           </li>
           <li>
-            <Link to="/_/charts">Charts</Link>
+            <Link id="tab3" to="/_/charts">Charts</Link>
           </li>
           <li>
-            <Link to="/_/library">Library</Link>
+            <Link id="tab4" to="/_/library">Library</Link>
           </li>
           <li>
-            <Link to="/_/profile">Profile</Link>
+            <Link id="tab5" to="/_/profile">Profile</Link>
           </li>
         </ul>
 

@@ -1,4 +1,4 @@
-import '../../assets/global.css';
+import '../../assets/global.scoped.css';
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
