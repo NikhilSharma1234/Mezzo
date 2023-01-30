@@ -3,7 +3,7 @@ const { Router } = require("express");
 const apiRouter = Router();
 const User = require("./models/User");
 const Token = require("./models/Token");
-const forgotPassword = require("./password_reset");
+const {forgotPassword, resetPassword} = require("./password_reset");
 const JWT = require("jsonwebtoken");
 const axios = require('axios').default;
 
@@ -79,15 +79,19 @@ apiRouter.post('/register/user', async (req, res) => {
 
 apiRouter.post('/login/user', function(req, res) {
   User.findOne({username: req.body.username}, async function(err, user) {
-    const matchedPasswords = await user.validPassword(req.body.password, user.password);
-    if (matchedPasswords) {
-      console.log("Correct Password");
-      //redirect here...
-      res.send("yup");
+    if (!user){
+      console.log("User doesn't exist");
     } else {
-      console.log("Incorrect Password");
-      //redirect here...
-      res.send("nope");
+      const matchedPasswords = await user.validPassword(req.body.password, user.password);
+      if (matchedPasswords) {
+        console.log("Correct Password");
+        //redirect here...
+        res.send("yup");
+      } else {
+        console.log("Incorrect Password");
+        //redirect here...
+        res.send("nope");
+      }
     }
   });
 });
@@ -97,8 +101,19 @@ apiRouter.post('/reset_password', function(req, res) {
   res.send("Sent");
 });
 
-apiRouter.post('/reset_password/:token/:id', function(req, res) {
-  
+apiRouter.get('/reset_password', function(req, res) {
+  Token.findOne({userID: req.query.id}, async function(err, newToken) {
+    try {
+      var format = req.query.format,
+      type = req.query.type;
+      if (resetPassword(req.query.id, req.query.token, 'whateverplaintextpasswordhere').catch(console.error)){
+        res.send("Success");
+      }
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(400);
+    }
+  });
 });
 
 module.exports = apiRouter;

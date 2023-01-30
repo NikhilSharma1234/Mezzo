@@ -35,17 +35,20 @@ const resetPassword = async (userID, token, password) => {
   if (!isValid) {
     throw new Error("Invalid or expired password reset token");
   }
-  const hash = await bcrypt.hash(password, Number(bcryptSalt));
+  const hash = await bcrypt.hash(password, 10);
   await User.updateOne(
-    { _id: userId },
+    { _id: userID },
     { $set: { password: hash } },
     { new: true }
   );
-  const user = await User.findById({ _id: userId });
+  const user = await User.findById({ _id: userID });
   const text = `Dear ${user.username}, \n Your password is successfully reset.`
   sendEmail(user.email, user.username, text, null);
   await passwordResetToken.deleteOne();
   return true;
 };
 
-module.exports = forgotPassword;
+module.exports = {
+   forgotPassword,
+   resetPassword,
+}
