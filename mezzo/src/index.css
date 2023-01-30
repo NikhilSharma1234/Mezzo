@@ -16,7 +16,7 @@ code {
 
 :root{
   /*main panel*/
-  --background-color: #FFFFFF;
+  --background-color: #000000;
   --search-bar-border-color: #DB32B0;
   --song-card-color: #DB44F2;
   --artist-card-color: #7739F9;
@@ -41,7 +41,7 @@ code {
 
 [data-theme='dark'] {
   /*main panel*/
-  --background-color: #FFFFFF;
+  --background-color: #898989;
   --search-bar-border-color: #4CA3D9;
   --song-card-color: #60DFF0;
   --artist-card-color: #4CD9C3;
