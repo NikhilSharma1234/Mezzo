@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -33,10 +34,15 @@ const userSchema = new mongoose.Schema({
   }],
 });
 
+userSchema.methods.generateHash = async (password) => {
+  password = password.toString();
+  const hash = await bcrypt.hash(password, 10);
+  return hash;
+}
 
-// Insert Password Hash Here
-
-// Insert Password Validation Here
+userSchema.methods.validPassword = async (password, hash) => {
+  return await bcrypt.compare(password, hash);
+};
 
 // Password Reset Here --> Insert Security Q(s) Validation Here
 

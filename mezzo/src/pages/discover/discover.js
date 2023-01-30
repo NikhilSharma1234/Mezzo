@@ -6,28 +6,27 @@ import './discover.scoped.css'
 
 const Discover = () => {
   return (
-    <div className="main-panel">
-        <SearchBar placeholder="Enter a song/artist" data={SongData}/>
-
-        <section className="Songs-Section">
-        
-
+    <section className="main main_closed">
         <div>
-        <h3 id="SongHeading">Songs</h3>
-            {<SongCards posts={SongData}/>} 
+            <SearchBar placeholder="Enter a song/artist" data={SongData}/>
+
+            <section className="Songs-Section">
+            
+
+            <div>
+            <h3 id="SongHeading">Songs</h3>
+                {<SongCards posts={SongData}/>} 
+            </div>
+
+            <div>
+            <h3 id="ArtistHeading">Artists</h3>
+                {<ArtistCards posts={SongData}/>} 
+            </div>
+
+            </section>
+            
         </div>
-
-        <div>
-        <h3 id="ArtistHeading">Artists</h3>
-            {<ArtistCards posts={SongData}/>} 
-        </div>
-
-        </section>
-        
-    </div>
-
-    
-
+    </section>
   );
 };
 
