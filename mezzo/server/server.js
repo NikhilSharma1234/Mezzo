@@ -37,6 +37,7 @@ async function main() {
       pass: process.env.MONGO_PASSWORD,
     });
   } else {
+    console.log("MongoDB connected...")
     await mongoose.connect("mongodb://localhost:27017/Mezzo");
   }
 

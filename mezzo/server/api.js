@@ -2,7 +2,15 @@ require("dotenv").config();
 const { Router } = require("express");
 const apiRouter = Router();
 const User = require("./models/User");
+const Token = require("./models/Token");
+const forgotPassword = require("./password_reset");
+const JWT = require("jsonwebtoken");
 const axios = require('axios').default;
+
+// User Constraints
+const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+const emailReg = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/
+
 let apiToken = null;
 
 function apiRefresh () {
@@ -42,18 +50,55 @@ apiRouter.get("/user/:id", async (req, res) => {
   }
 });
 
-apiRouter.post("/user/", async (req, res) => {
+apiRouter.post('/register/user', async (req, res) => {
   try {
     const newUser = await User({ ...req.body });
-    await newUser.save();
-    res.json({ id: newUser._id });
+    if (!emailReg.test(newUser.email)){
+      res.send("Invalid email");
+      res.redirect('/');
+    } else if (!passwordReg.test(newUser.password)){
+      res.send("Minimum eight characters, at least one letter, one number and one special character");
+      res.redirect('/');
+    } else {
+      newUser.password = await newUser.generateHash(req.body.password);
+      const token = JWT.sign({id: newUser._id}, process.env.JWT_SECRET);
+      const token_data = {
+        userID: newUser._id,
+        token: token,
+      };
+      const newToken = await Token(token_data);
+      await newToken.save();
+      await newUser.save();
+      res.json({ id: newUser._id });
+    }
   } catch (err) {
     console.error(err);
     res.sendStatus(400);
   }
 });
 
+apiRouter.post('/login/user', function(req, res) {
+  User.findOne({username: req.body.username}, async function(err, user) {
+    const matchedPasswords = await user.validPassword(req.body.password, user.password);
+    if (matchedPasswords) {
+      console.log("Correct Password");
+      //redirect here...
+      res.send("yup");
+    } else {
+      console.log("Incorrect Password");
+      //redirect here...
+      res.send("nope");
+    }
+  });
+});
 
+apiRouter.post('/reset_password', function(req, res) {
+  forgotPassword(req.body.email).catch(console.error);
+  res.send("Sent");
+});
 
+apiRouter.post('/reset_password/:token/:id', function(req, res) {
+  
+});
 
 module.exports = apiRouter;

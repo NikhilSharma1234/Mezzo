@@ -27,6 +27,11 @@
       color: white !important;
   }
   
+  .css-6hp17o-MuiList-root-MuiMenu-list {
+      background-color: var(--navbar--popup-bg-color) !important;
+  }
+
+  
   /* ... Popup Selector Text*/
   .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
     font-family: Nunito, serif, sans-serif !important;
