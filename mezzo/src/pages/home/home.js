@@ -3,6 +3,7 @@ import { FaPlay } from 'react-icons/fa';
 import SongCards from '../../components/song-card/song-card.js'
 import ArtistCards from '../../components/artist-card/artist-card.js'
 import SongData from '../../data/Data.json';
+import spotifyTracks from '../../data/tracks.json';
 
 function PlayButton (props) {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
   return (
     <section className="main_closed main">
       <div>
-        {<SongCards posts={SongData}/>} 
+        {<SongCards posts={spotifyTracks}/>} 
       </div>
     </section>
   );

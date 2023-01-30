@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const api = require("./api");
+const spotify = require("./spotify_api");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", api);
+app.use("/_", spotify);
 
 app.all('*', (req, res) => {
   res.status(404).send('<h1>404<h1> <h2>Page not found</h2>');
