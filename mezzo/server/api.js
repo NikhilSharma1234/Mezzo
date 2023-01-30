@@ -11,33 +11,6 @@ const axios = require('axios').default;
 const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 const emailReg = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/
 
-let apiToken = null;
-
-function apiRefresh () {
-	axios({
-	  method: "post",
-	  url: process.env.API_BASE_LINK,
-	  data: {"grant_type": "client_credentials"},
-	  headers: { "Content-Type": "application/x-www-form-urlencoded",
-	  					 "Authorization" : process.env.API_AUTHORIZATION },
-	})
-  .then(function (response) {
-  	apiToken = response.data.access_token;
-  })
-  .catch(function (response) {
-    console.log(response);
-  });
-}
-
-apiRouter.post('/refresh_token', async (req, res) => {
-	try {
-		apiRefresh();
-	} catch (err) {
-		console.log(err);
-	}
-});
-
-
 apiRouter.get("/user/:id", async (req, res) => {
   try {
     const queriedUser = await User.findById(req.params.id);

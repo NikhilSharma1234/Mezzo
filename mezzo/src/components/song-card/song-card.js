@@ -34,8 +34,8 @@ function SongCardBody (props) {
 function SongCard (props) {
   return (
     <article className="card">
-      <SongCardHeader genre={props.details.genre} image={props.details.image}/>
-      <SongCardBody song={props.details.song} artist={props.details.artist}/>
+      <SongCardHeader genre={props.genre} image={props.details.album.images[1]}/>
+      <SongCardBody song={props.details.album.name} artist={props.details.artists.name}/>
     </article>
   );
 }

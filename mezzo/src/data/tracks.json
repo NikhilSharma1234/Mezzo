@@ -1,0 +1,812 @@
+[
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/2EMAnMvWE2eb56ToJVfCWs"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/2EMAnMvWE2eb56ToJVfCWs",
+                    "id": "2EMAnMvWE2eb56ToJVfCWs",
+                    "name": "Bryson Tiller",
+                    "type": "artist",
+                    "uri": "spotify:artist:2EMAnMvWE2eb56ToJVfCWs"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/6eZdwrhB97A3EYx9QppGfl"
+            },
+            "href": "https://api.spotify.com/v1/albums/6eZdwrhB97A3EYx9QppGfl",
+            "id": "6eZdwrhB97A3EYx9QppGfl",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b273d5f3cea8affdca01a0dc754f",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e02d5f3cea8affdca01a0dc754f",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851d5f3cea8affdca01a0dc754f",
+                    "width": 64
+                }
+            ],
+            "name": "T R A P S O U L",
+            "release_date": "2015-10-02",
+            "release_date_precision": "day",
+            "total_tracks": 14,
+            "type": "album",
+            "uri": "spotify:album:6eZdwrhB97A3EYx9QppGfl"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/2EMAnMvWE2eb56ToJVfCWs"
+                },
+                "href": "https://api.spotify.com/v1/artists/2EMAnMvWE2eb56ToJVfCWs",
+                "id": "2EMAnMvWE2eb56ToJVfCWs",
+                "name": "Bryson Tiller",
+                "type": "artist",
+                "uri": "spotify:artist:2EMAnMvWE2eb56ToJVfCWs"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 198293,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USRC11501051"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/3pXF1nA74528Edde4of9CC"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3pXF1nA74528Edde4of9CC",
+        "id": "3pXF1nA74528Edde4of9CC",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Don't",
+        "popularity": 81,
+        "preview_url": "https://p.scdn.co/mp3-preview/4366b96eb84c2d0005a3830bc5e5753375a23363?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 5,
+        "type": "track",
+        "uri": "spotify:track:3pXF1nA74528Edde4of9CC"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/5LHRHt1k9lMyONurDHEdrp"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/5LHRHt1k9lMyONurDHEdrp",
+                    "id": "5LHRHt1k9lMyONurDHEdrp",
+                    "name": "Tyga",
+                    "type": "artist",
+                    "uri": "spotify:artist:5LHRHt1k9lMyONurDHEdrp"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/6hHIX3lfGKnZ2ji41YZMVV"
+            },
+            "href": "https://api.spotify.com/v1/albums/6hHIX3lfGKnZ2ji41YZMVV",
+            "id": "6hHIX3lfGKnZ2ji41YZMVV",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b273d38a9c6e4fcfeb128f111f6b",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e02d38a9c6e4fcfeb128f111f6b",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851d38a9c6e4fcfeb128f111f6b",
+                    "width": 64
+                }
+            ],
+            "name": "Legendary",
+            "release_date": "2019-06-07",
+            "release_date_precision": "day",
+            "total_tracks": 14,
+            "type": "album",
+            "uri": "spotify:album:6hHIX3lfGKnZ2ji41YZMVV"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/5LHRHt1k9lMyONurDHEdrp"
+                },
+                "href": "https://api.spotify.com/v1/artists/5LHRHt1k9lMyONurDHEdrp",
+                "id": "5LHRHt1k9lMyONurDHEdrp",
+                "name": "Tyga",
+                "type": "artist",
+                "uri": "spotify:artist:5LHRHt1k9lMyONurDHEdrp"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/4DdkRBBYG6Yk9Ka8tdJ9BW"
+                },
+                "href": "https://api.spotify.com/v1/artists/4DdkRBBYG6Yk9Ka8tdJ9BW",
+                "id": "4DdkRBBYG6Yk9Ka8tdJ9BW",
+                "name": "Offset",
+                "type": "artist",
+                "uri": "spotify:artist:4DdkRBBYG6Yk9Ka8tdJ9BW"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 229210,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USUYG1198481"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/2toVe5hfuIi97ytDPDbQFt"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2toVe5hfuIi97ytDPDbQFt",
+        "id": "2toVe5hfuIi97ytDPDbQFt",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Taste (feat. Offset)",
+        "popularity": 70,
+        "preview_url": "https://p.scdn.co/mp3-preview/9fe89fa6acfd98772389eb0ecaefe1c22678df5a?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 13,
+        "type": "track",
+        "uri": "spotify:track:2toVe5hfuIi97ytDPDbQFt"
+    },
+    {
+        "album": {
+            "album_type": "SINGLE",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/73sIBHcqh3Z3NyqHKZ7FOL"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/73sIBHcqh3Z3NyqHKZ7FOL",
+                    "id": "73sIBHcqh3Z3NyqHKZ7FOL",
+                    "name": "Childish Gambino",
+                    "type": "artist",
+                    "uri": "spotify:artist:73sIBHcqh3Z3NyqHKZ7FOL"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/7arx9qPJexCsDz67El4qvk"
+            },
+            "href": "https://api.spotify.com/v1/albums/7arx9qPJexCsDz67El4qvk",
+            "id": "7arx9qPJexCsDz67El4qvk",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b2733504664c17b7b99a3cb7d116",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e023504664c17b7b99a3cb7d116",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048513504664c17b7b99a3cb7d116",
+                    "width": 64
+                }
+            ],
+            "name": "This Is America",
+            "release_date": "2018-05-06",
+            "release_date_precision": "day",
+            "total_tracks": 1,
+            "type": "album",
+            "uri": "spotify:album:7arx9qPJexCsDz67El4qvk"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/73sIBHcqh3Z3NyqHKZ7FOL"
+                },
+                "href": "https://api.spotify.com/v1/artists/73sIBHcqh3Z3NyqHKZ7FOL",
+                "id": "73sIBHcqh3Z3NyqHKZ7FOL",
+                "name": "Childish Gambino",
+                "type": "artist",
+                "uri": "spotify:artist:73sIBHcqh3Z3NyqHKZ7FOL"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 225773,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USRC11801773"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/0b9oOr2ZgvyQu88wzixux9"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0b9oOr2ZgvyQu88wzixux9",
+        "id": "0b9oOr2ZgvyQu88wzixux9",
+        "is_local": false,
+        "is_playable": true,
+        "name": "This Is America",
+        "popularity": 68,
+        "preview_url": "https://p.scdn.co/mp3-preview/d13abc1cf1c9b5485f6d4e352dc43ea090a5d618?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:0b9oOr2ZgvyQu88wzixux9"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/1pPmIToKXyGdsCF6LmqLmI"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/1pPmIToKXyGdsCF6LmqLmI",
+                    "id": "1pPmIToKXyGdsCF6LmqLmI",
+                    "name": "Rich The Kid",
+                    "type": "artist",
+                    "uri": "spotify:artist:1pPmIToKXyGdsCF6LmqLmI"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/1Hno6CtKbaFNAEPjRHDrc6"
+            },
+            "href": "https://api.spotify.com/v1/albums/1Hno6CtKbaFNAEPjRHDrc6",
+            "id": "1Hno6CtKbaFNAEPjRHDrc6",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b27364353426de6dfe0206f6d1d3",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e0264353426de6dfe0206f6d1d3",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485164353426de6dfe0206f6d1d3",
+                    "width": 64
+                }
+            ],
+            "name": "The World Is Yours",
+            "release_date": "2018-03-30",
+            "release_date_precision": "day",
+            "total_tracks": 15,
+            "type": "album",
+            "uri": "spotify:album:1Hno6CtKbaFNAEPjRHDrc6"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1pPmIToKXyGdsCF6LmqLmI"
+                },
+                "href": "https://api.spotify.com/v1/artists/1pPmIToKXyGdsCF6LmqLmI",
+                "id": "1pPmIToKXyGdsCF6LmqLmI",
+                "name": "Rich The Kid",
+                "type": "artist",
+                "uri": "spotify:artist:1pPmIToKXyGdsCF6LmqLmI"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 182486,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USUM71809942"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/3yAVrwXhueRFZMUjxkh2ia"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3yAVrwXhueRFZMUjxkh2ia",
+        "id": "3yAVrwXhueRFZMUjxkh2ia",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Leave Me",
+        "popularity": 45,
+        "preview_url": null,
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:3yAVrwXhueRFZMUjxkh2ia"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/5spEJXLwD1sKUdC2bnOHPg"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/5spEJXLwD1sKUdC2bnOHPg",
+                    "id": "5spEJXLwD1sKUdC2bnOHPg",
+                    "name": "Bone Thugs-N-Harmony",
+                    "type": "artist",
+                    "uri": "spotify:artist:5spEJXLwD1sKUdC2bnOHPg"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/6fgFFyMpkmOZK038Ta3gQB"
+            },
+            "href": "https://api.spotify.com/v1/albums/6fgFFyMpkmOZK038Ta3gQB",
+            "id": "6fgFFyMpkmOZK038Ta3gQB",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b2730c078eab10f525a0bd0eb6b3",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e020c078eab10f525a0bd0eb6b3",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048510c078eab10f525a0bd0eb6b3",
+                    "width": 64
+                }
+            ],
+            "name": "Strength & Loyalty",
+            "release_date": "2007",
+            "release_date_precision": "year",
+            "total_tracks": 14,
+            "type": "album",
+            "uri": "spotify:album:6fgFFyMpkmOZK038Ta3gQB"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/5spEJXLwD1sKUdC2bnOHPg"
+                },
+                "href": "https://api.spotify.com/v1/artists/5spEJXLwD1sKUdC2bnOHPg",
+                "id": "5spEJXLwD1sKUdC2bnOHPg",
+                "name": "Bone Thugs-N-Harmony",
+                "type": "artist",
+                "uri": "spotify:artist:5spEJXLwD1sKUdC2bnOHPg"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0z4gvV4rjIZ9wHck67ucSV"
+                },
+                "href": "https://api.spotify.com/v1/artists/0z4gvV4rjIZ9wHck67ucSV",
+                "id": "0z4gvV4rjIZ9wHck67ucSV",
+                "name": "Akon",
+                "type": "artist",
+                "uri": "spotify:artist:0z4gvV4rjIZ9wHck67ucSV"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 287480,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USUM70701555"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/2elA6JLRaQ6iB7hxiuTKN4"
+        },
+        "href": "https://api.spotify.com/v1/tracks/2elA6JLRaQ6iB7hxiuTKN4",
+        "id": "2elA6JLRaQ6iB7hxiuTKN4",
+        "is_local": false,
+        "is_playable": true,
+        "name": "I Tried",
+        "popularity": 59,
+        "preview_url": null,
+        "track_number": 4,
+        "type": "track",
+        "uri": "spotify:track:2elA6JLRaQ6iB7hxiuTKN4"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+                    "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+                    "name": "Travis Scott",
+                    "type": "artist",
+                    "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/42WVQWuf1teDysXiOupIZt"
+            },
+            "href": "https://api.spotify.com/v1/albums/42WVQWuf1teDysXiOupIZt",
+            "id": "42WVQWuf1teDysXiOupIZt",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b273f54b99bf27cda88f4a7403ce",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e02f54b99bf27cda88f4a7403ce",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d00004851f54b99bf27cda88f4a7403ce",
+                    "width": 64
+                }
+            ],
+            "name": "Birds In The Trap Sing McKnight",
+            "release_date": "2016-09-16",
+            "release_date_precision": "day",
+            "total_tracks": 14,
+            "type": "album",
+            "uri": "spotify:album:42WVQWuf1teDysXiOupIZt"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY"
+                },
+                "href": "https://api.spotify.com/v1/artists/0Y5tJX1MQlPlqiwlOH1tJY",
+                "id": "0Y5tJX1MQlPlqiwlOH1tJY",
+                "name": "Travis Scott",
+                "type": "artist",
+                "uri": "spotify:artist:0Y5tJX1MQlPlqiwlOH1tJY"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 243836,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USSM11607555"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/6gBFPUFcJLzWGx4lenP6h2"
+        },
+        "href": "https://api.spotify.com/v1/tracks/6gBFPUFcJLzWGx4lenP6h2",
+        "id": "6gBFPUFcJLzWGx4lenP6h2",
+        "is_local": false,
+        "is_playable": true,
+        "name": "goosebumps",
+        "popularity": 81,
+        "preview_url": "https://p.scdn.co/mp3-preview/580bc0b4b3c1f33835606dd44797a58aa171525c?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 9,
+        "type": "track",
+        "uri": "spotify:track:6gBFPUFcJLzWGx4lenP6h2"
+    },
+    {
+        "album": {
+            "album_type": "SINGLE",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/33W1pnW9zScZtYTnAoWnOT"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/33W1pnW9zScZtYTnAoWnOT",
+                    "id": "33W1pnW9zScZtYTnAoWnOT",
+                    "name": "Mr. Probz",
+                    "type": "artist",
+                    "uri": "spotify:artist:33W1pnW9zScZtYTnAoWnOT"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/3Dq3fVdI2U81DwfJZxUwrv"
+            },
+            "href": "https://api.spotify.com/v1/albums/3Dq3fVdI2U81DwfJZxUwrv",
+            "id": "3Dq3fVdI2U81DwfJZxUwrv",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b2733115cfc26eca3f37f9e18541",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e023115cfc26eca3f37f9e18541",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048513115cfc26eca3f37f9e18541",
+                    "width": 64
+                }
+            ],
+            "name": "Space For Two (R3hab Remix)",
+            "release_date": "2018-06-29",
+            "release_date_precision": "day",
+            "total_tracks": 1,
+            "type": "album",
+            "uri": "spotify:album:3Dq3fVdI2U81DwfJZxUwrv"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/33W1pnW9zScZtYTnAoWnOT"
+                },
+                "href": "https://api.spotify.com/v1/artists/33W1pnW9zScZtYTnAoWnOT",
+                "id": "33W1pnW9zScZtYTnAoWnOT",
+                "name": "Mr. Probz",
+                "type": "artist",
+                "uri": "spotify:artist:33W1pnW9zScZtYTnAoWnOT"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 164250,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "NLB8R1800012"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/5TZum2oOnlHQf1aLdiEbe9"
+        },
+        "href": "https://api.spotify.com/v1/tracks/5TZum2oOnlHQf1aLdiEbe9",
+        "id": "5TZum2oOnlHQf1aLdiEbe9",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Space For Two - R3hab Remix",
+        "popularity": 51,
+        "preview_url": "https://p.scdn.co/mp3-preview/af6085639d8d40ee0cd04001ca2965799fcfb42e?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:5TZum2oOnlHQf1aLdiEbe9"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/6futYSDVulYR2PktBjTB5W"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/6futYSDVulYR2PktBjTB5W",
+                    "id": "6futYSDVulYR2PktBjTB5W",
+                    "name": "Big Daddy Kane",
+                    "type": "artist",
+                    "uri": "spotify:artist:6futYSDVulYR2PktBjTB5W"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/1cvyT4p26JXJicEBbHPzvX"
+            },
+            "href": "https://api.spotify.com/v1/albums/1cvyT4p26JXJicEBbHPzvX",
+            "id": "1cvyT4p26JXJicEBbHPzvX",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b27375f7661c21b85aab0126f80c",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e0275f7661c21b85aab0126f80c",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d0000485175f7661c21b85aab0126f80c",
+                    "width": 64
+                }
+            ],
+            "name": "It's A Big Daddy Thing",
+            "release_date": "1989",
+            "release_date_precision": "year",
+            "total_tracks": 17,
+            "type": "album",
+            "uri": "spotify:album:1cvyT4p26JXJicEBbHPzvX"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/6futYSDVulYR2PktBjTB5W"
+                },
+                "href": "https://api.spotify.com/v1/artists/6futYSDVulYR2PktBjTB5W",
+                "id": "6futYSDVulYR2PktBjTB5W",
+                "name": "Big Daddy Kane",
+                "type": "artist",
+                "uri": "spotify:artist:6futYSDVulYR2PktBjTB5W"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 284466,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "USRE10000028"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/1Z4mVNtYGnpjHUoZVo3IMU"
+        },
+        "href": "https://api.spotify.com/v1/tracks/1Z4mVNtYGnpjHUoZVo3IMU",
+        "id": "1Z4mVNtYGnpjHUoZVo3IMU",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Smooth Operator",
+        "popularity": 46,
+        "preview_url": "https://p.scdn.co/mp3-preview/e1b164e8ca1c4c1235ec2a000ba902096a3ad7e5?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 6,
+        "type": "track",
+        "uri": "spotify:track:1Z4mVNtYGnpjHUoZVo3IMU"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/3HiuzBlSW7pGDXlSFMhO2g"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/3HiuzBlSW7pGDXlSFMhO2g",
+                    "id": "3HiuzBlSW7pGDXlSFMhO2g",
+                    "name": "Young Dolph",
+                    "type": "artist",
+                    "uri": "spotify:artist:3HiuzBlSW7pGDXlSFMhO2g"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/55GbaLX8yU1Agf7wjhez7W"
+            },
+            "href": "https://api.spotify.com/v1/albums/55GbaLX8yU1Agf7wjhez7W",
+            "id": "55GbaLX8yU1Agf7wjhez7W",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b2736097fc04f7f484bf4b6f8970",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e026097fc04f7f484bf4b6f8970",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048516097fc04f7f484bf4b6f8970",
+                    "width": 64
+                }
+            ],
+            "name": "Bulletproof",
+            "release_date": "2017-04-01",
+            "release_date_precision": "day",
+            "total_tracks": 10,
+            "type": "album",
+            "uri": "spotify:album:55GbaLX8yU1Agf7wjhez7W"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3HiuzBlSW7pGDXlSFMhO2g"
+                },
+                "href": "https://api.spotify.com/v1/artists/3HiuzBlSW7pGDXlSFMhO2g",
+                "id": "3HiuzBlSW7pGDXlSFMhO2g",
+                "name": "Young Dolph",
+                "type": "artist",
+                "uri": "spotify:artist:3HiuzBlSW7pGDXlSFMhO2g"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 264818,
+        "explicit": true,
+        "external_ids": {
+            "isrc": "USUYG1133603"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/3TXy6nchgKeYlVwOKNk9lE"
+        },
+        "href": "https://api.spotify.com/v1/tracks/3TXy6nchgKeYlVwOKNk9lE",
+        "id": "3TXy6nchgKeYlVwOKNk9lE",
+        "is_local": false,
+        "is_playable": true,
+        "name": "100 Shots",
+        "popularity": 64,
+        "preview_url": "https://p.scdn.co/mp3-preview/b162003e31365346adb83711cbbedf6562255a50?cid=78a672706a494c15ab1b5d392a49a506",
+        "track_number": 1,
+        "type": "track",
+        "uri": "spotify:track:3TXy6nchgKeYlVwOKNk9lE"
+    },
+    {
+        "album": {
+            "album_type": "ALBUM",
+            "artists": [
+                {
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/7iMvwE8qANp3aIfAGKEAwS"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/7iMvwE8qANp3aIfAGKEAwS",
+                    "id": "7iMvwE8qANp3aIfAGKEAwS",
+                    "name": "Cam’ron",
+                    "type": "artist",
+                    "uri": "spotify:artist:7iMvwE8qANp3aIfAGKEAwS"
+                }
+            ],
+            "external_urls": {
+                "spotify": "https://open.spotify.com/album/2dkW0vytRLSwXcHpOGepZL"
+            },
+            "href": "https://api.spotify.com/v1/albums/2dkW0vytRLSwXcHpOGepZL",
+            "id": "2dkW0vytRLSwXcHpOGepZL",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/ab67616d0000b2733625b874f4622b743c249d3b",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/ab67616d00001e023625b874f4622b743c249d3b",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/ab67616d000048513625b874f4622b743c249d3b",
+                    "width": 64
+                }
+            ],
+            "name": "Come Home With Me",
+            "release_date": "2002-01-01",
+            "release_date_precision": "day",
+            "total_tracks": 15,
+            "type": "album",
+            "uri": "spotify:album:2dkW0vytRLSwXcHpOGepZL"
+        },
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/7iMvwE8qANp3aIfAGKEAwS"
+                },
+                "href": "https://api.spotify.com/v1/artists/7iMvwE8qANp3aIfAGKEAwS",
+                "id": "7iMvwE8qANp3aIfAGKEAwS",
+                "name": "Cam’ron",
+                "type": "artist",
+                "uri": "spotify:artist:7iMvwE8qANp3aIfAGKEAwS"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/6Uh8uJyN9g7oFjDK16nJgb"
+                },
+                "href": "https://api.spotify.com/v1/artists/6Uh8uJyN9g7oFjDK16nJgb",
+                "id": "6Uh8uJyN9g7oFjDK16nJgb",
+                "name": "Juelz Santana",
+                "type": "artist",
+                "uri": "spotify:artist:6Uh8uJyN9g7oFjDK16nJgb"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/6EjZmcZTs67OVOG511gGn3"
+                },
+                "href": "https://api.spotify.com/v1/artists/6EjZmcZTs67OVOG511gGn3",
+                "id": "6EjZmcZTs67OVOG511gGn3",
+                "name": "Freekey Zeekey",
+                "type": "artist",
+                "uri": "spotify:artist:6EjZmcZTs67OVOG511gGn3"
+            },
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/02ehFoytLUjat0JMYpYsml"
+                },
+                "href": "https://api.spotify.com/v1/artists/02ehFoytLUjat0JMYpYsml",
+                "id": "02ehFoytLUjat0JMYpYsml",
+                "name": "Toya",
+                "type": "artist",
+                "uri": "spotify:artist:02ehFoytLUjat0JMYpYsml"
+            }
+        ],
+        "disc_number": 1,
+        "duration_ms": 232533,
+        "explicit": false,
+        "external_ids": {
+            "isrc": "USDJ20200342"
+        },
+        "external_urls": {
+            "spotify": "https://open.spotify.com/track/0Uhnzk5zI46IRlQ04LNOtc"
+        },
+        "href": "https://api.spotify.com/v1/tracks/0Uhnzk5zI46IRlQ04LNOtc",
+        "id": "0Uhnzk5zI46IRlQ04LNOtc",
+        "is_local": false,
+        "is_playable": true,
+        "name": "Hey Ma",
+        "popularity": 56,
+        "preview_url": null,
+        "track_number": 8,
+        "type": "track",
+        "uri": "spotify:track:0Uhnzk5zI46IRlQ04LNOtc"
+    }
+]
