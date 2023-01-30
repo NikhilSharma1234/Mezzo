@@ -18,13 +18,7 @@ const sendEmail = async (email, username, info, link) => {
       text: info
     };
 
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
+    transporter.sendMail(mailOptions, function(error, info));
   } catch (err) {
     return err;
   }
