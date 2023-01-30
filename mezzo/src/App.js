@@ -1,6 +1,5 @@
 import './assets/global.scoped.css';
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom';
-import { Switch } from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/home";
 import Discover from "./pages/discover/discover";
@@ -8,7 +7,6 @@ import Charts from "./pages/charts/charts";
 import Library from "./pages/library/library";
 import Profile from "./pages/profile/profile";
 import PlayBar from "./components/playbar/playbar";
-import Searchbar from "./components/searchbar/searchbar.js";
 import Master from "./pages/master/master";
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
@@ -41,9 +39,11 @@ export default function App() {
     }
     return (
       <div className="app" data-theme={theme}>
-      <button onClick={switchTheme}>
-        Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
-      </button>
+        <section className="main main_closed">
+          <button className = "theme_btn" onClick={switchTheme}>
+            Enter {theme === 'light' ? 'Dark' : 'Light'} Mode
+          </button>
+        </section>
         <Navbar />
         <Outlet />        
         <PlayBar /> 

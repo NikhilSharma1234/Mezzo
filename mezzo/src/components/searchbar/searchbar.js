@@ -30,7 +30,7 @@ function SearchBar({placeholder, data}) {
       {filteredData.length !== 0 && (
       <div className="dataResult">
         {filteredData.slice(0, 15).map((value, key) => {
-          return <a className="dataItem" href="https://www.google.com/" target="_blank">
+          return <a className="dataItem" href="https://www.google.com/" target="google.com">
               <p>{value.song}</p>
           </a>
         })}

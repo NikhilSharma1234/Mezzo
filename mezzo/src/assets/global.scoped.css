@@ -24,8 +24,16 @@
   font-size: 10px;
   color: #60DFF0;
   font-family: Nunito, serif, sans-serif;
-  background-color: var(--background-color);
   transition: margin-left 0.5s;
+}
+
+.theme_btn {
+  font-size: 12px;
+  font-family: 'Nunito', serif;
+  border: none;
+  outline: none;
+  color: var(--background-color);
+  background-color: var(--navbar--background-color);
 }
 
 /*------------------------------
