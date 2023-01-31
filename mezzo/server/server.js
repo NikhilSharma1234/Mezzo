@@ -13,6 +13,7 @@ const port = 4000;
 mongoose.set('strictQuery', true);
 
 app.use(express.static(path.join(__dirname, 'build')));
+
 app.use(
   morgan("dev"),
   bodyParser.json({ extended: false }),
