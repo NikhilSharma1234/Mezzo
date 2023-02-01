@@ -1,7 +1,6 @@
 import './assets/global.scoped.css';
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
-import Home from "./pages/home/home";
 import Discover from "./pages/discover/discover";
 import Charts from "./pages/charts/charts";
 import Library from "./pages/library/library";

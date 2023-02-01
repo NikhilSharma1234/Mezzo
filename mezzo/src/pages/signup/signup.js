@@ -1,5 +1,7 @@
-import "signup.scoped.css";
+import "./signup.scoped.css";
 
 const Signup = () => {
     return(<div></div>)
 };
+
+export default Signup
