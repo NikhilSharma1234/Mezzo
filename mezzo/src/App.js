@@ -1,13 +1,14 @@
 import './assets/global.scoped.css';
 import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
-import Home from "./pages/home/home";
 import Discover from "./pages/discover/discover";
 import Charts from "./pages/charts/charts";
 import Library from "./pages/library/library";
 import Profile from "./pages/profile/profile";
 import PlayBar from "./components/playbar/playbar";
 import Master from "./pages/master/master";
+import Login from "./pages/login/login";
+import Signup from "./pages/signup/signup";
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
 /*import Navbar, Home, Discover, Charts, Library, Profile, Searchbar from "./components"*/
@@ -18,8 +19,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Master />} />
+        <Route path="/_/login" element={<Login />} />
+        <Route path="/_/login" element={<Signup />} />
         <Route path="/_" element={<Layout />}>
-          <Route path="/_/home" element={<Home />} />
           <Route path="/_/discover" element={<Discover />} />
           <Route path="/_/charts" element={<Charts />} />
           <Route path="/_/library" element={<Library />} />
