@@ -2,9 +2,12 @@ import SearchBar from "../../components/searchbar/searchbar.js";
 import SongData from '../../data/Data.json';
 import SongCards from '../../components/song-card/song-card.js'
 import ArtistCards from '../../components/artist-card/artist-card.js'
+import spotifyTracks from '../../data/tracks.json';
 import './discover.scoped.css'
 
 const Discover = () => {
+
+  console.log('discover page')
   return (
     <section className="main main_closed">
         <div>
@@ -15,7 +18,7 @@ const Discover = () => {
 
             <div>
             <h3 id="SongHeading">Songs</h3>
-                {<SongCards posts={SongData}/>} 
+                {<SongCards posts={spotifyTracks}/>} 
             </div>
 
             <div>
@@ -31,14 +34,3 @@ const Discover = () => {
 };
 
 export default Discover;
-
-
-
-
-// <section className="Artists-Section">
-// <h3>Artists</h3>
-// <div>
-//     {<Cards posts={SongData}/>} 
-// </div>
-
-// </section>
