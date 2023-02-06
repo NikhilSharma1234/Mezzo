@@ -12,7 +12,7 @@ const app = express();
 const port = 4000;
 mongoose.set('strictQuery', true);
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.use(
   morgan("dev"),
@@ -21,7 +21,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
 });
 
 app.use("/api", api);
