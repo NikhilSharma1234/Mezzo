@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const User = require('./User').schema;
-const Song = require('./Song').schema;
-const Artist = require('./Artist').schema;
 
 const playlistSchema = new mongoose.Schema({
-  user_songs: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Song',
+  name: {
+    type: String,
     required: true
+  },
+  songs: {
+    type: [Number],
+    default: []
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,6 +23,14 @@ const playlistSchema = new mongoose.Schema({
     type: String,
     default: 'https://via.placeholder.com/150'
   },
+  createdAt: {
+    type: Date,
+    default: new Date()
+  },
+  updatedAt: {
+    type: Date,
+    default: new Date()
+  }
 });
 
 const Playlist = mongoose.model('Playlist', playlistSchema);
