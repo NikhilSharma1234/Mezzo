@@ -49,20 +49,18 @@ const Navbar = () => {
       <nav className="sidenav sidenav_open">
         <ul className="sidenav_headers">
           <button className="closebtn" onClick={ChangeStatus}></button>
+        
           <li>
-            <Link id="tab1" to="/_/home">Home</Link>
+            <Link id="tab1" to="/_/discover">Discover</Link>
           </li>
           <li>
-            <Link id="tab2" to="/_/discover">Discover</Link>
+            <Link id="tab2" to="/_/charts">Charts</Link>
           </li>
           <li>
-            <Link id="tab3" to="/_/charts">Charts</Link>
+            <Link id="tab3" to="/_/library">Library</Link>
           </li>
           <li>
-            <Link id="tab4" to="/_/library">Library</Link>
-          </li>
-          <li>
-            <Link id="tab5" to="/_/profile">Profile</Link>
+            <Link id="tab4" to="/_/profile">Profile</Link>
           </li>
         </ul>
 
