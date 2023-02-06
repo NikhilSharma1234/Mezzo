@@ -23,13 +23,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'https://via.placeholder.com/150'
   },
-  playLists: {
-    type: [Number],
-    default: undefined
-  },
+  playLists: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Playlist',
+    default: [],
+  }],
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    default: []
   }],
 });
 
