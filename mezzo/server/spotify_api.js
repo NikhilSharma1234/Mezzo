@@ -4,8 +4,11 @@ const spotify = Router();
 const axios = require('axios').default;
 const file_it = require('fs');
 
+
+
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
+let spotifySearch = null;
 
 async function fetchToken () {
   let linking = null;
@@ -30,10 +33,11 @@ spotify.post('/refresh_token', async (req, res) => {
   }
 });
 
-spotify.get('/home', async (req, res) => {
+spotify.get('/discover', async (req, res) => {
   spotifyToken = spotifyToken + await fetchToken();
+  console.log(spotifyToken);
   const spotify_songs = await axios({
-    method: "get",
+    method: "GET",
     url: "https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_artists=246dkjvS1zLTtiykXe5h60&seed_genres=hip-hop",
     headers: {  "Accept": "application/json", 
                 "Content-Type": "application/json",
@@ -45,7 +49,37 @@ spotify.get('/home', async (req, res) => {
           throw error;
       }
   });
-  res.json();
+  spotifyToken = "";
 });
 
+
+spotify.post('/api/getSearchResults', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  console.log(spotifyToken);
+  try{
+  const spotify_songs = await axios({
+    method: "GET",
+    url: "https://api.spotify.com/v1/search?",
+    headers: {  "Accept": "application/json", 
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+    params: {
+      'q': req.body.param1,
+      'type': 'track',
+      'market': 'ES',
+      'limit': '5',
+      'offset': '0'
+    }
+    
+  });
+  res.json(spotify_songs.data.tracks.items);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+spotify.get('/api/test', async (req, res) => {
+console.log("hello");
+});
 module.exports = spotify;
