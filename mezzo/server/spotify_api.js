@@ -2,9 +2,6 @@ require("dotenv").config();
 const { Router } = require("express");
 const spotify = Router();
 const axios = require('axios').default;
-const file_it = require('fs');
-
-
 
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
@@ -21,37 +18,6 @@ async function fetchToken () {
   });
   return token_object.data.access_token;
 }
-
-spotify.post('/refresh_token', async (req, res) => {
-  try {
-    spotifyToken = spotifyToken + await fetchToken();
-    spotifyToken = "Bearer " + spotifyToken;
-    console.log(spotifyToken);
-    res.send("Token Granted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
-spotify.get('/discover', async (req, res) => {
-  spotifyToken = spotifyToken + await fetchToken();
-  console.log(spotifyToken);
-  const spotify_songs = await axios({
-    method: "GET",
-    url: "https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_artists=246dkjvS1zLTtiykXe5h60&seed_genres=hip-hop",
-    headers: {  "Accept": "application/json", 
-                "Content-Type": "application/json",
-                "Authorization" : spotifyToken},
-  });
-  spotifyTracks = spotify_songs.data.tracks;
-  file_it.writeFile('./../src/data/tracks.json', JSON.stringify(spotifyTracks, null, 4), (error) => {
-      if (error) {
-          throw error;
-      }
-  });
-  spotifyToken = "";
-});
-
 
 spotify.post('/api/getSearchResults', async (req, res) => {
   spotifyToken = "Bearer " + await fetchToken();
@@ -79,7 +45,4 @@ spotify.post('/api/getSearchResults', async (req, res) => {
   spotifyToken = "";
 });
 
-spotify.get('/api/test', async (req, res) => {
-console.log("hello");
-});
 module.exports = spotify;
