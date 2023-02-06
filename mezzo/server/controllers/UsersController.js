@@ -1,5 +1,4 @@
-const { Router } = require("express");
-const apiRouter = Router();
+require("dotenv").config();
 const User = require("../models/User");
 const Token = require("../models/Token");
 const {forgotPasswordHandler, resetPasswordHandler} = require("../password_reset");
