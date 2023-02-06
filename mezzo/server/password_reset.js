@@ -4,7 +4,7 @@ const sendEmail = require("./utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
-const forgotPassword = async (email) => {
+const forgotPasswordHandler = async (email) => {
   const user = await User.findOne({email});
   if (!user) {
     console.log("User does not exist");
@@ -26,7 +26,7 @@ const forgotPassword = async (email) => {
   };
 };
 
-const resetPassword = async (userID, token, password) => {
+const resetPasswordHandler = async (userID, token, password) => {
   let passwordResetToken = await Token.findOne({ userID });
   if (!passwordResetToken) {
     throw new Error("Invalid or expired password reset token");
@@ -49,6 +49,6 @@ const resetPassword = async (userID, token, password) => {
 };
 
 module.exports = {
-   forgotPassword,
-   resetPassword,
+   forgotPasswordHandler,
+   resetPasswordHandler,
 }
