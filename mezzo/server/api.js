@@ -13,6 +13,8 @@ router.get('/user/password', UsersController.resetPassword);
 
 router.post('/playlist', PlaylistsController.newPlaylist);
 router.get('/playlist', PlaylistsController.getPlaylist);
+router.get('/playlist/all', PlaylistsController.getAllPlaylists);
+router.delete('/playlist', PlaylistsController.deletePlaylist);
 router.put('/playlist/add', PlaylistsController.addSong);
 router.put('/playlist/remove', PlaylistsController.removeSong);
 
