@@ -1,9 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.env
-/server/build
+/mezzo/node_modules
+/mezzo/server/.env
+/mezzo/server/build
 /.pnp
 .pnp.js
 
