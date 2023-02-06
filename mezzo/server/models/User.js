@@ -12,13 +12,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  securityQ1: {
-    type: String,
-    required: true,
-  },
-  securityQ2: {
-    type: String,
-    required: true,
+  fullname: {
+    type: String
   },
   password: {
     type: String,
@@ -28,9 +23,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'https://via.placeholder.com/150'
   },
+  playLists: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Playlist',
+    default: [],
+  }],
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    default: []
   }],
 });
 
@@ -38,7 +39,7 @@ userSchema.methods.generateHash = async (password) => {
   password = password.toString();
   const hash = await bcrypt.hash(password, 10);
   return hash;
-}
+};
 
 userSchema.methods.validPassword = async (password, hash) => {
   return await bcrypt.compare(password, hash);
