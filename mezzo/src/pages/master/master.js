@@ -58,8 +58,8 @@ const MasterHeader = () => {
 				<AppBar position="static" enableColorOnDark>
 					<Toolbar>
 						<Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>Mezzo<img src={'./../../public/logo512.png'} alt="" /></Typography>      
-						<Link to="/_/home">Sign Up </Link>
-						<Link to="/_/home"><Button color="inherit">Login</Button></Link>
+						<Link to="/_/signup">Sign Up </Link>
+						<Link to="/_/login"><Button color="inherit">Login</Button></Link>
 					</Toolbar>
 				</AppBar>
 			</Box>
