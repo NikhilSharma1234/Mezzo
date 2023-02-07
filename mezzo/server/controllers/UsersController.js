@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
         const matchedPasswords = await user.validPassword(req.body.password, user.password);
         if (matchedPasswords) {
           console.log("Correct Password");
-          res.redirect("/_/home");
+          res.redirect("/_/discover");
         } else {
           console.log("Incorrect Password");
           res.redirect('/signup');

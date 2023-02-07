@@ -19,9 +19,9 @@ async function fetchToken () {
   return token_object.data.access_token;
 }
 
-spotify.get('/home', async (req, res) => {
+spotify.get('/discover', async (req, res) => {
   spotifyToken = spotifyToken + await fetchToken();
-  res.send('home');
+  res.send('discover');
   res.json();
 });
 
