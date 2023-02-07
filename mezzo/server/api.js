@@ -7,7 +7,7 @@ const UsersController = require("./controllers/UsersController.js");
 
 router.get('/user/:id', UsersController.getUser);
 router.post('/user', UsersController.newUser);
-router.put('/user/login', UsersController.loginUser);
+router.post('/user/login', UsersController.loginUser);
 router.put('/user/password', UsersController.forgotPassword);
 router.get('/user/password', UsersController.resetPassword);
 

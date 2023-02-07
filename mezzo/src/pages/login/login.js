@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { Component } from 'react';
+import React from 'react';
 import './login.scoped.css';
 
 class Login extends React.Component {
@@ -23,26 +23,26 @@ class Login extends React.Component {
     render() {
       return (
         <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Email or Username:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
+          <form method="POST" action='/api/user/login'>
+            <label>
+              Username:
+              <input type="text" name="username"/>
+            </label>
 
-          <label>
-            Password:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
+            <label>
+              Password:
+              <input type="text" name="password"/>
+            </label>
 
-          <input type="submit" value="Login" />
-        </form>
+            <input type="submit" value="Login" />
+          </form>
 
-        <h3>Don't have an account?</h3>
-        <Link to={'./signup'}>
-        <button variant="raised">
-            Sign up!
-        </button>
-        </Link>
+          <h3>Don't have an account?</h3>
+          <Link to={'/signup'}>
+            <button variant="raised">
+                Sign up!
+            </button>
+          </Link>
         </div>
       );
     }

@@ -19,32 +19,9 @@ async function fetchToken () {
   return token_object.data.access_token;
 }
 
-spotify.post('/refresh_token', async (req, res) => {
-  try {
-    spotifyToken = spotifyToken + await fetchToken();
-    spotifyToken = "Bearer " + spotifyToken;
-    console.log(spotifyToken);
-    res.send("Token Granted");
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 spotify.get('/home', async (req, res) => {
   spotifyToken = spotifyToken + await fetchToken();
-  const spotify_songs = await axios({
-    method: "get",
-    url: "https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_artists=246dkjvS1zLTtiykXe5h60&seed_genres=hip-hop",
-    headers: {  "Accept": "application/json", 
-                "Content-Type": "application/json",
-                "Authorization" : spotifyToken},
-  });
-  spotifyTracks = spotify_songs.data.tracks;
-  file_it.writeFile('./../src/data/tracks.json', JSON.stringify(spotifyTracks, null, 4), (error) => {
-      if (error) {
-          throw error;
-      }
-  });
+  res.send('home');
   res.json();
 });
 
