@@ -2,6 +2,7 @@
   "name": "mezzo",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -15,6 +16,7 @@
     "bcrypt": "^5.1.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
     "craco-plugin-scoped-css": "^1.1.1",
     "crypto": "^1.0.1",
     "depd": "^2.0.0",

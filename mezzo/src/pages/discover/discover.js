@@ -11,8 +11,7 @@ const Discover = () => {
   return (
     <section className="main main_closed">
         <div>
-            <SearchBar placeholder="Enter a song/artist" data={SongData}/>
-
+            <SearchBar placeholder="Enter a song/artist"/>
             <section className="Songs-Section">
             
 

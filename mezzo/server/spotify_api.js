@@ -2,10 +2,10 @@ require("dotenv").config();
 const { Router } = require("express");
 const spotify = Router();
 const axios = require('axios').default;
-const file_it = require('fs');
 
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
+let spotifySearch = null;
 
 async function fetchToken () {
   let linking = null;
@@ -19,10 +19,30 @@ async function fetchToken () {
   return token_object.data.access_token;
 }
 
-spotify.get('/discover', async (req, res) => {
-  spotifyToken = spotifyToken + await fetchToken();
-  res.send('discover');
-  res.json();
+spotify.post('/api/getSearchResults', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  console.log(spotifyToken);
+  try{
+  const spotify_songs = await axios({
+    method: "GET",
+    url: "https://api.spotify.com/v1/search?",
+    headers: {  "Accept": "application/json", 
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+    params: {
+      'q': req.body.param1,
+      'type': 'track',
+      'market': 'ES',
+      'limit': '5',
+      'offset': '0'
+    }
+    
+  });
+  res.json(spotify_songs.data.tracks.items);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
 });
 
 module.exports = spotify;
