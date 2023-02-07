@@ -25,6 +25,7 @@
   color: #60DFF0;
   font-family: Nunito, serif, sans-serif;
   transition: margin-left 0.5s;
+  background-color: var(--background-color);
 }
 
 .theme_btn {

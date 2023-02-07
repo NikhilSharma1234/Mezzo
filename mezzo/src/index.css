@@ -1,11 +1,9 @@
 body {
   margin: 0;
-  background-color: var(--background-color);
 }
 
 .sidebar {
   width: 20%;
-  background-color: black;
 }
 
 code {
@@ -16,7 +14,7 @@ code {
 
 :root{
   /*main panel*/
-  --background-color: #000000;
+  --background-color: #ffffff;
   --search-bar-border-color: #DB32B0;
   --song-card-color: #DB44F2;
   --artist-card-color: #7739F9;
@@ -41,7 +39,7 @@ code {
 
 [data-theme='dark'] {
   /*main panel*/
-  --background-color: #898989;
+  --background-color: #484747;
   --search-bar-border-color: #4CA3D9;
   --song-card-color: #60DFF0;
   --artist-card-color: #4CD9C3;
