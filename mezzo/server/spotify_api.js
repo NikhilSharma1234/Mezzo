@@ -1,7 +1,7 @@
 require("dotenv").config();
-const { Router } = require("express");
+import { Router } from "express";
 const spotify = Router();
-const axios = require('axios').default;
+import axios from 'axios';
 
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
@@ -19,9 +19,8 @@ async function fetchToken () {
   return token_object.data.access_token;
 }
 
-spotify.post('/api/getSearchResults', async (req, res) => {
+spotify.post('/getSearchResults', async (req, res) => {
   spotifyToken = "Bearer " + await fetchToken();
-  console.log(spotifyToken);
   try{
   const spotify_songs = await axios({
     method: "GET",
@@ -30,19 +29,99 @@ spotify.post('/api/getSearchResults', async (req, res) => {
                 "Content-Type": "application/json",
                 "Authorization" : spotifyToken},
     params: {
-      'q': req.body.param1,
-      'type': 'track',
+      'q': req.body.q,
+      'type': req.body.type,
       'market': 'ES',
       'limit': '5',
       'offset': '0'
     }
     
   });
-  res.json(spotify_songs.data.tracks.items);
+  res.json(spotify_songs.data);
   }catch(error){
     console.error(error);
   }
   spotifyToken = "";
 });
 
-module.exports = spotify;
+spotify.post('/getArtistTopTracks', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_songs = await axios({
+    method: "GET",
+    url: `https://api.spotify.com/v1/artists/${req.body.artistID}/top-tracks`,
+    headers: {  "Accept": "application/json", 
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+    params: {
+      'market': 'ES'
+    }
+    
+  });
+  res.json(spotify_songs.data.tracks);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+
+// spotify.post('/getArtist', async (req, res) => {
+//   spotifyToken = "Bearer " + await fetchToken();
+//   try{
+//   const spotify_artist = await axios({
+//     method: "GET",
+//     url: `https://api.spotify.com/v1/artists/${req.body.param1}`,
+//     headers: {  "Accept": "application/json", 
+//                 "Content-Type": "application/json",
+//                 "Authorization" : spotifyToken},
+//   });
+//   res.json(spotify_artist);
+//   }catch(error){
+//     console.error(error);
+//   }
+//   spotifyToken = "";
+// });
+
+
+// spotify.post('/getTrack', async (req, res) => {
+//   spotifyToken = "Bearer " + await fetchToken();
+//   try{
+//   const spotify_track = await axios({
+//     method: "GET",
+//     url: `https://api.spotify.com/v1/tracks/${req.body.param1}`,
+//     headers: {  "Accept": "application/json", 
+//                 "Content-Type": "application/json",
+//                 "Authorization" : spotifyToken},
+//     params: {
+//       'market': 'ES',
+//     }
+    
+//   });
+//   res.json(spotify_track);
+//   }catch(error){
+//     console.error(error);
+//   }
+//   spotifyToken = "";
+// });
+
+
+spotify.post('/getSeveralTracks', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_tracks = await axios({
+    method: "GET",
+    url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
+    headers: {  "Accept": "application/json", 
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+  });
+  res.json(spotify_tracks.data.tracks);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+
+export default spotify;
