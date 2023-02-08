@@ -19,8 +19,3 @@ router.put('/playlist/add', PlaylistsController.addSong);
 router.put('/playlist/remove', PlaylistsController.removeSong);
 
 module.exports = router;
-
-
-
-
-

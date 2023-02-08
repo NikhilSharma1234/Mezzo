@@ -3,13 +3,11 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const api = require("./api");
-const spotify = require("./spotify_api").default;
+const spotify = require("./spotify_api");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 
 const app = express();
-
-
 const cors = require('cors'); //cors stuff
 
 const corsOptions = {
