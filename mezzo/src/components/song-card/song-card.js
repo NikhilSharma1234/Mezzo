@@ -9,48 +9,34 @@ function PlayButton (props) {
   );
 }
 
-function SongCardHeader (props) {
-  const element = <div style={{ backgroundImage: `url('${props.image}')` }} />
-  return (
-    <header style={{backgroundImage:`url(${props.image})`}} className="card-header">{element}
-      <h4 className="card-header">{props.genre}</h4>
-    }
-    </header>
-  );
-}
 
 
-function SongCardBody (props) {
-  return (
-    <div className="card-body">      
-      <h2>{props.song}</h2>
-      <p>{props.artist}</p>
-      <PlayButton/>
-    </div>
-  );
-}
-
-
-function SongCard (props) {
+function SongCard ({songData}) {
   return (
     <article className="card">
-      <SongCardHeader genre={props.genre} image={props.details.album.images[1]}/>
-      <SongCardBody song={props.details.album.name} artist={props.details.artists.name}/>
+      <div>
+        <img src={songData.album.images[1].url} alt='albumImage' />
+      </div>
+
+      <div className="card-body">      
+      <h2>{songData.name}</h2>
+      <p>artist</p>
+      <PlayButton/>
+    </div>
     </article>
   );
 }
 
-function SongCards (props) {  
+function SongCards ({songs}) {  
   return (
     <div>
-      <header></header>
       <div className="app-card-list" id="app-card-list">
-        {
-          Object
-          .keys(props.posts)
-          .map(key => <SongCard key={key} index={key} details={props.posts[key]}/>)
+        {songs?.map((value, key)=>{
+          return <SongCard songData={value}/>
+        })
         }
       </div>
+      
     </div>
   );
 }
