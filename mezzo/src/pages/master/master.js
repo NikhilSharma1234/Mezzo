@@ -1,4 +1,4 @@
-import './master.css';
+import './master.scoped.css';
 import { Link } from "react-router-dom";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';

@@ -2,44 +2,58 @@
 import {useState, useEffect} from "react"
 import './searchbar.css';
 import {AiOutlineSearch} from 'react-icons/ai';
+import {fetchSearchResults} from "../../utils/fetchSearchResults";
 
 
-function SearchBar({placeholder}) {
-    const [filteredData, setFilteredData] = useState([])
-    const handleFilter = async (event) => {
-        const searchWord = event.target.value
-        const datum ={param1: searchWord};
-        if (searchWord ===""){
-          setFilteredData([])
-        } else {
-          const response = await fetch("http://localhost:4000/_/api/getSearchResults", {method: 'POST', headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(datum)
-        });
-          console.log(response);
-          const data = await response.json();
-          console.log(data);
-          setFilteredData(data);
-          console.log("data");
-          console.log(data);
-        } 
-      }
-  
+function SearchBar({placeholder, searchInput, setSearchInput}) {
+  const [searchWord, setSearchWord] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const artistResults = await fetchSearchResults(searchWord, 'artist');
+      const songResults = await fetchSearchResults(searchWord, 'track');
+      const results = [...artistResults, ...songResults];
+      const newFilter = results.filter((value) => {
+        return value.name.toLowerCase().includes(searchWord.toLowerCase())
+      });
+      setFilteredData(newFilter);
+    };
+
+    if (searchWord) {
+      fetchData();
+    }
+  }, [searchWord]);
+
+  const handleKeyDown = (event) => {
+    // console.log("Search word")
+    // console.log(searchWord);
+    if (event.key === 'Enter') {
+      setFilteredData([]);
+      setSearchInput({name: searchWord})
+      setSearchWord(event.target.value);
+    }
+  };
+
+  const handleSearchInput = (inputVal) => {
+    setFilteredData([]);
+    setSearchInput({name: inputVal.name, type: inputVal.type, id: inputVal.id});
+    setSearchWord(inputVal.name);
+  };
     return(
       <div className="search">
         <div className="searchInputs">
         <div className="searchIcon">
             <AiOutlineSearch/>
           </div>
-          <input type="text" placeholder={placeholder} onChange={handleFilter}/>
+          <input type="text" value={searchWord} placeholder={placeholder} onChange={(event) => setSearchWord(event.target.value)} onKeyDown={handleKeyDown}/>
           
         </div>
   
         {filteredData.length !== 0 && (
         <div className="dataResult">
-          {filteredData?.slice(0, 15).map((value, key) => {
-            return <a className="dataItem" href="https://www.google.com/" target="google.com">
+          {filteredData?.slice(0,5).map((value, key) => {
+            return <a className="dataItem" onClick={() => handleSearchInput(value)}>
                 <p>{value.name}</p>
 
                 {value.type === "track" ?
@@ -55,18 +69,3 @@ function SearchBar({placeholder}) {
   }
   
   export default SearchBar;
-
-
-  // function SearchBar({placeholder, data}) {
-  //   const [filteredData, setFilteredData] = useState([])
-  //   const handleFilter = (event) => {
-  //     const searchWord = event.target.value
-  //     // const newFilter = data.filter((value) => {
-  //     //   return value.song.toLowerCase().includes(searchWord.toLowerCase())
-  //     // });
-  //     if (searchWord ===""){
-  //       setFilteredData([])
-  //     } else {
-  //       setFilteredData(data.tracks.items);
-  //     } 
-  //   }
