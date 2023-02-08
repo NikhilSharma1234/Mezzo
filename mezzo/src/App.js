@@ -40,12 +40,7 @@ export default function App() {
     }
     return (
       <div className="app" data-theme={theme}>
-        <section className="main main_closed">
-          <button className = "theme_btn" onClick={switchTheme}>
-            Enter {theme === 'light' ? 'Dark' : 'Light'} Mode
-          </button>
-        </section>
-        <Navbar />
+        <Navbar switchTheme={switchTheme} />
         <Outlet />        
         <PlayBar /> 
       </div>
