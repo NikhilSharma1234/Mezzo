@@ -19,7 +19,7 @@
 .css-1y942vo-MuiButtonBase-root-MuiButton-root {
     font-family: Nunito, serif, sans-serif !important;
     font-size: 20px !important;
-    color: #60DFF0 !important;
+    color: var(--background-color) !important;
 }
 
 .css-1y942vo-MuiButtonBase-root-MuiButton-root::hover{

@@ -8,7 +8,7 @@ import Profile from "./pages/profile/profile";
 import PlayBar from "./components/playbar/playbar";
 import Master from "./pages/master/master";
 import Login from "./pages/login/login";
-import Signup from "./pages/signup/signup";
+import Signup from "./pages/login/signup";
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
 /*import Navbar, Home, Discover, Charts, Library, Profile, Searchbar from "./components"*/
@@ -20,7 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Master />} />
         <Route path="/_/login" element={<Login />} />
-        <Route path="/_/login" element={<Signup />} />
+        <Route path="/_/signup" element={<Signup />} />
         <Route path="/_" element={<Layout />}>
           <Route path="/_/discover" element={<Discover />} />
           <Route path="/_/charts" element={<Charts />} />

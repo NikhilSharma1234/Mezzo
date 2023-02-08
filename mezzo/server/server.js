@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const api = require("./api");
-const spotify = require("./spotify_api");
+const spotify = require("./spotify_api").default;
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 
