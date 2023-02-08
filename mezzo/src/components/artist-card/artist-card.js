@@ -1,30 +1,27 @@
-import profilePic from './profilePic.png'
 import './artist-card.scoped.css'
 
-function ArtistPhoto (props) {
-    return (
-        <img className="artist-photo" src={profilePic}/>
-    ); 
-}
 
-function ArtistCard (props) {
-    return (
+function ArtistCard ({artistData}) {
+      return (
       <article className="artist-card">
-        <ArtistPhoto/>
-        <h3>{props.details.artist}</h3>
+        <div>
+          <img src={artistData.images[1].url} alt='artistImage' />
+        </div>
+       
+        <h3>{artistData.name}</h3>
       </article>
     );
 }
 
-function ArtistCards(props) {
+function ArtistCards({artists}) {
   return (
     <div>
-      <header></header>
       <div className="app-card-list" id="app-card-list">
-        {
-          Object
-          .keys(props.posts)
-          .map(key => <ArtistCard key={key} index={key} details={props.posts[key]}/>)
+      {artists.map((value, key)=>{
+          if(value.images && value.images.length > 0){
+            return <ArtistCard artistData={value}/>
+          }
+        })
         }
       </div>
     </div>
