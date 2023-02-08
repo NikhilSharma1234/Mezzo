@@ -5,7 +5,7 @@ function ArtistCard ({artistData}) {
       return (
       <article className="artist-card">
         <div>
-          <img src={artistData.images[1].url} alt='artistImage' />
+          <img className="artist-photo" src={artistData.images[1].url} alt='artistImage' />
         </div>
        
         <h3>{artistData.name}</h3>
