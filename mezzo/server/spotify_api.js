@@ -1,7 +1,8 @@
 require("dotenv").config();
-import { Router } from "express";
+const { Router } = require("express");
 const spotify = Router();
-import axios from 'axios';
+const axios = require('axios').default;
+
 
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
@@ -123,5 +124,4 @@ spotify.post('/getSeveralTracks', async (req, res) => {
   spotifyToken = "";
 });
 
-
-export default spotify;
+module.exports = spotify;
