@@ -1,6 +1,6 @@
 #SongHeading {
     font-size: 50px;
-    color: var(--song-card-color);
+    color: var(--song-section-color);
 }
 
 #ArtistHeading {
