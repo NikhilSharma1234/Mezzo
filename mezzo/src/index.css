@@ -35,7 +35,8 @@ code {
 
   /*cards*/
   --artist-card-color: #7739F9;
-  --song-card-color: #DB44F2;
+  --song-card-color: #F93968; 
+  --song-card-bg-color: #F93968; 
 }
 
 [data-theme='dark'] {
@@ -62,4 +63,5 @@ code {
   /*cards*/
   --artist-card-color: #4CD9C3;
   --song-card-color: #60DFF0;
+  --song-card-bg-color: rgba(255, 255, 255, 0.1);
 }

@@ -1,7 +1,7 @@
 .app-card-list {
     float:right;
     margin:10px;
-    min-height: 50vh;
+    min-height: 40vh;
     white-space:normal;
     overflow-x: hidden;
     margin-top:-5vh;  
@@ -13,9 +13,10 @@
     font: 5px;
     border: 2px var(--song-card-color) solid ;
     border-radius: 8px;
-    width: 27vh;
+    width: fit-content;
     padding: 5px;
-    color: var(--song-card-color)
+    color: var(--song-card-color);
+    background-color: var(--song-card-bg-color);
   }
   
   .app-card-list .card .card-body {
