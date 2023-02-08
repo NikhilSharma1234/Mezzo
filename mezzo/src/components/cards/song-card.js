@@ -1,4 +1,5 @@
 import { FaPlay } from 'react-icons/fa';
+import {FaHeart} from 'react-icons/fa';
 import './song-card.scoped.css'
 
 function PlayButton (props) {
@@ -9,35 +10,41 @@ function PlayButton (props) {
   );
 }
 
-
+function Heart (props) {
+  return (
+    <button className="play_button">
+      <FaHeart size={15} color="var(--song-card-color)"/>
+    </button>
+  );
+}
 
 function SongCard ({songData}) {
   return (
-    <article className="card">
+    <div className="card">
       <div>
         <img src={songData.album.images[1].url} alt='albumImage' />
       </div>
 
       <div className="card-body">      
-      <h2>{songData.name}</h2>
-      <p>artist</p>
-      <PlayButton/>
+        <h2>{songData.name}</h2>
+        <div className="card-caption">
+          <p>artist</p>
+          <Heart/>
+          <PlayButton/>
+        </div>
+      </div>
     </div>
-    </article>
   );
 }
 
 function SongCards ({songs}) {  
   return (
-    <div>
-      <div className="app-card-list" id="app-card-list">
+      <div className="card-grid">
         {songs?.map((value, key)=>{
           return <SongCard songData={value}/>
         })
-        }
+      }
       </div>
-      
-    </div>
   );
 }
 
