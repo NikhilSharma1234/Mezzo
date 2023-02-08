@@ -43,6 +43,9 @@ code {
   --login-gradient: radial-gradient(circle, #DB44F2, #7739F9);
   --login-form-container-bg-color: #ffffff;
   --login-btn-color: #ffffff; 
+
+   /*buttons*/
+   --toggle-color: #F93968; 
 }
 
 [data-theme='dark'] {
@@ -74,4 +77,7 @@ code {
   --login-gradient: radial-gradient(circle, #60DFF0, #5790F8);
   --login-form-container-bg-color: #ffffff;
   --login-btn-color: #ffffff; 
+
+  /*buttons*/
+  --toggle-color: #57F8B1; 
 }

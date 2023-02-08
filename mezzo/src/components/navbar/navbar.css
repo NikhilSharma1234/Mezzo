@@ -42,6 +42,14 @@
     border-radius: 2px;
     border: none;
   }
+
+  .toggle {
+    position: absolute;
+    bottom: 75px;
+    right: 8px;
+    background: transparent;
+    border: none;
+  }
   
   .sidenav_headers {
     list-style-type: none;
