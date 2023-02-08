@@ -1,8 +1,8 @@
+import "./login.scoped.css";
 import { Link } from 'react-router-dom';
 import React, { Component } from 'react';
-import './login.scoped.css';
 
-class Login extends React.Component {
+class Signup extends React.Component {
     constructor(props) {
       super(props);
       this.state = {value: ''};
@@ -36,9 +36,14 @@ class Login extends React.Component {
               <input type="text" placeholder="Enter your password" value={this.state.value} onChange={this.handleChange} />
             </label>
 
-            <input className="login-signup-btn" type="submit" value="Login" />
+            <label>
+              <h3>Confirm Password:</h3>
+              <input type="text" placeholder="Enter your password" value={this.state.value} onChange={this.handleChange} />
+            </label>
 
-            <p>Don't have an account? <Link to={'./signup'}>SIGN UP!</Link></p>
+            <input className="login-signup-btn" type="submit" value="Sign Up" />
+
+            <p>Already have an account? <Link to={'./signup'}>LOGIN!</Link></p>
           </form>
           </div>
           
@@ -48,4 +53,4 @@ class Login extends React.Component {
     }
   }
   
-  export default Login;
+  export default Signup;
