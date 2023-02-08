@@ -1,6 +1,6 @@
 import SearchBar from "../../components/searchbar/searchbar.js";
-import SongCards from '../../components/song-card/song-card.js'
-import ArtistCards from '../../components/artist-card/artist-card.js'
+import SongCards from '../../components/cards/song-card.js'
+import ArtistCards from '../../components/cards/artist-card.js'
 import './discover.scoped.css';
 import { fetchArtistTopTracks } from "../../utils/fetchArtistTopTracks.js";
 import React, {useState, useEffect} from 'react';
