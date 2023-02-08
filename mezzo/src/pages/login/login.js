@@ -27,13 +27,13 @@ class Login extends React.Component {
           <form class="login-form" onSubmit={this.handleSubmit}>
             <h1>STREAM WITH MEZZO!</h1>
             <label>
-              <h3>Email or Username:</h3>
-              <input type="text" placeholder="Enter your email/username" name = value={this.state.value} onChange={this.handleChange} />
+              <h3>Username:</h3>
+              <input type="text" placeholder="Enter your email/username" name = "username" value={this.state.value} onChange={this.handleChange} />
             </label>
 
             <label>
               <h3>Password:</h3>
-              <input type="text" placeholder="Enter your password" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" placeholder="Enter your password" name="password" value={this.state.value} onChange={this.handleChange} />
             </label>
 
             <input className="login-signup-btn" type="submit" value="Login" />
