@@ -35,8 +35,14 @@ code {
 
   /*cards*/
   --artist-card-color: #7739F9;
-  --song-card-color: #F93968; 
-  --song-card-bg-color: #F93968; 
+  --song-section-color: #F93968; 
+  --song-card-color: #ffffff; 
+  --song-card-bg-color: #F93968;
+  
+  /*login page*/
+  --login-gradient: radial-gradient(circle, #DB44F2, #7739F9);
+  --login-form-container-bg-color: #ffffff;
+  --login-btn-color: #ffffff; 
 }
 
 [data-theme='dark'] {
@@ -64,4 +70,8 @@ code {
   --artist-card-color: #4CD9C3;
   --song-card-color: #60DFF0;
   --song-card-bg-color: rgba(255, 255, 255, 0.1);
+
+  --login-gradient: radial-gradient(circle, #60DFF0, #5790F8);
+  --login-form-container-bg-color: #ffffff;
+  --login-btn-color: #ffffff; 
 }
