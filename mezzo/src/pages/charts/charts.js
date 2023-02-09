@@ -12,15 +12,19 @@ const Charts = () => {
       setSongs(top100);
   };
 
-  const play = (id) => {
+  const play = function(id) {
     let audio = document.getElementById(id);
-
+    console.log(audio);
     if (audio.paused) {
       audio.play();
     } else {
       audio.pause();
     }
   }
+
+  document.querySelectorAll("td").forEach(function (id) {
+    id.onclick = play(id);
+  });
   
   useEffect(() => {
     fetchTop();
@@ -56,7 +60,9 @@ const Charts = () => {
     for(let i = 0; i < parsedTop100.length; i++) {
       let time = millisecToMin(parsedTop100[i].track.duration_ms)
       tr += "<tr>";
-      tr += `<td><audio id="previewURL${i+1}" src="${parsedTop100[i].track.preview_url}"></audio><i class="fa fa-play-circle"></i>${i + 1}</td>`;
+      tr += `<td><audio id="previewURL${i+1}"><source src="${parsedTop100[i].track.preview_url}" type="audio/mpeg"></audio>
+        <button onclick="play();">PLAY</button>
+      ${i + 1}</td>`;
       tr += `<td><img src="${parsedTop100[i].track.album.images[2].url}"/>${parsedTop100[i].track.name}</td>`;
       tr += `<td>${parsedTop100[i].track.album.name}</td>`;
       tr += `<td>${parsedTop100[i].track.artists[0].name}</td>`;
