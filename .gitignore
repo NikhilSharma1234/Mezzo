@@ -4,6 +4,7 @@
 /mezzo/node_modules
 /mezzo/server/.env
 /mezzo/server/build
+/mezzo/build
 /.pnp
 .pnp.js
 
