@@ -11,3 +11,13 @@
     font-size: 15px;
     text-align:center;
   }
+
+  td > img {
+    height: 32px;
+    width: 32px;
+  }
+
+  td > button {
+    height: 32px;
+    width: 32px;
+  }

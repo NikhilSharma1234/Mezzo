@@ -110,14 +110,14 @@ spotify.post('/getArtistTopTracks', async (req, res) => {
 spotify.post('/getSeveralTracks', async (req, res) => {
   spotifyToken = "Bearer " + await fetchToken();
   try{
-  const spotify_tracks = await axios({
-    method: "GET",
-    url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
-    headers: {  "Accept": "application/json", 
-                "Content-Type": "application/json",
-                "Authorization" : spotifyToken},
-  });
-  res.json(spotify_tracks.data.tracks);
+    const spotify_tracks = await axios({
+      method: "GET",
+      url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
+      headers: {  "Accept": "application/json", 
+                  "Content-Type": "application/json",
+                  "Authorization" : spotifyToken},
+    });
+    res.json(spotify_tracks.data.tracks);
   }catch(error){
     console.error(error);
   }
@@ -125,17 +125,17 @@ spotify.post('/getSeveralTracks', async (req, res) => {
 });
 
 
-spotify.post('/getSeveralTracks', async (req, res) => {
+spotify.post('/getTop100', async (req, res) => {
   spotifyToken = "Bearer " + await fetchToken();
   try{
-  const spotify_tracks = await axios({
-    method: "GET",
-    url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
-    headers: {  "Accept": "application/json", 
-                "Content-Type": "application/json",
-                "Authorization" : spotifyToken},
-  });
-  res.json(spotify_tracks.data.tracks);
+    const spotify_tracks = await axios({
+      method: "GET",
+      url: `https://api.spotify.com/v1/playlists/6UeSakyzhiEt4NB3UAd6NQ?market=US`,
+      headers: {  "Accept": "application/json", 
+                  "Content-Type": "application/json",
+                  "Authorization" : spotifyToken},
+    });
+    res.json(spotify_tracks.data.tracks.items);
   }catch(error){
     console.error(error);
   }
