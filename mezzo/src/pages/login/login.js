@@ -22,7 +22,7 @@ const Login = () => {
     console.log("pressed submit");
     event.preventDefault();
     try {
-      const user = await fetch("/api/user/login", {
+      const user = await fetch("http://localhost:4000/api/user/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
       }).then(response=>response.json());
