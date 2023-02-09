@@ -1,4 +1,4 @@
-import './song-card.scoped.css'
+import './card.scoped.css'
 import React, { useEffect, useRef } from 'react';
 
 const ImageContainer = ({ src, alt }) => {

@@ -8,7 +8,7 @@
 .card-grid .card {
   color: var(--song-card-color); 
   background-color: var(--song-card-bg-color);
-  border: 5px var(--song-card-bg-color) solid ;
+  border: 5px var(--song-card-border-color) solid ;
   border-radius: 8px;
   font-size: 1.5vh; 
   max-height: 400px;
@@ -47,6 +47,7 @@ img {
 .artist-photo{
   border-radius: 50%;
   border: 5px var(--artist-card-color) solid; 
+  max-height: 275px;
 }
 
 .card-grid .artist-card {
