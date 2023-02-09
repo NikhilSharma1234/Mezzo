@@ -8,6 +8,12 @@ import { Link } from "react-router-dom";
 import './navbar_popup.css';
 
 function NavbarPopup() {
+  function handleLogout (){
+    fetch('http://localhost:4000/api/user/logout', {
+      method: 'POST' 
+    })
+  }
+
   return (
     <PopupState variant="popover" className="options_popup">
       {(popupState) => (
@@ -20,10 +26,10 @@ function NavbarPopup() {
             <MenuItem onClick={popupState.close}>Friends</MenuItem>
             <MenuItem onClick={popupState.close}>Playback</MenuItem>
             <MenuItem onClick={popupState.close}>Help</MenuItem>
-            <Link to = "/"><MenuItem onClick={popupState.close}>Logout</MenuItem></Link>      {/* Obviously this is temporary, this will move to a post call, etc, once backend is handeled*/}
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </React.Fragment>
-      )}
+      )}  
     </PopupState>
   );
 }

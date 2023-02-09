@@ -1,7 +1,8 @@
 require("dotenv").config();
-import { Router } from "express";
+const { Router } = require("express");
 const spotify = Router();
-import axios from 'axios';
+const axios = require('axios').default;
+
 
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
@@ -124,4 +125,21 @@ spotify.post('/getSeveralTracks', async (req, res) => {
 });
 
 
-export default spotify;
+spotify.post('/getSeveralTracks', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_tracks = await axios({
+    method: "GET",
+    url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
+    headers: {  "Accept": "application/json", 
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+  });
+  res.json(spotify_tracks.data.tracks);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+module.exports = spotify;

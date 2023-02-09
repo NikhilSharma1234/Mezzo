@@ -16,6 +16,7 @@
     "bcrypt": "^5.1.0",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "craco-plugin-scoped-css": "^1.1.1",
     "crypto": "^1.0.1",
@@ -23,6 +24,7 @@
     "dompurify": "^2.4.3",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
+    "express-session": "^1.17.3",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.0",
     "material-ui-popup-state": "^5.0.4",
@@ -39,7 +41,8 @@
     "regex": "^0.1.1",
     "request": "^2.88.2",
     "use-local-storage": "^2.3.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webpack-cli": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -66,6 +69,7 @@
     ]
   },
   "devDependencies": {
-    "json-loader": "^0.5.7"
+    "json-loader": "^0.5.7",
+    "webpack": "^5.75.0"
   }
 }
