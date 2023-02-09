@@ -1,12 +1,7 @@
 require("dotenv").config();
 const { Router } = require("express");
 const spotify = Router();
-<<<<<<< HEAD
-const axios = require('axios').default;
-
-=======
 const axios = require("axios").default;
->>>>>>> 61ea52c (endpoints)
 
 let spotifyToken = "Bearer ";
 let spotifyTracks = null;
@@ -131,26 +126,30 @@ spotify.post("/getSeveralTracks", async (req, res) => {
   spotifyToken = "";
 });
 
-<<<<<<< HEAD
-
-spotify.post('/getSeveralTracks', async (req, res) => {
-  spotifyToken = "Bearer " + await fetchToken();
-  try{
-  const spotify_tracks = await axios({
-    method: "GET",
-    url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
-    headers: {  "Accept": "application/json", 
-                "Content-Type": "application/json",
-                "Authorization" : spotifyToken},
-  });
-  res.json(spotify_tracks.data.tracks);
-  }catch(error){
-    console.error(error);
-  }
-  spotifyToken = "";
-});
+// spotify.post("/getNewReleases", async (req, res) => {
+//   console.log("hello");
+//   spotifyToken = "Bearer " + (await fetchToken());
+//   try {
+//     console.log("fetching releases");
+//     const spotify_releases = await axios({
+//       method: "GET",
+//       url: "https://api.spotify.com/v1/browse/new-releases",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//         Authorization: spotifyToken,
+//       },
+//       params: {
+//         country: "ES",
+//         limit: "10",
+//         offset: "0",
+//       },
+//     });
+//     res.json(spotify_releases.data);
+//   } catch (error) {
+//     console.error(error);
+//   }
+//   spotifyToken = "";
+// });
 
 module.exports = spotify;
-=======
-module.exports = spotify;
->>>>>>> 61ea52c (endpoints)

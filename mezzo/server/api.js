@@ -9,8 +9,8 @@ const PlaylistsController = require("./controllers/PlaylistsController.js");
 const UsersController = require("./controllers/UsersController.js");
 
 router.post('/user', UsersController.newUser);
-//router.post('/user/login', UsersController.loginUser);
 router.post('/user/logout', UsersController.logoutUser);
+//router.put('/user/login', UsersController.loginUser);
 router.put('/user/password', UsersController.forgotPassword);
 router.get('/user/password', UsersController.resetPassword);
 
@@ -23,8 +23,12 @@ router.put('/playlist/remove', PlaylistsController.removeSong);
 
 
 router.post('/user/login', async (req, res) => {
-  console.log("at endpoint")
+  console.log("fetching");
+    console.log(req.body.username,req.body.password )
     User.findOne({username: req.body.username}, async function(err, user) {
+      if (err) {
+        return res.status(500).send({error: 'Error while trying to find user'});
+      }
       if (!user){
         console.log("User doesn't exist");
       } else {
