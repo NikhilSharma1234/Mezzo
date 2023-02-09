@@ -26,8 +26,6 @@ function SearchBar({placeholder, searchInput, setSearchInput}) {
   }, [searchWord]);
 
   const handleKeyDown = (event) => {
-    // console.log("Search word")
-    // console.log(searchWord);
     if (event.key === 'Enter') {
       setFilteredData([]);
       setSearchInput({name: searchWord})
@@ -44,7 +42,7 @@ function SearchBar({placeholder, searchInput, setSearchInput}) {
       <div className="search">
         <div className="searchInputs">
         <div className="searchIcon">
-            <AiOutlineSearch/>
+            <AiOutlineSearch color="var(--searchbar-color)"/>
           </div>
           <input type="text" value={searchWord} placeholder={placeholder} onChange={(event) => setSearchWord(event.target.value)} onKeyDown={handleKeyDown}/>
           
