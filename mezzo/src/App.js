@@ -31,6 +31,7 @@ export default function App() {
   );
 
   function Layout() {
+    const username = JSON.parse(localStorage.getItem("username"));
     const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
 
@@ -40,6 +41,7 @@ export default function App() {
     }
     return (
       <div className="app" data-theme={theme}>
+         <p id="user">{username}</p>
         <Navbar switchTheme={switchTheme} />
         <Outlet />        
         <PlayBar /> 
