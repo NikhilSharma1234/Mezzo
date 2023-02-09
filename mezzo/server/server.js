@@ -1,11 +1,13 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const api = require("./api");
-const spotify = require("./spotify_api");
-const mongoose = require("mongoose");
-const morgan = require("morgan");
+const api = require('./api');
+const spotify = require('./spotify_api');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const cors = require('cors'); //cors stuff
@@ -28,12 +30,21 @@ app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(
   morgan("dev"),
   bodyParser.json({ extended: false }),
-  bodyParser.urlencoded({ extended: false })
+  bodyParser.urlencoded({ extended: false }),
+  cookieParser(),
+  session({ 
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie : {
+      maxAge:(1000 * 60 * 100)
+    }  
+  }),
 );
 
 app.get("/", (req, res) => {
-  // res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  //res.sendFile(path.join(__dirname, '..', 'public/index.html'));
 });
 
 app.use("/api", api);

@@ -124,4 +124,22 @@ spotify.post('/getSeveralTracks', async (req, res) => {
   spotifyToken = "";
 });
 
+
+spotify.post('/getSeveralTracks', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_tracks = await axios({
+    method: "GET",
+    url: `https://api.spotify.com/v1/tracks?market=ES&ids=${req.body.IDs}`,
+    headers: {  "Accept": "application/json", 
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+  });
+  res.json(spotify_tracks.data.tracks);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
 module.exports = spotify;

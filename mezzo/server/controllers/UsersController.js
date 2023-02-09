@@ -3,25 +3,26 @@ const User = require("../models/User");
 const Token = require("../models/Token");
 const {forgotPasswordHandler, resetPasswordHandler} = require("../password_reset");
 const JWT = require("jsonwebtoken");
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // User Constraints
 const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-const getUser = async (req, res) => {
-    try {
-      const queriedUser = await User.findById(req.params.id);
-      const objectUser = queriedUser.toObject();
-      delete objectUser.password;
-      res.json(objectUser);
-    } catch (err) {
-      console.error(err);
-      res.sendStatus(400);
-    } // dummy function for now
-};
-
 const newUser = async (req, res) => {
     try {
+      User.findOne({username: req.body.username}, async function(err, user) {
+        if(user){
+          res.send("Username already taken");
+        }
+      });
+      User.findOne({email: req.body.email}, async function(err, user) {
+        if(user){
+          res.send("Email already taken");
+        }
+      });
+       
       const newUser = await User({ ...req.body });
       if (!emailReg.test(newUser.email)){
         res.send("Invalid email");
@@ -37,34 +38,40 @@ const newUser = async (req, res) => {
         const newToken = await Token(token_data);
         await newToken.save();
         await newUser.save();
-        res.json({ id: newUser._id });
+        req.session.user = newUser;
+        res.redirect('/_/discover');
       }
     } catch (err) {
       console.error(err);
-      res.sendStatus(404);
     }
 };
 
 const loginUser = async (req, res) => {
     User.findOne({username: req.body.username}, async function(err, user) {
       if (!user){
-        console.log("User doesn't exist");
+        res.send("User doesn't exist");
       } else {
         const matchedPasswords = await user.validPassword(req.body.password, user.password);
         if (matchedPasswords) {
-          console.log("Correct Password");
+          req.session.user = user;
           res.redirect("/_/discover");
         } else {
-          console.log("Incorrect Password");
-          res.redirect('/signup');
+          res.redirect('localhost:4000/signup');
+          res.sendStatus(200);
         }
       }
     });
 };
 
+const logoutUser = (req, res) => {
+    req.session.destroy();
+    res.sendStatus(200);
+    res.redirect('localhost:4000/login');
+};
+
 const forgotPassword = (req, res) => {
     forgotPasswordHandler(req.body.email).catch(console.error);
-    res.send("Sent");
+    res.send("Sent Email");
 };
 
 const resetPassword = (req, res) => {
@@ -83,9 +90,9 @@ const resetPassword = (req, res) => {
 };
 
 module.exports = {
-    getUser,
     newUser,
     loginUser,
+    logoutUser,
     forgotPassword,
     resetPassword
 };
