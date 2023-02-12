@@ -9,6 +9,7 @@ import PlayBar from "./components/playbar/playbar";
 import Master from "./pages/master/master";
 import Login from "./pages/login/login";
 import Signup from "./pages/login/signup";
+import ResetPW from "./pages/login/forgot_password";
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
 
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/" element={<Master />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotpw" element={<ResetPW />} />
         <Route path="/_" element={<Layout />}>
           <Route path="/_/discover" element={<Discover />} />
           <Route path="/_/charts" element={<Charts />} />

@@ -56,31 +56,38 @@ const loginUser = async (req, res) => {
           req.session.user = user;
           res.redirect("/_/discover");
         } else {
-          res.redirect('localhost:4000/signup');
+          res.redirect('/signup');
           res.sendStatus(200);
         }
       }
     });
-};
+};  
 
 const logoutUser = (req, res) => {
     req.session.destroy();
     res.sendStatus(200);
-    res.redirect('localhost:4000/login');
+    res.redirect('/login');
 };
 
-const forgotPassword = (req, res) => {
-    forgotPasswordHandler(req.body.email).catch(console.error);
-    res.send("Sent Email");
+const forgotPassword = async (req, res) => {
+    if (!passwordReg.test(req.body.password)){
+      res.send("Minimum eight characters, at least one letter, one number and one special character");
+    }
+
+    if (await forgotPasswordHandler(req.body.email, req.body.password)){
+      res.send("Sent Email");
+    } else {
+      res.send("Invalid Email");
+    }
 };
 
-const resetPassword = (req, res) => {
+const resetPassword = async (req, res) => {
     Token.findOne({userID: req.query.id}, async function(err, newToken) {
       try {
         var format = req.query.format,
         type = req.query.type;
-        if (resetPasswordHandler(req.query.id, req.query.token, 'whateverplaintextpasswordhere').catch(console.error)){
-          res.send("Success");
+        if (await resetPasswordHandler(req.query.id, req.query.token, req.query.pw).catch(console.error)){
+          res.sendStatus(200);
         }
       } catch (err) {
         console.error(err);
