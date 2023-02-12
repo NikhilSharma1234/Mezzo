@@ -10,15 +10,25 @@
 .charts_main {
     font-size: 30px;
 }
-  
+ 
+table {
+  color: var(--tab2-title-color);
+}  
+
 th {
   height: 30%;
   width: 100vw;
+  font-size: 27px;
 }
 
 td {
   font-size: 15px;
   text-align:center;
+  max-width: 4px;
+  width: 10px;
+  max-height: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 td > img {
@@ -26,11 +36,18 @@ td > img {
   width: 32px;
 }
 
-td > button {
-  height: 32px;
-  width: 32px;
-  font-family: 'Nunito', sans-serif;
-  border: none;
-  outline: none;
 
+td > button{
+  font-family: 'Nunito', sans-serif;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+td > button:hover{
+  font-family: 'Nunito', sans-serif;
+  color: var(--tab2-title-color);
 }
