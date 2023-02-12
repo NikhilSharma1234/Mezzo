@@ -11,7 +11,7 @@ class Login extends React.Component {
             <h1>STREAM WITH MEZZO!</h1>
             <label>
               <h3>Username:</h3>
-              <input type="text" placeholder="Enter your email/username" name = "username" required/>
+              <input type="text" placeholder="Enter your username" name = "username" required/>
             </label>
 
             <label>
@@ -22,6 +22,7 @@ class Login extends React.Component {
             <input className="login-signup-btn" type="submit" value="Login" onClick="fufillLogin"/>
 
             <p>Don't have an account? <Link to={'./../signup'}>SIGN UP!</Link></p>
+            <p><Link to={'./../forgotpw'}>Forgot Password?</Link></p>
           </form>
           </div>
         </main>

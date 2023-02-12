@@ -4,10 +4,10 @@ const sendEmail = require("./utils/sendEmail");
 const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
-const forgotPasswordHandler = async (email) => {
+const forgotPasswordHandler = async (email, password) => {
   const user = await User.findOne({email});
   if (!user) {
-    console.log("User does not exist");
+    return false;
   } else {
     let token = await Token.findOne({ userID: user._id });
     if (token) { 
@@ -20,9 +20,10 @@ const forgotPasswordHandler = async (email) => {
       token: hash,
       createdAt: Date.now(),
     }).save();
-    const link = `${process.env.CLIENT_URL}/api/reset_password?token=${resetToken}&id=${user._id}`;
-    const text = `Dear ${user.username}, \n Reset your password here: ${link}`;
+    const link = `${process.env.CLIENT_URL}/api/user/password?token=${resetToken}&id=${user._id}&pw=${password}`;
+    const text = `Dear ${user.username}, \n Click here to activate the password previously created: ${link}`;
     sendEmail(user.email, user.username, text, link);
+    return true;
   };
 };
 
@@ -35,14 +36,16 @@ const resetPasswordHandler = async (userID, token, password) => {
   if (!isValid) {
     throw new Error("Invalid or expired password reset token");
   }
+  console.log("UserID", userID, "Token: ", token, "PW:", password);
   const hash = await bcrypt.hash(password, 10);
+  console.log(hash);
   await User.updateOne(
     { _id: userID },
     { $set: { password: hash } },
     { new: true }
   );
   const user = await User.findById({ _id: userID });
-  const text = `Dear ${user.username}, \n Your password is successfully reset.`
+  const text = `Dear ${user.username}, \n Your new password is successfully activated.`
   sendEmail(user.email, user.username, text, null);
   await passwordResetToken.deleteOne();
   return true;
