@@ -53,3 +53,14 @@
     background-color: #60DFF0;
     border-radius: 20px;
 }
+
+/*------------------------------
+        ERROR
+------------------------------*/
+.err {
+  text-align: center;
+}
+
+.err_margin {
+  margin-top: 40vh;
+}
