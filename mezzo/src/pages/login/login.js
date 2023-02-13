@@ -1,33 +1,81 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
-import './login.scoped.css';
+import { Link, Navigate } from "react-router-dom";
+import React, { Component, useState } from "react";
+import "./login.scoped.css";
 
-class Login extends React.Component {
-    render() {
-      return (
-        <main>
-          <div className="form-container">
-          <form class="login-form" method="POST" action='/api/user/login'>
-            <h1>STREAM WITH MEZZO!</h1>
-            <label>
-              <h3>Username:</h3>
-              <input type="text" placeholder="Enter your username" name = "username" required/>
-            </label>
+const Login = () => {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-            <label>
-              <h3>Password:</h3>
-              <input type="password" placeholder="Enter your password" name="password" required/>
-            </label>
+  const handleUsernameChange = (event) => {
+    event.preventDefault();
+    setUsername(event.target.value);
+  };
 
-            <input className="login-signup-btn" type="submit" value="Login" onClick="fufillLogin"/>
+  const handlePasswordChange = (event) => {
+    event.preventDefault();
+    setPassword(event.target.value);
+  };
 
-            <p>Don't have an account? <Link to={'./../signup'}>SIGN UP!</Link></p>
-            <p><Link to={'./../forgotpw'}>Forgot Password?</Link></p>
-          </form>
-          </div>
-        </main>
-      );
+  const handleSubmit = async (event) => {
+    console.log("pressed submit");
+    event.preventDefault();
+    try {
+      const user = await fetch("http://localhost:4000/api/user/login", {
+        method: "POST",
+        body: JSON.stringify({ username, password }),
+      }).then(response=>response.json());
+      setUser(user);
+      localStorage.setItem("username", JSON.stringify(username))
+    } catch (error) {
+      setError(error);
     }
-  }
-  
-  export default Login;
+  };
+
+  return (
+    <main id="login-main">
+      {error && <p>{error.message}</p>}
+      {user && (
+        <Navigate
+          to={{
+            pathname: "/_/discover",
+          }}
+          replace={true}
+        />
+      )}
+      <div className="form-container">
+        <form class="login-form" onSubmit={handleSubmit}>
+          <h1>STREAM WITH MEZZO!</h1>
+          <label>
+            <h3>Email or Username:</h3>
+            <input
+              type="text"
+              placeholder="Enter your email/username"
+              value={username}
+              onChange={handleUsernameChange}
+            />
+          </label>
+
+          <label>
+            <h3>Password:</h3>
+            <input
+              type="text"
+              placeholder="Enter your password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+          </label>
+
+          <input className="login-signup-btn" id="login-btn"type="submit" value="Login" />
+
+          <p id="form-footer">
+            Don't have an account? <Link to={"/_/signup"}>SIGN UP!</Link>
+          </p>
+        </form>
+      </div>
+    </main>
+  );
+};
+
+export default Login;

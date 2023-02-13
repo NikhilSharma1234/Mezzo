@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import NavbarPopup from "./navbar_popup";
-
+import { FaSun } from 'react-icons/fa';
 import "./navbar.css";
 import '../../assets/global.scoped.css';
 
-const Navbar = () => {
+const Navbar = ({switchTheme}) => {
   let menu = true;
   function ChangeSelector (section, val) {
     if (val === 0) {
@@ -45,11 +45,11 @@ const Navbar = () => {
     }
   }
   return (
-    <>        
+    <>       
       <nav className="sidenav sidenav_open">
         <ul className="sidenav_headers">
           <button className="closebtn" onClick={ChangeStatus}></button>
-        
+          <button className="toggle" onClick={switchTheme}><FaSun size={35} color="var(--toggle-color)"/></button>
           <li>
             <Link id="tab1" to="/_/discover">Discover</Link>
           </li>

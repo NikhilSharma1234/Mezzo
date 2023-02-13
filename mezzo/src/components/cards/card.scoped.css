@@ -1,0 +1,67 @@
+.card-grid{
+    display: grid;
+    grid-template-columns: repeat(6, minmax(150px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+    
+.card-grid .card {
+  color: var(--song-card-color); 
+  background-color: var(--song-card-bg-color);
+  border: 5px var(--song-card-border-color) solid ;
+  border-radius: 8px;
+  font-size: 1.5vh; 
+  max-height: 400px;
+}
+
+.card-grid .card .card-body{
+  margin: 0;
+  padding: 0px 10px;
+}
+
+.card-grid .card h2{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin:0;
+}
+
+.card-grid .card .card-caption{
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+}
+
+img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.play_button{
+  border: none;
+  background-color: transparent;
+  color: var(--song-card-color);
+}
+
+
+.artist-photo{
+  border-radius: 50%;
+  border: 5px var(--artist-card-color) solid; 
+  max-height: 275px;
+}
+
+.card-grid .artist-card {
+  margin: 0px;
+  font: 5px;
+  color: var(--artist-card-color);
+  font-size: 2vh;
+  text-align: center;
+}
+    
+  
+  /* @media (max-width: 600px) {
+    .app-card-list  {
+      grid-template-columns: repeat(2, minmax(1000px, 150px));
+      display: grid;
+    }
+  } */
