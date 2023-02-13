@@ -1,47 +1,36 @@
-import './master.scoped.css';
-import { Link } from "react-router-dom";
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-
-const MasterHeader = () => {
-	return (
-		<header>
-			<Box className="css-signup-root" sx={{ flexGrow: 1 }}>
-				<AppBar position="static" enableColorOnDark>
-					<Toolbar>
-						<Typography variant="h3" component="div" sx={{ flexGrow: 1 }}>Mezzo<img src={'./../../public/logo512.png'} alt="" /></Typography>      
-						<Link to="/signup">Sign Up </Link>
-						<Link to="/login"><Button color="inherit">Login</Button></Link>
-					</Toolbar>
-				</AppBar>
-			</Box>
-		</header>
-	);
-};
-
-const MasterBody = () => {
-	return (
-		<body>
-			<div className="master_panel">{/*MediaControlCard()*/}</div>
-		</body>
-	);
-};
+import "./master.scoped.css";
+import * as React from "react";
+import {useNavigate } from "react-router-dom";
 
 const Master = () => {
-	return (
-		<div className="master_main">
-			<MasterHeader />
-			<MasterBody />
-		</div>
-	);
+  const navigate = useNavigate();
+
+  const navigateLogin = () => {
+    navigate("/_/login");
+  };
+
+  const navigateSignup = () => {
+    navigate("/_/signup");
+  };
+  return (
+    <>
+    <img id="master-img" src="./masterBgImg.jpg"/>
+    <div className="master-main">
+      <div className="master-body">
+        <h3>Welcome to</h3>
+        <h1 id="service-name">Mezzo</h1>
+        <div className="join-btn-container">
+          <button className="join-btn" onClick={navigateLogin}>
+            Login
+          </button>
+          <button className="join-btn" onClick={navigateSignup}>
+            Sign up
+          </button>
+        </div>
+      </div>
+    </div>
+    </>
+  );
 };
 
 export default Master;
-
-
-
-

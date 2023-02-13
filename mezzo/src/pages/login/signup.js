@@ -33,7 +33,7 @@ class Signup extends React.Component {
   
     render() {
       return (
-        <main>
+        <main id="signup-main">
           <div className="form-container">
           <form class="login-form" method="post" action='/api/user'>
             <h1>STREAM WITH MEZZO!</h1>
@@ -57,9 +57,10 @@ class Signup extends React.Component {
               <input type="password" placeholder="Enter your password" name="password_conf" value={this.state.password_conf} onChange={e => this.handleChange(e)} required/>
             </label>
 
-            <input id="signupBtn" className="login-signup-btn" type="submit" value="Sign Up" disabled={this.state.beDisabled}/>
+            <input id="signup-btn" className="login-signup-btn" type="submit" value="Sign Up" disabled={this.state.beDisabled}/>
             {noMatchElement}
-            <p>Already have an account? <Link to={'./../login'}>LOGIN!</Link></p>
+            <p id="form-footer">Already have an account? <Link to={'/_/login'}>LOGIN!</Link></p>
+
           </form>
           </div>
         </main>

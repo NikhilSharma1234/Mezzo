@@ -1,3 +1,7 @@
+*{
+  font-family: Nunito, serif, sans-serif;
+}
+
 body {
   margin: 0;
   background-color: var(--background-color);
@@ -7,19 +11,23 @@ body {
   width: 20%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#user {
+  font-size: 3vh;
+  margin: 0;
+  position: absolute;
+  top: 2vh;
+  right: 2vh;
+  color: var(--username-color);
 }
 
 
 :root{
   /*main panel*/
   --background-color: #ffffff;
-  --search-bar-border-color: #DB32B0;
-  --song-card-color: #DB44F2;
-  --artist-card-color: #7739F9;
+  --searchbar-color: #DB32B0;
   --placeholder-text-color: #898989;
+  --username-color: #DB32B0;
+  --bg-overlay: rgba(249, 57, 94, .8);						 
 
   /*menu*/
   --navbar--background-color: #DFDFDF;
@@ -35,23 +43,32 @@ code {
 
   /*cards*/
   --artist-card-color: #7739F9;
+  --song-card-color: #DB44F2;
   --song-section-color: #F93968; 
   --song-card-color: #ffffff; 
+  --song-card-border-color: #F93968;
   --song-card-bg-color: #F93968;
   
   /*login page*/
   --login-gradient: radial-gradient(circle, #DB44F2, #7739F9);
   --login-form-container-bg-color: #ffffff;
   --login-btn-color: #ffffff; 
+
+  /*signup page*/
+  --signup-gradient: radial-gradient(circle, #F93968, #DB44F2);
+
+   /*buttons*/
+   --toggle-color: #F93968; 
+   --btn1-text-color:  #F93968;
 }
 
 [data-theme='dark'] {
   /*main panel*/
   --background-color: #484747;
-  --search-bar-border-color: #4CA3D9;
-  --song-card-color: #60DFF0;
-  --artist-card-color: #4CD9C3;
+  --searchbar-color: #4CA3D9;
   --placeholder-text-color: #898989;
+  --username-color: #4CA3D9;
+  --bg-overlay: RGB(87, 144, 248, .8);	
 
   /*menu*/
   --navbar--background-color: #312E2E;
@@ -67,11 +84,18 @@ code {
 
   
   /*cards*/
+  --song-section-color: #60DFF0; 
   --artist-card-color: #4CD9C3;
   --song-card-color: #60DFF0;
+  --song-card-border-color: #60DFF0;
   --song-card-bg-color: rgba(255, 255, 255, 0.1);
 
   --login-gradient: radial-gradient(circle, #60DFF0, #5790F8);
   --login-form-container-bg-color: #ffffff;
   --login-btn-color: #ffffff; 
+
+  /*buttons*/
+  --toggle-color: #60DFF0; 
+  --btn1-text-color:  #5790F8;
+
 }

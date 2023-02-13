@@ -2,19 +2,18 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const api = require('./api');
-const spotify = require('./spotify_api');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+const api = require("./api");
+const spotify = require("./spotify_api").default;
+const mongoose = require("mongoose");
+const morgan = require("morgan");
 
 const app = express();
 const cors = require('cors'); //cors stuff
 
+
 const corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
+ origin: 'http://localhost:3000',
+ optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
@@ -22,7 +21,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-const port = process.env.PORT || 4000;
+const port = 4000;
 mongoose.set('strictQuery', true);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
@@ -43,8 +42,8 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
-  //res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+  // res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'public/index.html'));
 });
 
 app.use("/api", api);
@@ -66,10 +65,11 @@ async function main() {
     console.log("MongoDB connected...")
     await mongoose.connect("mongodb://localhost:27017/Mezzo");
   }
-
+ 
   app.listen(port, () => {
     console.log(`App on port: ${port}`);
   });
-}
+ }
+ 
 
 main().catch((err) => console.error(err));

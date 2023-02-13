@@ -1,8 +1,9 @@
 import { FaPlay } from 'react-icons/fa';
 import {FaHeart} from 'react-icons/fa';
-import './song-card.scoped.css'
+import './card.scoped.css'
 
 function PlayButton (props) {
+  
   return (
     <button className="play_button">
       <FaPlay/>
@@ -19,6 +20,7 @@ function Heart (props) {
 }
 
 function SongCard ({songData}) {
+  console.log(songData);
   return (
     <div className="card">
       <div>
@@ -30,7 +32,7 @@ function SongCard ({songData}) {
         <div className="card-caption">
           <p>artist</p>
           <Heart/>
-          <PlayButton/>
+          <PlayButton preview={songData.preview_url}/>
         </div>
       </div>
     </div>

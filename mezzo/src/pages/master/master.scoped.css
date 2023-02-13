@@ -26,28 +26,66 @@
     color: #000000 !important;
 }
 
-.master_main {
-    background: url('./../../assets/logo/logo512.png');
-    image-resolution: from-image;
-    position: absolute;
-    width: 100%;
+
+#master-img{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
     height: 100%;
+    background: url('./headphones.jpg') var(--bg-overlay);
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-blend-mode: multiply;
 }
 
-.master_body {
-
+.master-main {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
 }
 
-
-.master_panel {
-    height: 10vh;
-    padding-left: 60px;
-    padding-top: 60px;
-    padding-right: 60px;
-    padding-bottom: 60px;
-    width: 10vh;
-    left: 50%;
+.master-body {
     position: absolute;
-    border-top-width: 1px;
-    top: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+}
+
+h3,h1,p{
+    margin: 0px;
+    padding: 0px;
+}
+
+#service-name {
+font-size: 22vh;
+}
+
+.join-btn-container {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1vh;
+}
+
+.join-btn {
+    border-radius: 8px;
+    border: none;
+    background-color: #ffffff;
+    width: 100%;
+    padding: 2vh;
+    color: var(--btn1-text-color);
+    font-size: 5vh;
 }
