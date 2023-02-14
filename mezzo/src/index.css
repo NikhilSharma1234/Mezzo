@@ -57,6 +57,9 @@ body {
   /*signup page*/
   --signup-gradient: radial-gradient(circle, #F93968, #DB44F2);
 
+  /*forgot page*/
+  --forgot-gradient: radial-gradient(circle, #EE7D31, #E2BD00);
+
    /*buttons*/
    --toggle-color: #F93968; 
    --btn1-text-color:  #F93968;

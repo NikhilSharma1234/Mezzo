@@ -22,9 +22,7 @@ router.put('/playlist/remove', PlaylistsController.removeSong);
 
 
 router.post('/user/login', async (req, res) => {
-  console.log("fetching");
-    console.log(req.body.username,req.body.password )
-    User.findOne({username: req.body.username}, async function(err, user) {
+  User.findOne({username: req.body.username}, async function(err, user) {
       if (err) {
         return res.status(500).send({error: 'Error while trying to find user'});
       }

@@ -3,13 +3,11 @@ import React from 'react';
 import './login.scoped.css';
 
 class ResetPW extends React.Component { 
-    
-
     render() {
       return (
-        <main>
+        <main className="forgot-password-main">
           <div className="form-container">
-          <form class="login-form" method="POST" action='/api/user/password'>
+          <form className="login-form" method="POST" action='/api/user/password'>
             <h1>Forgot Password?</h1>
             <label>
               <h3>Email:</h3>
@@ -23,7 +21,7 @@ class ResetPW extends React.Component {
               <input type="text" placeholder="Enter your password" name= "password" required/>
             </label>
 
-            <input className="login-signup-btn" type="submit" value="Send Verifcation" onClick="fufillLogin"/>
+            <input className="login-signup-btn" id="forgot-btn"type="submit" value="Send Verifcation" onClick="fufillLogin"/>
 
             <p>Remembered Password? <Link to={'./../login'}>LOGIN!</Link></p>
           </form>

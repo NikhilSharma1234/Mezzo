@@ -19,7 +19,6 @@ const Login = () => {
   };
 
   const handleSubmit = async (event) => {
-    console.log("pressed submit");
     event.preventDefault();
     try {
       const user = await fetch("http://localhost:4000/api/user/login", {
@@ -48,10 +47,10 @@ const Login = () => {
         <form class="login-form" onSubmit={handleSubmit}>
           <h1>STREAM WITH MEZZO!</h1>
           <label>
-            <h3>Email or Username:</h3>
+            <h3>Username:</h3>
             <input
               type="text"
-              placeholder="Enter your email/username"
+              placeholder="Username"
               value={username}
               onChange={handleUsernameChange}
             />
@@ -70,8 +69,9 @@ const Login = () => {
           <input className="login-signup-btn" id="login-btn"type="submit" value="Login" />
 
           <p id="form-footer">
-            Don't have an account? <Link to={"/_/signup"}>SIGN UP!</Link>
+            Don't have an account? <Link to={"/signup"}>SIGN UP!</Link>
           </p>
+          <p><Link to={'./../forgotpw'}>Forgot Password?</Link></p>
         </form>
       </div>
     </main>
