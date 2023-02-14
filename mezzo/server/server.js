@@ -3,9 +3,11 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const api = require("./api");
-const spotify = require("./spotify_api").default;
+const spotify = require("./spotify_api");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
+const session = require('express-session');
 
 const app = express();
 const cors = require('cors'); //cors stuff
@@ -21,7 +23,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 mongoose.set('strictQuery', true);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));

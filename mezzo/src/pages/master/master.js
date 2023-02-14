@@ -6,11 +6,11 @@ const Master = () => {
   const navigate = useNavigate();
 
   const navigateLogin = () => {
-    navigate("/_/login");
+    navigate("/login");
   };
 
   const navigateSignup = () => {
-    navigate("/_/signup");
+    navigate("/signup");
   };
   return (
     <>

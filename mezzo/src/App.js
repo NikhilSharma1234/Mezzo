@@ -1,5 +1,5 @@
 import './assets/global.scoped.css';
-import {BrowserRouter, Routes, Route, Outlet} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Outlet, Navigate} from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
 import Discover from "./pages/discover/discover";
 import Charts from "./pages/charts/charts";
@@ -9,10 +9,26 @@ import PlayBar from "./components/playbar/playbar";
 import Master from "./pages/master/master";
 import Login from "./pages/login/login";
 import Signup from "./pages/login/signup";
+import ResetPW from "./pages/login/forgot_password";
 import React from 'react';
 import useLocalStorage from 'use-local-storage';
 
 export default function App() {
+  const isAuthenticated = true;
+
+  const SendTo404 = () => {
+    return (
+      <main>
+        <div className="err_margin">
+          <h1 className="err"> 404</h1> 
+          <h2 className="err">Request Not Found</h2>
+          <h4 className="err">Please Login Or Signup Now!</h4>
+        </div>
+      </main>
+    );
+  };
+
+
   return (
     
     <BrowserRouter>
@@ -20,12 +36,17 @@ export default function App() {
         <Route path="/" element={<Master />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/_" element={<Layout />}>
-          <Route path="/_/discover" element={<Discover />} />
-          <Route path="/_/charts" element={<Charts />} />
-          <Route path="/_/library" element={<Library />} />
-          <Route path="/_/profile" element={<Profile />} />
-        </Route>
+        <Route path="/forgotpw" element={<ResetPW />} />
+        { isAuthenticated ?
+          <Route path="/_" element={<Layout />}>
+            <Route path="/_/discover" element={<Discover />} />
+            <Route path="/_/charts" element={<Charts />} />
+            <Route path="/_/library" element={<Library />} />
+            <Route path="/_/profile" element={<Profile />} />
+          </Route>
+          : null
+        }
+        <Route path="*" element={<SendTo404/>} />
       </Routes>
     </BrowserRouter>
   );
@@ -49,3 +70,6 @@ export default function App() {
     );
   }
 }
+
+
+
