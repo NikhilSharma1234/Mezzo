@@ -33,6 +33,7 @@ const Charts = () => {
       setIsPlaying(false);
     } else {
       const audioElement = new Audio(audioUrl);
+      audioElement.volume = 0.03;
       audioElement.play();
       setAudio(audioElement);
       setIsPlaying(true);
