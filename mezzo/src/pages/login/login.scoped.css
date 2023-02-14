@@ -26,6 +26,10 @@ main{
     background: var(--signup-gradient);
 }
 
+.forgot-password-main{
+    background-image: var(--forgot-gradient);
+}
+
 .form-container{
     position: absolute;
     top: 50%;
@@ -63,6 +67,10 @@ main{
 
 #login-btn{
     background: var(--login-gradient);
+}
+
+#forgot-btn{
+    background: var(--forgot-gradient);
 }
 
 #signup-btn{

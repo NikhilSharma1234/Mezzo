@@ -59,7 +59,7 @@ class Signup extends React.Component {
 
             <input id="signup-btn" className="login-signup-btn" type="submit" value="Sign Up" disabled={this.state.beDisabled}/>
             {noMatchElement}
-            <p id="form-footer">Already have an account? <Link to={'/_/login'}>LOGIN!</Link></p>
+            <p id="form-footer">Already have an account? <Link to={'/login'}>LOGIN!</Link></p>
 
           </form>
           </div>

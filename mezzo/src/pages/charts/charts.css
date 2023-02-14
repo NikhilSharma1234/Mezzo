@@ -1,13 +1,53 @@
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDDsmdTQ3jw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 .charts_main {
     font-size: 30px;
-  }
-  
-  th {
-    height: 30%;
-    width: 100vw;
-  }
-  
-  td {
-    font-size: 15px;
-    text-align:center;
-  }
+}
+ 
+table {
+  color: var(--tab2-title-color);
+}  
+
+th {
+  height: 30%;
+  width: 100vw;
+  font-size: 27px;
+}
+
+td {
+  font-size: 15px;
+  text-align:center;
+  max-width: 4px;
+  width: 10px;
+  max-height: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td > img {
+  height: 32px;
+  width: 32px;
+}
+
+
+td > button{
+  font-family: 'Nunito', sans-serif;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+td > button:hover{
+  font-family: 'Nunito', sans-serif;
+  color: var(--tab2-title-color);
+}
