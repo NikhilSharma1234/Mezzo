@@ -5,7 +5,7 @@ import {AudioContext } from "../../context/audioContext.js";
 
 const Charts = () => {
 
-  const [,setPlayerInfo, isPlaying, togglePlayer] = useContext(AudioContext);
+  const [setPlayerInfo, isPlaying, togglePlayer] = useContext(AudioContext);
   const [songs, setSongs] = useState([]);
   const [showButton, setShowButton] = useState(false);
 
