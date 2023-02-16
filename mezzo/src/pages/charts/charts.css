@@ -51,3 +51,7 @@ td > button:hover{
   font-family: 'Nunito', sans-serif;
   color: var(--tab2-title-color);
 }
+
+.charts-album-img{
+  float: left;
+}
