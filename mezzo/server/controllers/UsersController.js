@@ -46,29 +46,6 @@ const newUser = async (req, res) => {
     }
 };
 
-const loginUser = async (req, res) => {
-    User.findOne({username: req.body.username}, async function(err, user) {
-      if (!user){
-        res.send("User doesn't exist");
-      } else {
-        const matchedPasswords = await user.validPassword(req.body.password, user.password);
-        if (matchedPasswords) {
-          req.session.user = user;
-          res.redirect("/_/discover");
-        } else {
-          res.redirect('/signup');
-          res.sendStatus(200);
-        }
-      }
-    });
-};  
-
-const logoutUser = (req, res) => {
-    req.session.destroy();
-    res.sendStatus(200);
-    res.redirect('/login');
-};
-
 const forgotPassword = async (req, res) => {
     if (!passwordReg.test(req.body.password)){
       res.send("Minimum eight characters, at least one letter, one number and one special character");

@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import './charts.css';
 import { fetchTop100 } from "../../utils/fetchTop100.js";
+import {AudioContext } from "../../context/audioContext.js";
 
-const Charts = () => {  
+const Charts = () => {
+
+  const [,setPlayerInfo, isPlaying, togglePlayer] = useContext(AudioContext);
   const [songs, setSongs] = useState([]);
-  const [audio, setAudio] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
@@ -27,17 +28,14 @@ const Charts = () => {
     return obj;
   });
 
-  function playAudio(audioUrl) {
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      const audioElement = new Audio(audioUrl);
-      audioElement.volume = 0.03;
-      audioElement.play();
-      setAudio(audioElement);
-      setIsPlaying(true);
-    }
+
+  function handlePlayer(song){
+    console.log("handle player")
+    console.log(song.track.preview_url)
+
+    const newPlayerInfo = { songName: song.track.album.name, audioUrl:song.track.preview_url};
+    setPlayerInfo(newPlayerInfo)
+    togglePlayer()
   }
 
   function millisecToMin(millis) {
@@ -68,8 +66,9 @@ const Charts = () => {
               >
                 {song.track.preview_url ? (
                   showButton === index ? (
-                    <button onClick={() => playAudio(song.track.preview_url)}>
-                      {isPlaying && audio.src === song.track.preview_url ? 'Pause' : 'Play'}
+                    <button onClick={() => handlePlayer(song)}>
+                      {/* {isPlaying && audio.src === song.track.preview_url ? 'Pause' : 'Play'} */}
+                      {isPlaying ? 'Pause' : 'Play'}
                     </button>
                   ) : (
                     <p>{index + 1}</p>
@@ -79,7 +78,7 @@ const Charts = () => {
                 )}
               </td>
               <td>
-                <img src={song.track.album.images[2].url} alt="" />
+                <img className="charts-album-img" src={song.track.album.images[2].url} alt="" />
                 {song.track.name}
               </td>
               <td>{song.track.album.name}</td>
