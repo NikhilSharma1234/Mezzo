@@ -9,8 +9,6 @@ const PlaylistsController = require("./controllers/PlaylistsController.js");
 const UsersController = require("./controllers/UsersController.js");
 
 router.post('/user', UsersController.newUser);
-router.post('/user/login', UsersController.loginUser);
-router.post('/user/logout', UsersController.logoutUser);
 router.post('/user/password', UsersController.forgotPassword);
 router.get('/user/password', UsersController.resetPassword);
 
@@ -20,5 +18,36 @@ router.get('/playlist/all', PlaylistsController.getAllPlaylists);
 router.delete('/playlist', PlaylistsController.deletePlaylist);
 router.put('/playlist/add', PlaylistsController.addSong);
 router.put('/playlist/remove', PlaylistsController.removeSong);
+
+router.post('/user/login', async (req, res) => {
+    console.log("log in endpoint");
+    console.log(req.body);
+      User.findOne({username: req.body.username}, async function(err, user) {
+        if (!user){
+          console.log("User doesn't exist");
+        } else {
+          const matchedPasswords = await user.validPassword(req.body.password, user.password);
+          if (matchedPasswords) {
+            return res.send({success: true});
+          } else {
+            return res.status(401).send({error: 'Incorrect password'});
+          }
+        }
+      });
+  });
+
+
+router.post('/user/logout', async (req, res) => {
+    console.log("at logout endpoint")
+    try{
+        req.session.destroy();
+        console.log("try")
+        return res.send({success: true});
+    }
+    catch{
+        console.log("catch")
+        return res.status(401).send({error: 'Unable to destroy user session'});
+    }
+});
 
 module.exports = router;

@@ -23,14 +23,20 @@ const Login = () => {
     try {
       const user = await fetch("http://localhost:4000/api/user/login", {
         method: "POST",
-        body: JSON.stringify({ username, password }),
-      }).then(response=>response.json());
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: username, password: password}),
+      });
+      
       setUser(user);
       localStorage.setItem("username", JSON.stringify(username))
     } catch (error) {
       setError(error);
     }
   };
+  
+
 
   return (
     <main id="login-main">
