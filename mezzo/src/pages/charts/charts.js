@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react';
-import './charts.css';
+import React, { useState, useEffect, useContext } from "react";
+import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
-import {AudioContext } from "../../context/audioContext.js";
+import { AudioContext } from "../../context/audioContext.js";
 
 const Charts = () => {
-
-  const [,setPlayerInfo, isPlaying, togglePlayer] = useContext(AudioContext);
+  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer] = useContext(
+    AudioContext
+  );
   const [songs, setSongs] = useState([]);
   const [showButton, setShowButton] = useState(false);
 
@@ -18,7 +19,7 @@ const Charts = () => {
     fetchTop();
   }, []);
 
-  let parsedTop100 = songs.map(song => {
+  let parsedTop100 = songs.map((song) => {
     let obj = Object.assign({}, song);
     delete obj.added_by;
     delete obj.added_at;
@@ -28,20 +29,18 @@ const Charts = () => {
     return obj;
   });
 
-
-  function handlePlayer(song){
-    console.log("handle player")
-    console.log(song.track.preview_url)
-
-    const newPlayerInfo = { songName: song.track.album.name, audioUrl:song.track.preview_url};
-    setPlayerInfo(newPlayerInfo)
-    togglePlayer()
+  function handlePlayer(song) {
+    const newPlayerInfo = {
+      songName: song.track.album.name,
+      audioUrl: song.track.preview_url,
+    };
+    togglePlayer(newPlayerInfo);
   }
 
   function millisecToMin(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 
   return (
@@ -67,8 +66,10 @@ const Charts = () => {
                 {song.track.preview_url ? (
                   showButton === index ? (
                     <button onClick={() => handlePlayer(song)}>
-                      {/* {isPlaying && audio.src === song.track.preview_url ? 'Pause' : 'Play'} */}
-                      {isPlaying ? 'Pause' : 'Play'}
+                      {isPlaying &&
+                      playerInfo.audioUrl === song.track.preview_url
+                        ? "Pause"
+                        : "Play"}
                     </button>
                   ) : (
                     <p>{index + 1}</p>
@@ -78,7 +79,11 @@ const Charts = () => {
                 )}
               </td>
               <td>
-                <img className="charts-album-img" src={song.track.album.images[2].url} alt="" />
+                <img
+                  className="charts-album-img"
+                  src={song.track.album.images[2].url}
+                  alt=""
+                />
                 {song.track.name}
               </td>
               <td>{song.track.album.name}</td>
