@@ -10,6 +10,24 @@ const cookieParser = require('cookie-parser');
 const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
+const getUser = async (req, res) => {
+    User.findOne({username: "NikhilSharma"}, async function(err, user) {
+      if (user) {
+        const userObject = {
+          username: user.username,
+          email: user.email,
+          profilePicture: user.profilePicture,
+          playlists: user.playlists,
+          friends: user.friends
+        }
+        res.send(userObject)
+      }
+      else {
+        res.send("No user found")
+      }
+    })
+};
+
 const newUser = async (req, res) => {
     try {
       User.findOne({username: req.body.username}, async function(err, user) {
@@ -75,6 +93,7 @@ const resetPassword = async (req, res) => {
 
 module.exports = {
     newUser,
+    getUser,
     forgotPassword,
     resetPassword
 };
