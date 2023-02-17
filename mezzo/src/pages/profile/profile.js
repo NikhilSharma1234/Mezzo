@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -13,6 +13,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import {BsPersonFill } from 'react-icons/bs';
 import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/system';
+import { fetchUserProfile } from "../../utils/fetchUserProfile.js";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#1A2027',
@@ -33,20 +34,30 @@ function generate(element) {
 const Profile = () => {
   const [dense] = React.useState(false);
   const [secondary] = React.useState(false);
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profile = await fetchUserProfile();
+      setProfile(profile)
+    };
+
+    fetchProfile();
+  }, []);
   return (
     <section className="main_closed main" >
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={8}>
             <Item sx={{ display: 'flex', flexDirection: 'column', alignContent: 'space-between', justifyContent: 'center' }}>
-              <img src="https://via.placeholder.com/700x100" style={{borderRadius: '10px'}} alt="placeholler" />
+              <img src={profile.profilePicture} style={{borderRadius: '10px'}} alt="placeholler" />
               <Stack sx={{alignItems: 'center'}}>
                 <Avatar sx={{width: 350, height: 350, mt: 2}}>
                   <BsPersonFill />
                 </Avatar>
               </Stack>
-              <TextField className="textField" label="Outlined" variant="outlined" sx={{mt: 3, mb: 1}} />
-              <TextField className="textField" label="Outlined" variant="outlined" />
+              <TextField className="textField" label={profile.email} variant="outlined" sx={{mt: 3, mb: 1}} />
+              <TextField className="textField" label={profile.username} variant="outlined" />
             </Item>
           </Grid>
           <Grid item xs={4}>
