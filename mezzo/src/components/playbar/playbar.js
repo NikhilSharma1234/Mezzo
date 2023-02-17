@@ -15,12 +15,10 @@ import { AudioContext } from "../../context/audioContext.js";
 import { useState, useEffect, useContext } from "react";
 
 const PlayBar = () => {
-  const [playerInfo, , isPlaying, togglePlayer, setIsPlaying] = useContext(
-    AudioContext
-  );
+  const [playerInfo, , isPlaying, , setIsPlaying] = useContext(AudioContext);
   const [audio, setAudio] = useState(null);
   const [value, setValue] = useState(0);
-  const [volume, setVolume] = useState(0.03);
+  const [volume, setVolume] = useState(0.2);
 
   useEffect(() => {
     if (playerInfo.audioUrl) {
@@ -36,16 +34,11 @@ const PlayBar = () => {
         audio.pause();
       }
     }
+    // eslint-disable-next-line
   }, [isPlaying, playerInfo]);
 
-  useEffect(() => {
-    if (isPlaying) {
-      audio.volume = volume;
-    }
-  }, [volume]);
-
   function togglePlaybarBtn() {
-    if (isPlaying) {
+    if (isPlaying || playerInfo.songName === "") {
       setIsPlaying(false);
     } else {
       setIsPlaying(true);
@@ -53,9 +46,10 @@ const PlayBar = () => {
   }
 
   function handleVolume(event, newVolume) {
-    console.log("event", event);
-    console.log("newValue", newVolume);
     setVolume(newVolume);
+    if (isPlaying) {
+      audio.volume = volume;
+    }
   }
 
   return (

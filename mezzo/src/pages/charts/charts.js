@@ -4,7 +4,7 @@ import { fetchTop100 } from "../../utils/fetchTop100.js";
 import { AudioContext } from "../../context/audioContext.js";
 
 const Charts = () => {
-  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer] = useContext(
+  const [playerInfo,, isPlaying, togglePlayer] = useContext(
     AudioContext
   );
   const [songs, setSongs] = useState([]);
