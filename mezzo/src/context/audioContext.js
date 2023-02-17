@@ -12,7 +12,6 @@ export function AudioProvider({ children }) {
       setIsPlaying(true);
     } else if (isPlaying) {
       setIsPlaying(false);
-      useState;
     } else {
       setPlayerInfo(newPlayerInfo);
       setIsPlaying(true);
