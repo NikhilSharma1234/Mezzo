@@ -20,17 +20,6 @@ body {
   color: var(--username-color);
 }
 
-.app {
-  background-color: var(--background-color);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .user-container {
   margin-bottom: 6vh;
 }
@@ -42,6 +31,7 @@ body {
   --placeholder-text-color: #898989;
   --username-color: #db32b0;
   --bg-overlay: rgba(249, 57, 94, 0.8);
+  --scroll-bar: #898989;
 
   /*menu*/
   --navbar--background-color: #dfdfdf;
@@ -83,6 +73,9 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #f93968;
   --charts-color: #000000;
+
+   /*playbar*/
+   --playbar-bg: #f93968;
 }
 
 [data-theme="dark"] {
@@ -92,6 +85,7 @@ body {
   --placeholder-text-color: #898989;
   --username-color: #4ca3d9;
   --bg-overlay: RGB(87, 144, 248, 0.8);
+  --scroll-bar: #898989;
 
   /*menu*/
   --navbar--background-color: #312e2e;
@@ -125,4 +119,8 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #60dff0;
   --charts-color: #ffffff;
+
+  /*playbar*/
+  --playbar-bg: #5790f8;
+  --playbar-color: #ffffff;
 }

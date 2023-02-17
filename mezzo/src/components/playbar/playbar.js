@@ -4,15 +4,14 @@ import * as React from "react";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { BsFillPlayFill, BsPauseFill } from "react-icons/bs";
-import { ImVolumeMedium, ImVolumeLow } from "react-icons/im";
 import { AudioContext } from "../../context/audioContext.js";
 import { useState, useEffect, useContext } from "react";
+import { FaHeart } from "react-icons/fa";
 
 const PlayBar = () => {
   const [playerInfo, , isPlaying, , setIsPlaying] = useContext(AudioContext);
@@ -53,13 +52,11 @@ const PlayBar = () => {
   }
 
   return (
-    <section className="main_closed main">
       <Box className="playbarbox" sx={{ pb: 7 }}>
         <Paper
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={10}
         >
-          <Divider className="divider" />
           <BottomNavigation
             className="playbar"
             showLabels
@@ -68,16 +65,26 @@ const PlayBar = () => {
               setValue(newValue);
             }}
           >
-            <BottomNavigationAction icon={<AiOutlineLeft />} />
-            <BottomNavigationAction label={playerInfo.songName || ""} />
+            
+            <BottomNavigationAction className="playbar-btns"  label={playerInfo.songName || ""} >
+              <img
+                  className="charts-album-img"
+                  src={playerInfo.albumImg}
+                  alt=""
+                />
+                <div className="title-column-song-wrapper">
+                <h4 id="charts-song-title">{playerInfo.songName}</h4><p>{playerInfo.artist}</p>
+                </div>
+            </BottomNavigationAction>
+            <BottomNavigationAction icon={<FaHeart className="playbar-btns" />} />
+            <BottomNavigationAction icon={<AiOutlineLeft className="playbar-btns" />} />
             <BottomNavigationAction
               onClick={togglePlaybarBtn}
-              icon={isPlaying ? <BsPauseFill /> : <BsFillPlayFill />}
+              icon={isPlaying ? <BsPauseFill className="playbar-btns" /> : <BsFillPlayFill className="playbar-btns"  />}
             />
-            <BottomNavigationAction icon={<AiOutlineRight />} />
+            <BottomNavigationAction icon={<AiOutlineRight className="playbar-btns" />} />
             <Box sx={{ width: 200, pt: 2 }}>
               <Stack spacing={2} direction="row" alignItems="center">
-                <ImVolumeLow />
                 <Slider
                   aria-label="Volume"
                   onChange={handleVolume}
@@ -86,13 +93,11 @@ const PlayBar = () => {
                   value={volume}
                   step={0.01}
                 />
-                <ImVolumeMedium />
               </Stack>
             </Box>
           </BottomNavigation>
         </Paper>
       </Box>
-    </section>
   );
 };
 
