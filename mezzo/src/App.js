@@ -70,7 +70,9 @@ export default function App() {
     return (
       <body className="app" data-theme={theme}>
         <AudioProvider>
-          <p id="user">{username}</p>
+          <div className="user-container">
+            <p id="user">{username}</p>\
+          </div>
           <Navbar switchTheme={switchTheme} />
           <Outlet />      
           <PlayBar />
