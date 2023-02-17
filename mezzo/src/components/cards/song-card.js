@@ -6,7 +6,7 @@ import "./card.scoped.css";
 import {useContext } from "react";
 
 function PlayButton({ songData }) {
-  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer] = useContext(
+  const [playerInfo,, isPlaying, togglePlayer] = useContext(
     AudioContext
   );
 
