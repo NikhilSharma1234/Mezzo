@@ -1,75 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
-import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
-import { likeSongPost } from "../../utils/likeSongPost.js";
-import { dislikeSongPut } from "../../utils/dislikeSongPut.js";
-import {AudioContext } from "../../context/audioContext.js";
-import { AiFillHeart } from 'react-icons/ai';
-import IconButton from '@mui/material/IconButton';
-import { MdOutlinePlaylistAdd } from 'react-icons/md';
-import PropTypes from 'prop-types';
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
-import AddIcon from '@mui/icons-material/Add';
-
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open, playlists } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value) => {
-    onClose(value);
-  };
-
-  const newPlaylist = () => {
-    console.log("New playlist")
-  };
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Choose Playlist to add song to</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {playlists.map(({name}) => (
-          <ListItem disableGutters>
-            <ListItemButton onClick={() => handleListItemClick(name)} key={name}>
-              <ListItemText primary={name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-
-        <ListItem disableGutters>
-          <ListItemButton
-            autoFocus
-            onClick={() => newPlaylist()}
-          >
-            <ListItemAvatar>
-              <Avatar>
-                <AddIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Add playlist" />
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired
-};
-
+import { AudioContext } from "../../context/audioContext.js";
+import { FaPlay } from "react-icons/fa";
+import { FaPause } from "react-icons/fa";
 
 const Charts = () => {
   const [open, setOpen] = React.useState(false);
@@ -145,67 +79,34 @@ const Charts = () => {
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 
-  const handleClickOpen = (song) => {
-    setOpen(true);
-    setChosenSong(song);
-  };
-
-  const handleClose = (value) => {
-    setOpen(false);
-    likeSong(value, chosenSong.track.id);
-  };
-
-  function findLikedSongs(song) {
-    const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
-    if (likedSongs.songs.includes(song.track.id))
-      return {
-        color: 'red'
-      };
-    else {
-      return {
-        color: 'black'
-      };
-    }
-  }
-
-  const heartStyling = (song) => {
-    return findLikedSongs(song)
+  function getWeeks(release){
+    const releaseDate = new Date(release);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set the time to midnight
+    const formattedDate = currentDate.toLocaleDateString();
+    console.log(formattedDate); // Output: the current date in the format MM/DD/YYYY
+    const diffInMs = currentDate - releaseDate;
+    const diffInWeeks = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 7));
+    return diffInWeeks;
   }
 
   return (
-    <section className="main_closed main">
-      <SimpleDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-        playlists={playlists}
-      />
+    <section className="main_closed main" id="charts-main">
+      <h1>Top 100</h1>
       <table border="1">
         <thead>
           <tr>
-            <th>Actions</th>
-            <th>Position</th>
-            <th>Title</th>
+            <th className="position-column">#</th>
+            <th className="title-column">Title</th>
             <th>Album</th>
-            <th>Artist</th>
+            <th>Wks on Chart</th>
             <th>Length</th>
-            <th>Date Added</th>
           </tr>
         </thead>
         <tbody>
           {parsedTop100.map((song, index) => (
             <tr key={index}>
-              <td>
-              <div style={{ display: "flex", justifyContent: "space-evenly", margin: '0 auto'}}>
-              <IconButton onClick={() => likeSong("Liked Songs", song.track.id)}>
-                <AiFillHeart style={ heartStyling(song) }/>
-              </IconButton>
-              <IconButton onClick={() => handleClickOpen(song)}>
-                <MdOutlinePlaylistAdd style={{ color: 'white' }}/>
-              </IconButton>
-              </div>
-              </td>
-              <td
+              <td className="position-column"
                 onMouseOver={() => setShowButton(index)}
                 onMouseOut={() => setShowButton(-1)}
               >
@@ -214,8 +115,8 @@ const Charts = () => {
                     <button onClick={() => handlePlayer(song)}>
                       {isPlaying &&
                       playerInfo.audioUrl === song.track.preview_url
-                        ? "Pause"
-                        : "Play"}
+                        ? <FaPause/>
+                        : <FaPlay/>}
                     </button>
                   ) : (
                     <p>{index + 1}</p>
@@ -224,18 +125,19 @@ const Charts = () => {
                   <p>{index + 1}</p>
                 )}
               </td>
-              <td>
+              <td className="title-column">
                 <img
                   className="charts-album-img"
                   src={song.track.album.images[2].url}
                   alt=""
                 />
-                {song.track.name}
+                <div className="title-column-song-wrapper">
+                <h4 id="charts-song-title">{song.track.name}</h4><p>{song.track.artists[0].name}</p>
+                </div>
               </td>
               <td>{song.track.album.name}</td>
-              <td>{song.track.artists[0].name}</td>
+              <td>{getWeeks(song.track.album.release_date)}</td>
               <td>{millisecToMin(song.track.duration_ms)}</td>
-              <td>{song.track.album.release_date}</td>
             </tr>
           ))}
         </tbody>
