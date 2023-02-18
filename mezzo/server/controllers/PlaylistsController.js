@@ -136,7 +136,7 @@ const removeSong = (req, res) => {
       }
         else {
           try {
-            Playlist.findById(req.body.id, async function(err, playlist) {
+            Playlist.findOne({name: req.body.playlist_name, user: user._id}, async function(err, playlist) {
               if (!playlist) {
                 res.send("Playlist not found");
               }

@@ -3,6 +3,7 @@ import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
 import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 import { likeSongPost } from "../../utils/likeSongPost.js";
+import { dislikeSongPut } from "../../utils/dislikeSongPut.js";
 import {AudioContext } from "../../context/audioContext.js";
 import { AiFillHeart } from 'react-icons/ai';
 import IconButton from '@mui/material/IconButton';
@@ -20,8 +21,6 @@ import AddIcon from '@mui/icons-material/Add';
 
 function SimpleDialog(props) {
   const { onClose, selectedValue, open, playlists } = props;
-
-  console.log(playlists)
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -119,9 +118,25 @@ const Charts = () => {
     togglePlayer(newPlayerInfo);
   }
 
-  function likeSong(song) {
-    console.log(song.track.id)
-    likeSongPost("Liked Songs", song.track.id)
+  function likeSong(value, song) {
+    const fetchPlaylistsDislike = async () => {
+      await dislikeSongPut(value, song);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists)
+    };
+    const fetchPlaylists = async () => {
+      await likeSongPost(value, song);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+
+    const playlist = playlists.find(({name}) => name === value);
+    if (playlist.songs.includes(song)) {
+      fetchPlaylistsDislike();
+    }
+    else {
+      fetchPlaylists();
+    }
   }
 
   function millisecToMin(millis) {
@@ -132,13 +147,32 @@ const Charts = () => {
 
   const handleClickOpen = (song) => {
     setOpen(true);
-    setChosenSong(song)
+    setChosenSong(song);
   };
 
   const handleClose = (value) => {
     setOpen(false);
-    likeSongPost(value, chosenSong.track.id)
+    likeSong(value, chosenSong.track.id);
   };
+
+  function findLikedSongs(song) {
+    const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
+    if (likedSongs.songs.includes(song.track.id))
+      return {
+        color: 'red',
+        paddingRight: '40px'
+      };
+    else {
+      return {
+        color: 'black',
+        paddingRight: '40px'
+      };
+    }
+  }
+
+  const heartStyling = (song) => {
+    return findLikedSongs(song)
+  }
 
   return (
     <section className="main_closed main">
@@ -164,8 +198,8 @@ const Charts = () => {
           {parsedTop100.map((song, index) => (
             <tr key={index}>
               <td>
-              <IconButton onClick={() => likeSong(song)}>
-                <AiFillHeart style={{ color: 'red', marginRight: '40px' }}/>
+              <IconButton onClick={() => likeSong("Liked Songs", song.track.id)}>
+                <AiFillHeart style={ heartStyling(song) }/>
               </IconButton>
               <IconButton onClick={() => handleClickOpen(song)}>
                 <MdOutlinePlaylistAdd style={{ color: 'white' }}/>
