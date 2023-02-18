@@ -1,17 +1,87 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
+import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 import { likeSongPost } from "../../utils/likeSongPost.js";
 import {AudioContext } from "../../context/audioContext.js";
 import { AiFillHeart } from 'react-icons/ai';
 import IconButton from '@mui/material/IconButton';
+import { MdOutlinePlaylistAdd } from 'react-icons/md';
+import PropTypes from 'prop-types';
+import Avatar from '@mui/material/Avatar';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import AddIcon from '@mui/icons-material/Add';
+
+function SimpleDialog(props) {
+  const { onClose, selectedValue, open, playlists } = props;
+
+  console.log(playlists)
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const handleListItemClick = (value) => {
+    onClose(value);
+  };
+
+  const newPlaylist = () => {
+    console.log("New playlist")
+  };
+
+  return (
+    <Dialog onClose={handleClose} open={open}>
+      <DialogTitle>Choose Playlist to add song to</DialogTitle>
+      <List sx={{ pt: 0 }}>
+        {playlists.map(({name}) => (
+          <ListItem disableGutters>
+            <ListItemButton onClick={() => handleListItemClick(name)} key={name}>
+              <ListItemText primary={name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+
+        <ListItem disableGutters>
+          <ListItemButton
+            autoFocus
+            onClick={() => newPlaylist()}
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <AddIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Add playlist" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Dialog>
+  );
+}
+
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired
+};
+
 
 const Charts = () => {
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(null);
   const [playerInfo,, isPlaying, togglePlayer] = useContext(
     AudioContext
   );
   const [songs, setSongs] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
   const [showButton, setShowButton] = useState(false);
+  const [chosenSong, setChosenSong] = useState(null);
 
   useEffect(() => {
     const fetchTop = async () => {
@@ -22,7 +92,16 @@ const Charts = () => {
     fetchTop();
   }, []);
 
-  let parsedTop100 = songs.map((song) => {
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+
+    fetchPlaylists();
+  }, []);
+
+  let parsedTop100 = songs.map(song => {
     let obj = Object.assign({}, song);
     delete obj.added_by;
     delete obj.added_at;
@@ -42,7 +121,7 @@ const Charts = () => {
 
   function likeSong(song) {
     console.log(song.track.id)
-    likeSongPost(song.track.id)
+    likeSongPost("Liked Songs", song.track.id)
   }
 
   function millisecToMin(millis) {
@@ -51,8 +130,24 @@ const Charts = () => {
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 
+  const handleClickOpen = (song) => {
+    setOpen(true);
+    setChosenSong(song)
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    likeSongPost(value, chosenSong.track.id)
+  };
+
   return (
     <section className="main_closed main">
+      <SimpleDialog
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+        playlists={playlists}
+      />
       <table border="1">
         <thead>
           <tr>
@@ -70,7 +165,10 @@ const Charts = () => {
             <tr key={index}>
               <td>
               <IconButton onClick={() => likeSong(song)}>
-                <AiFillHeart value={{ color: 'red' }}/>
+                <AiFillHeart style={{ color: 'red', marginRight: '40px' }}/>
+              </IconButton>
+              <IconButton onClick={() => handleClickOpen(song)}>
+                <MdOutlinePlaylistAdd style={{ color: 'white' }}/>
               </IconButton>
               </td>
               <td

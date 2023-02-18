@@ -1,4 +1,4 @@
-export async function likeSongPost(id) {
+export async function likeSongPost(playlist, id) {
   try {
     const response = await fetch("http://localhost:4000/api/playlist/add", {
       method: "PUT",
@@ -8,7 +8,7 @@ export async function likeSongPost(id) {
       body: JSON.stringify({
         username: 'NikhilSharma',
         song_id: id,
-        playlist_name: 'Liked Songs'
+        playlist_name: playlist
       })
     });
     if (!response.ok) {
