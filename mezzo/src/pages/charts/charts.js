@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
-import { AudioContext } from "../../context/audioContext.js";
+import { likeSongPost } from "../../utils/likeSongPost.js";
+import {AudioContext } from "../../context/audioContext.js";
+import { AiFillHeart } from 'react-icons/ai';
+import IconButton from '@mui/material/IconButton';
 
 const Charts = () => {
   const [playerInfo,, isPlaying, togglePlayer] = useContext(
@@ -37,6 +40,11 @@ const Charts = () => {
     togglePlayer(newPlayerInfo);
   }
 
+  function likeSong(song) {
+    console.log(song.track.id)
+    likeSongPost(song.track.id)
+  }
+
   function millisecToMin(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -48,6 +56,7 @@ const Charts = () => {
       <table border="1">
         <thead>
           <tr>
+            <th>Actions</th>
             <th>Position</th>
             <th>Title</th>
             <th>Album</th>
@@ -59,6 +68,11 @@ const Charts = () => {
         <tbody>
           {parsedTop100.map((song, index) => (
             <tr key={index}>
+              <td>
+              <IconButton onClick={() => likeSong(song)}>
+                <AiFillHeart value={{ color: 'red' }}/>
+              </IconButton>
+              </td>
               <td
                 onMouseOver={() => setShowButton(index)}
                 onMouseOut={() => setShowButton(-1)}
