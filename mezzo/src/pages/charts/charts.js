@@ -159,13 +159,11 @@ const Charts = () => {
     const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
     if (likedSongs.songs.includes(song.track.id))
       return {
-        color: 'red',
-        paddingRight: '40px'
+        color: 'red'
       };
     else {
       return {
-        color: 'black',
-        paddingRight: '40px'
+        color: 'black'
       };
     }
   }
@@ -198,12 +196,14 @@ const Charts = () => {
           {parsedTop100.map((song, index) => (
             <tr key={index}>
               <td>
+              <div style={{ display: "flex", justifyContent: "space-evenly", margin: '0 auto'}}>
               <IconButton onClick={() => likeSong("Liked Songs", song.track.id)}>
                 <AiFillHeart style={ heartStyling(song) }/>
               </IconButton>
               <IconButton onClick={() => handleClickOpen(song)}>
                 <MdOutlinePlaylistAdd style={{ color: 'white' }}/>
               </IconButton>
+              </div>
               </td>
               <td
                 onMouseOver={() => setShowButton(index)}
