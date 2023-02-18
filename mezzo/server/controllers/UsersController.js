@@ -61,6 +61,7 @@ const newUser = async (req, res) => {
           biography: 'Your Liked Songs!'
         }
         const newPlaylist = await Playlist(playlist_data);
+        newUser.playLists.push(newPlaylist._id);
         await newToken.save();
         await newUser.save();
         await newPlaylist.save();
