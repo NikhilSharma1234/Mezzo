@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
+import "./profile.scoped.css";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -11,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import { AiFillDelete } from 'react-icons/ai';
 import {BsPersonFill } from 'react-icons/bs';
+import { RiImageAddFill } from 'react-icons/ri';
 import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/system';
 import { fetchUserProfile } from "../../utils/fetchUserProfile.js";
@@ -35,26 +37,49 @@ const Profile = () => {
   const [dense] = React.useState(false);
   const [secondary] = React.useState(false);
   const [profile, setProfile] = useState([]);
+  const [imageIcon, setImage] = useState(false);
 
   useEffect(() => {
     const fetchProfile = async () => {
       const profile = await fetchUserProfile();
-      setProfile(profile)
+      setProfile(profile);
     };
 
-    fetchProfile();
+  fetchProfile();
   }, []);
+
+  const handleMouseOver = () => {
+    setImage(true)
+  };
+
+  const handleMouseOut = () => {
+    setImage(false)
+  };
+
+  const handleAvatarClick = () => {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = _ => {
+    
+      let file =  input.files;
+      console.log(file);
+      // TODO: save image somewhere
+    };
+    input.click();
+  };
   return (
     <section className="main_closed main" >
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={2}>
           <Grid item xs={8}>
             <Item sx={{ display: 'flex', flexDirection: 'column', alignContent: 'space-between', justifyContent: 'center' }}>
-              <img src={profile.profilePicture} style={{borderRadius: '10px'}} alt="placeholler" />
+              <h1>Profile</h1>
               <Stack sx={{alignItems: 'center'}}>
-                <Avatar sx={{width: 350, height: 350, mt: 2}}>
-                  <BsPersonFill />
-                </Avatar>
+                <IconButton  onClick={handleAvatarClick}>
+                  <Avatar id="profilePicture" sx={{width: 350, height: 350, mt: 2}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+                    {imageIcon ? <RiImageAddFill id="icon" value={{ color: 'white' }}/> : <BsPersonFill id="icon"/> }
+                  </Avatar>
+                </IconButton>
               </Stack>
               <TextField className="textField" label={profile.email} variant="outlined" sx={{mt: 3, mb: 1}} />
               <TextField className="textField" label={profile.username} variant="outlined" />
