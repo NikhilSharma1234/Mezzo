@@ -1,32 +1,3 @@
-.css-hyum1k-MuiToolbar-root {
-    color: #60DFF0;
-    background-color: #312E2E;
-}
-
-/*       Header     */
-.css-snohim-MuiTypography-root {
-    font-family: Nunito, serif, sans-serif !important;
-}
-
-/*       Sign Up     */
-.css-signup-root {
-    font-family: Nunito, serif, sans-serif;
-    font-size: 20px !important;
-    color: #60DFF0 !important;
-}
-
-/*       Log In     */
-.css-1y942vo-MuiButtonBase-root-MuiButton-root {
-    font-family: Nunito, serif, sans-serif !important;
-    font-size: 20px !important;
-    color: var(--background-color) !important;
-}
-
-.css-1y942vo-MuiButtonBase-root-MuiButton-root::hover{
-    color: #000000 !important;
-}
-
-
 #master-img{
     position: fixed;
     top: 0;
