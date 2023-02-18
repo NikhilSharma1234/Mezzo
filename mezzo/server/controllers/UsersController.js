@@ -1,6 +1,7 @@
 require("dotenv").config();
 const User = require("../models/User");
 const Token = require("../models/Token");
+const Playlist = require("../models/Playlist");
 const {forgotPasswordHandler, resetPasswordHandler} = require("../password_reset");
 const JWT = require("jsonwebtoken");
 const session = require('express-session');
@@ -54,8 +55,15 @@ const newUser = async (req, res) => {
           token: token,
         };
         const newToken = await Token(token_data);
+        const playlist_data = {
+          name: 'Liked Songs',
+          user: newUser._id,
+          biography: 'Your Liked Songs!'
+        }
+        const newPlaylist = await Playlist(playlist_data);
         await newToken.save();
         await newUser.save();
+        await newPlaylist.save();
         req.session.user = newUser;
         res.redirect('/_/discover');
       }
