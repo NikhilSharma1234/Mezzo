@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   Outlet,
-  Navigate,
 } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Discover from "./pages/discover/discover";
@@ -69,14 +68,14 @@ export default function App() {
       setTheme(newTheme);
     };
     return (
-      <div className="app" data-theme={theme}>
+      <body className="app" data-theme={theme}>
         <AudioProvider>
           <p id="user">{username}</p>
           <Navbar switchTheme={switchTheme} />
-          <Outlet />
+          <Outlet />      
           <PlayBar />
         </AudioProvider>
-      </div>
+      </body>
     );
   }
 }
