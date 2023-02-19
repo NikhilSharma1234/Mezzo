@@ -17,7 +17,7 @@ import Login from "./pages/login/login";
 import Playlist from "./pages/playlist/playlist";
 import Signup from "./pages/login/signup";
 import ResetPW from "./pages/login/forgot_password";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 import { AudioProvider } from "./context/audioContext.js";
 
@@ -30,8 +30,13 @@ export default function App() {
       setAuth(true);
     }
   };
-
   
+  useEffect(() => {
+    const user = localStorage.getItem('username');
+    if (user) {
+      setAuth(true);
+    }
+  }, []);
 
   const SendTo404 = () => {
     return (
