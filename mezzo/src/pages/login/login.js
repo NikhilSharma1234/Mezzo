@@ -1,10 +1,10 @@
 import { Link, Navigate } from "react-router-dom";
-import React, {useState } from "react";
+import React, { useState } from "react";
 import "./login.scoped.css";
 
 const Login = (props) => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
