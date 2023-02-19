@@ -179,8 +179,8 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed }) => {
           <IconButton onClick={() => likeSong("Liked Songs", songData.id)}>
             <AiFillHeart style={ heartStyling(songData) }/>
           </IconButton>
-          <IconButton onClick={() => handleClickOpen(songData.id)}>
-            <MdOutlinePlaylistAdd style={{ color: 'white' }}/>
+          <IconButton id="add-to-playlist" onClick={() => handleClickOpen(songData.id)}>
+            <MdOutlinePlaylistAdd />
           </IconButton>
         </div>
       </td>

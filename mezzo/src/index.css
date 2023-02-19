@@ -73,6 +73,7 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #f93968;
   --charts-color: #000000;
+  --charts-button-color: #000000;
 
    /*playbar*/
    --playbar-bg: #f93968;
@@ -119,6 +120,7 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #60dff0;
   --charts-color: #ffffff;
+  --charts-button-color: #ffffff;
 
   /*playbar*/
   --playbar-bg: #5790f8;
