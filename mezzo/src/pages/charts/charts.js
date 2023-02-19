@@ -1,13 +1,14 @@
-import React, {useState, useEffect, useContext} from 'react';
-import './charts.css';
+import React, { useState, useEffect, useContext } from "react";
+import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
-import {AudioContext } from "../../context/audioContext.js";
+import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
+import { likeSongPost } from "../../utils/likeSongPost.js";
+import { dislikeSongPut } from "../../utils/dislikeSongPut.js";
+import { MusicRow } from "../../components/musicTable/musicRow.js";
 
 const Charts = () => {
-
-  const [setPlayerInfo, isPlaying, togglePlayer] = useContext(AudioContext);
   const [songs, setSongs] = useState([]);
-  const [showButton, setShowButton] = useState(false);
+  const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
     const fetchTop = async () => {
@@ -16,6 +17,14 @@ const Charts = () => {
     };
 
     fetchTop();
+  }, []);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
   }, []);
 
   let parsedTop100 = songs.map(song => {
@@ -28,65 +37,45 @@ const Charts = () => {
     return obj;
   });
 
+  function likeSong(playlistName, id) {
+    const fetchPlaylistsDislike = async () => {
+      await dislikeSongPut(playlistName, id);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists)
+    };
+    const fetchPlaylists = async () => {
+      await likeSongPost(playlistName, id);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
 
-  function handlePlayer(song){
-    console.log("handle player")
-    console.log(song.track.preview_url)
-
-    const newPlayerInfo = { songName: song.track.album.name, audioUrl:song.track.preview_url};
-    setPlayerInfo(newPlayerInfo)
-    togglePlayer()
-  }
-
-  function millisecToMin(millis) {
-    var minutes = Math.floor(millis / 60000);
-    var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    const playlist = playlists.find(({name}) => name === playlistName);
+    if (playlist.songs.includes(id)) {
+      fetchPlaylistsDislike();
+    }
+    else {
+      fetchPlaylists();
+    }
   }
 
   return (
-    <section className="main_closed main">
+    <section className="main_closed main" id="charts-main">
+      <h1>Top 100</h1>
       <table border="1">
         <thead>
           <tr>
-            <th>Position</th>
-            <th>Title</th>
+            <th className="position-column">#</th>
+            <th className="title-column">Title</th>
             <th>Album</th>
-            <th>Artist</th>
-            <th>Length</th>
             <th>Date Added</th>
+            <th>Length</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          {parsedTop100.map((song, index) => (
-            <tr key={index}>
-              <td
-                onMouseOver={() => setShowButton(index)}
-                onMouseOut={() => setShowButton(-1)}
-              >
-                {song.track.preview_url ? (
-                  showButton === index ? (
-                    <button onClick={() => handlePlayer(song)}>
-                      {/* {isPlaying && audio.src === song.track.preview_url ? 'Pause' : 'Play'} */}
-                      {isPlaying ? 'Pause' : 'Play'}
-                    </button>
-                  ) : (
-                    <p>{index + 1}</p>
-                  )
-                ) : (
-                  <p>{index + 1}</p>
-                )}
-              </td>
-              <td>
-                <img className="charts-album-img" src={song.track.album.images[2].url} alt="" />
-                {song.track.name}
-              </td>
-              <td>{song.track.album.name}</td>
-              <td>{song.track.artists[0].name}</td>
-              <td>{millisecToMin(song.track.duration_ms)}</td>
-              <td>{song.track.album.release_date}</td>
-            </tr>
-          ))}
+          {parsedTop100.map((song, index) => {
+            return <MusicRow index={index} songData={song.track} playlists={playlists} onLikePressed={likeSong}/>;
+          })}
         </tbody>
       </table>
     </section>

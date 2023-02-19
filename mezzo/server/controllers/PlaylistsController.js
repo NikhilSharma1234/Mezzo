@@ -51,7 +51,7 @@ const deletePlaylist = (req, res) => {
 }
 
 const getAllPlaylists = (req, res) => {
-  User.findOne({username: req.body.username}, async function(err, user) {
+  User.findOne({username: req.query.username}, async function(err, user) {
     if (!user){
       res.send("username does not exist");
     }
@@ -107,7 +107,7 @@ const addSong = (req, res) => {
       }
         else {
           try {
-            Playlist.findById(req.body.id, async function(err, playlist) {
+            Playlist.findOne({name: req.body.playlist_name, user: user._id}, async function(err, playlist) {
               if (!playlist) {
                 res.send("Playlist not found");
               }
@@ -136,7 +136,7 @@ const removeSong = (req, res) => {
       }
         else {
           try {
-            Playlist.findById(req.body.id, async function(err, playlist) {
+            Playlist.findOne({name: req.body.playlist_name, user: user._id}, async function(err, playlist) {
               if (!playlist) {
                 res.send("Playlist not found");
               }
