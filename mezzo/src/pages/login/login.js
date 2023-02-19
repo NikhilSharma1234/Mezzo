@@ -2,7 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import React, {useState } from "react";
 import "./login.scoped.css";
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [user, setUser] = useState(null);
@@ -28,10 +28,11 @@ const Login = () => {
         },
         body: JSON.stringify({ username: username, password: password}),
       });
-      
-      setUser(user);
       localStorage.setItem("username", JSON.stringify(username))
+      setUser(user);
+      props.onAuth(true);
     } catch (error) {
+      props.onAuth(false);
       setError(error);
     }
   };
