@@ -65,7 +65,7 @@ const Login = () => {
           <label>
             <h3>Password:</h3>
             <input
-              type="text"
+              type="password"
               placeholder="Enter your password"
               value={password}
               onChange={handlePasswordChange}
