@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./charts.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
-import {MusicRow} from "./MusicRow.js";
+import { MusicRow } from "../../components/musicTable/musicRow.js";
 
 const Charts = () => {
-  
   const [songs, setSongs] = useState([]);
-
 
   useEffect(() => {
     const fetchTop = async () => {
@@ -36,8 +34,6 @@ const Charts = () => {
     return obj;
   });
 
-
-
   return (
     <section className="main_closed main" id="charts-main">
       <h1>Top 100</h1>
@@ -53,12 +49,8 @@ const Charts = () => {
         </thead>
         <tbody>
           {parsedTop100.map((song, index) => {
-            return <MusicRow index={index} songData={song.track}/>
-            
-})}
-
-
-
+            return <MusicRow index={index} songData={song.track} />;
+          })}
         </tbody>
       </table>
     </section>
@@ -66,4 +58,3 @@ const Charts = () => {
 };
 
 export default Charts;
-
