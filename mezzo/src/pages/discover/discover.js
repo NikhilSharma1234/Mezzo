@@ -50,7 +50,7 @@ const Discover = () => {
         searchInput={searchInput}
         setSearchInput={updateSearchInput}
       />
-      <section className="Songs-Section">
+      <section className="Song-Artist-Container">
         <div>
           <h3 id="SongHeading">Songs</h3>
 

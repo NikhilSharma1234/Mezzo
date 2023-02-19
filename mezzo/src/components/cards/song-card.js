@@ -13,6 +13,8 @@ function PlayButton({ songData }) {
   function handlePlayer(songData) {
     const newPlayerInfo = {
       songName: songData.name,
+      artist: songData.artist,
+      songImg: songData.album.images[1].url,
       audioUrl: songData.preview_url,
     };
     togglePlayer(newPlayerInfo);
