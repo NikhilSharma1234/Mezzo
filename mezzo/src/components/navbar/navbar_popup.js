@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import { Link } from "react-router-dom";
 import "./navbar_popup.css";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";

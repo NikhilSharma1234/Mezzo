@@ -14,7 +14,7 @@ const Master = () => {
   };
   return (
     <>
-    <img id="master-img" src="./masterBgImg.jpg"/>
+    <img id="master-img" src="./headphones.jpg"/>
     <div className="master-main">
       <div className="master-body">
         <h3>Welcome to</h3>
