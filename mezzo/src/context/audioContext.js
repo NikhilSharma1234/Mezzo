@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const AudioContext = createContext();
 
 export function AudioProvider({ children }) {
-  const [playerInfo, setPlayerInfo] = useState({ songName: "", audioUrl: "" });
+  const [playerInfo, setPlayerInfo] = useState({ songName: "", artist: "", albumImg: "", audioUrl: "" });
   const [isPlaying, setIsPlaying] = useState(null);
 
   function togglePlayer(newPlayerInfo = playerInfo) {
