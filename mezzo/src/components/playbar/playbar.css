@@ -1,13 +1,17 @@
 .playbar {
-    background-color: #484747 !important;
+    background-color: var(--playbar-bg) !important;
   }
-  
-  .divider {
-    background-color: #312E2E !important;
-    height: 3px;
-  }
+
+.playbar label {
+  background-color: white;
+  color: white;
+}
   
   .css-1gzs0su-MuiPaper-root {
     background-color: #484747 !important; 
-    color: #484747 !important;
+    color: white !important;
+  }
+
+  .playbar-btns{
+    color: white;
   }

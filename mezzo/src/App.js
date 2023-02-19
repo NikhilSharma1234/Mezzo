@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   Outlet,
-  Navigate,
 } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Discover from "./pages/discover/discover";
@@ -14,11 +13,12 @@ import Profile from "./pages/profile/profile";
 import PlayBar from "./components/playbar/playbar";
 import Master from "./pages/master/master";
 import Login from "./pages/login/login";
+import Playlist from "./pages/playlist/playlist";
 import Signup from "./pages/login/signup";
 import ResetPW from "./pages/login/forgot_password";
 import React from "react";
 import useLocalStorage from "use-local-storage";
-import {AudioProvider} from "./context/audioContext.js";
+import { AudioProvider } from "./context/audioContext.js";
 
 export default function App() {
   const isAuthenticated = true;
@@ -48,8 +48,10 @@ export default function App() {
             <Route path="/_/charts" element={<Charts />} />
             <Route path="/_/library" element={<Library />} />
             <Route path="/_/profile" element={<Profile />} />
+            <Route path="/_/playlist" element={<Playlist />} />
           </Route>
         ) : null}
+
         <Route path="*" element={<SendTo404 />} />
       </Routes>
     </BrowserRouter>
@@ -71,7 +73,9 @@ export default function App() {
     return (
       <div className="app" data-theme={theme}>
         <AudioProvider>
-          <p id="user">{username}</p>
+          <div className="user-container">
+            <p id="user">{username}</p>\
+          </div>
           <Navbar switchTheme={switchTheme} />
           <Outlet />
           <PlayBar />

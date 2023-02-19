@@ -1,5 +1,5 @@
 import { Link, Navigate } from "react-router-dom";
-import React, { Component, useState } from "react";
+import React, {useState } from "react";
 import "./login.scoped.css";
 
 const Login = () => {

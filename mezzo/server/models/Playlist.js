@@ -7,7 +7,7 @@ const playlistSchema = new mongoose.Schema({
     required: true
   },
   songs: {
-    type: [Number],
+    type: [String],
     default: []
   },
   user: {

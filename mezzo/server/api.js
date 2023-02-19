@@ -9,6 +9,7 @@ const PlaylistsController = require("./controllers/PlaylistsController.js");
 const UsersController = require("./controllers/UsersController.js");
 
 router.post('/user', UsersController.newUser);
+router.get('/user', UsersController.getUser);
 router.post('/user/password', UsersController.forgotPassword);
 router.get('/user/password', UsersController.resetPassword);
 

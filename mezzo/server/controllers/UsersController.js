@@ -1,6 +1,7 @@
 require("dotenv").config();
 const User = require("../models/User");
 const Token = require("../models/Token");
+const Playlist = require("../models/Playlist");
 const {forgotPasswordHandler, resetPasswordHandler} = require("../password_reset");
 const JWT = require("jsonwebtoken");
 const session = require('express-session');
@@ -9,6 +10,24 @@ const cookieParser = require('cookie-parser');
 // User Constraints
 const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+const getUser = async (req, res) => {
+    User.findOne({username: "NikhilSharma"}, async function(err, user) {
+      if (user) {
+        const userObject = {
+          username: user.username,
+          email: user.email,
+          profilePicture: user.profilePicture,
+          playlists: user.playlists,
+          friends: user.friends
+        }
+        res.send(userObject)
+      }
+      else {
+        res.send("No user found")
+      }
+    })
+};
 
 const newUser = async (req, res) => {
     try {
@@ -36,8 +55,16 @@ const newUser = async (req, res) => {
           token: token,
         };
         const newToken = await Token(token_data);
+        const playlist_data = {
+          name: 'Liked Songs',
+          user: newUser._id,
+          biography: 'Your Liked Songs!'
+        }
+        const newPlaylist = await Playlist(playlist_data);
+        newUser.playLists.push(newPlaylist._id);
         await newToken.save();
         await newUser.save();
+        await newPlaylist.save();
         req.session.user = newUser;
         res.redirect('/_/discover');
       }
@@ -75,6 +102,7 @@ const resetPassword = async (req, res) => {
 
 module.exports = {
     newUser,
+    getUser,
     forgotPassword,
     resetPassword
 };
