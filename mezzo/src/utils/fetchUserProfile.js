@@ -1,6 +1,7 @@
 export async function fetchUserProfile() {
   try {
-    const response = await fetch("http://localhost:4000/api/user", {
+    const userID = JSON.parse(localStorage.getItem('username'));
+    const response = await fetch("http://localhost:4000/api/user?username=" + userID, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

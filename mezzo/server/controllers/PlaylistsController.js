@@ -16,7 +16,7 @@ const newPlaylist = (req, res) => {
               await user.save();
            });
             res.json({ id: newPlaylist._id });
-          } catch (err) {
+           } catch (err) {
             console.error(err);
             res.sendStatus(400);
           }

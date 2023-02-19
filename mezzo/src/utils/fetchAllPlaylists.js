@@ -1,6 +1,7 @@
 export async function fetchAllPlaylists() {
   try {
-    const response = await fetch("http://localhost:4000/api/playlist/all?username=NikhilSharma", {
+    const userID = JSON.parse(localStorage.getItem('username'));
+    const response = await fetch("http://localhost:4000/api/playlist/all?username=" + userID, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
