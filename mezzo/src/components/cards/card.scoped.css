@@ -46,8 +46,9 @@ img {
 
 .artist-photo{
   border-radius: 50%;
-  border: 5px var(--artist-card-color) solid; 
-  max-height: 275px;
+  border: 5px var(--artist-card-color) solid;
+  max-width: 250px; 
+  max-height: 250px;
 }
 
 .card-grid .artist-card {
@@ -56,6 +57,7 @@ img {
   color: var(--artist-card-color);
   font-size: 2vh;
   text-align: center;
+  padding: 0;
 }
     
   
