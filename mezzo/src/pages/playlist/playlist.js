@@ -1,13 +1,10 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import React, { useState, useEffect, useContext} from "react";
 import { MusicRow } from "../../components/musicTable/musicRow.js";
 
 
 const Playlist=()=> {
-    const location = useLocation();
-    // const playlistData = location.state ? location.state.playlistData : {id: "1",title:"playlist title", author: "author", cover: "./testPlaylistCover.jpg"};
-    // const fromLibrary = location.state ? location.state.fromLibrary : false;
-
+  const { playlistID } = useParams();
     const [songs, setSongs] = useState([]);
 
 

@@ -44,26 +44,14 @@ function PlayButton({ songData }) {
 function PlaylistCard({ playlistData = {id: "1",title:"playlist title", author: "author", cover: "./testPlaylistCover.jpg"} }) {
   
   const [playlist, setPlaylist] = useState(null);
-  const handlePlaylistCard = () => {
-    setPlaylist("True")
+  const navigatePlaylist= () => {
+    navigate(`/_/playlist/${playlistData.id}`, { replace: true });
   };
 
 
   return (
     <>
-    {playlist && (
-      <Navigate
-        to={{
-          pathname: "/_/playlist",
-          state: {
-            playlistData: playlistData,
-            fromLibrary: true
-          }
-        }}
-        replace={true}
-      />
-    )}
-    <button className="card" onClick={handlePlaylistCard}>
+    <button className="card" onClick={navigatePlaylist}>
       <div>
         <img src='https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg' alt="playlistCover" />
       </div>

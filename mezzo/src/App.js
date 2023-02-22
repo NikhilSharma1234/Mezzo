@@ -14,6 +14,7 @@ import PlayBar from "./components/playbar/playbar";
 import Master from "./pages/master/master";
 import Login from "./pages/login/login";
 import Playlist from "./pages/playlist/playlist";
+import Artist from "./pages/artist/artist";
 import Signup from "./pages/login/signup";
 import ResetPW from "./pages/login/forgot_password";
 import React from "react";
@@ -48,7 +49,8 @@ export default function App() {
             <Route path="/_/charts" element={<Charts />} />
             <Route path="/_/library" element={<Library />} />
             <Route path="/_/profile" element={<Profile />} />
-            <Route path="/_/playlist" element={<Playlist />} />
+            <Route path="/_/playlist/:playlistID" element={<Playlist />} />
+            <Route path="/_/artist/:artistID" element={<Artist />} />
           </Route>
         ) : null}
 
@@ -73,9 +75,9 @@ export default function App() {
     return (
       <div className="app" data-theme={theme}>
         <AudioProvider>
-          <div className="user-container">
+         
             <p id="user">{username}</p>\
-          </div>
+       
           <Navbar switchTheme={switchTheme} />
           <Outlet />
           <PlayBar />
