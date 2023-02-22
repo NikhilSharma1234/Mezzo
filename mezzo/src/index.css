@@ -18,10 +18,7 @@ body {
   top: 2vh;
   right: 2vh;
   color: var(--username-color);
-}
-
-.user-container {
-  margin-bottom: 6vh;
+  z-index: 3;
 }
 
 :root {
@@ -74,6 +71,11 @@ body {
   --charts-position-playbtn-color: #f93968;
   --charts-color: #000000;
 
+  /*profile*/
+  --profile-panel-bg: #f93968;
+  --profile-panel-color: white;
+  --profile-color: black;
+
    /*playbar*/
    --playbar-bg: #f93968;
 }
@@ -119,6 +121,11 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #60dff0;
   --charts-color: #ffffff;
+
+  /*profile*/
+    --profile-panel-bg: #5790f8;
+    --profile-panel-color: white;
+    --profile-color: white;
 
   /*playbar*/
   --playbar-bg: #5790f8;
