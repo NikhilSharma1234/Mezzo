@@ -1,37 +1,33 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import "./profile.scoped.css";
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { Avatar } from '@mui/material';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import { AiFillDelete } from 'react-icons/ai';
-import {BsPersonFill } from 'react-icons/bs';
-import { RiImageAddFill } from 'react-icons/ri';
-import TextField from '@mui/material/TextField';
-import { Stack } from '@mui/system';
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import { Avatar } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemText from "@mui/material/ListItemText";
+import IconButton from "@mui/material/IconButton";
+import { AiFillDelete } from "react-icons/ai";
+import { BsPersonFill } from "react-icons/bs";
+import { RiImageAddFill } from "react-icons/ri";
 import { fetchUserProfile } from "../../utils/fetchUserProfile.js";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#1A2027',
+  backgroundColor: "#1A2027",
   padding: theme.spacing(1),
-  textAlign: 'center',
-  color: 'white',
+  textAlign: "center",
+  color: "white",
 }));
 
 function generate(element) {
   return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((value) =>
     React.cloneElement(element, {
       key: value,
-    }),
+    })
   );
 }
-
 
 const Profile = () => {
   const [dense] = React.useState(false);
@@ -39,79 +35,107 @@ const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [imageIcon, setImage] = useState(false);
 
+  const username = JSON.parse(localStorage.getItem("username"));
+
   useEffect(() => {
     const fetchProfile = async () => {
       const profile = await fetchUserProfile();
       setProfile(profile);
     };
 
-  fetchProfile();
+    fetchProfile();
   }, []);
 
   const handleMouseOver = () => {
-    setImage(true)
+    setImage(true);
   };
 
   const handleMouseOut = () => {
-    setImage(false)
+    setImage(false);
   };
 
   const handleAvatarClick = () => {
-    let input = document.createElement('input');
-    input.type = 'file';
-    input.onchange = _ => {
-    
-      let file =  input.files;
+    let input = document.createElement("input");
+    input.type = "file";
+    input.onchange = (_) => {
+      let file = input.files;
       console.log(file);
       // TODO: save image somewhere
     };
     input.click();
   };
   return (
-    <section className="main_closed main" >
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Item sx={{ display: 'flex', flexDirection: 'column', alignContent: 'space-between', justifyContent: 'center' }}>
-              <h1>Profile</h1>
-              <Stack sx={{alignItems: 'center'}}>
-                <IconButton  onClick={handleAvatarClick}>
-                  <Avatar id="profilePicture" sx={{width: 350, height: 350, mt: 2}} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                    {imageIcon ? <RiImageAddFill id="icon" value={{ color: 'white' }}/> : <BsPersonFill id="icon"/> }
-                  </Avatar>
-                </IconButton>
-              </Stack>
-              <TextField className="textField" label={profile.email} variant="outlined" sx={{mt: 3, mb: 1}} />
-              <TextField className="textField" label={profile.username} variant="outlined" />
-            </Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>
-              <List dense={dense} sx={{ height: '615px', overflowY: 'scroll' }}>
-              {generate(
-                <ListItem
-                  secondaryAction={
-                    <IconButton edge="end" aria-label="delete">
-                      <AiFillDelete />
-                    </IconButton>
-                  }
-                >
-                  <ListItemAvatar>
-                    <Avatar>
-                      <BsPersonFill />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                </ListItem>,
+    <section className="main_closed main">
+      <div className="profile-container">
+        <div className="profile-header">
+          <IconButton onClick={handleAvatarClick}>
+            <Avatar
+              id="profilePicture"
+              sx={{ width: 250, height: 250 }}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+            >
+              {imageIcon ? (
+                <RiImageAddFill id="icon" value={{ color: "white" }} />
+              ) : (
+                <BsPersonFill id="icon" />
               )}
-            </List>
+            </Avatar>
+          </IconButton>
+          <div>
+            <div className="profile-header-body">
+              <p>Profile</p>
+              <h1>{username}</h1>
+              <p># Public Playlists / # Followers / # Following</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="profile-body">
+          <div className="profile-body-left">
+            <div className="public-playlists">
+              <h3>Account Overview</h3>
+              <p>Username: {username}</p>
+              <p>Email: {profile.email}</p>
+            </div>
+            <hr />
+            <div className="public-playlists">
+              <h3>Public Playlists</h3>
+            </div>
+          </div>
+          <Grid item xs={3}>
+            <Item
+              sx={{
+                backgroundColor: "var(--profile-panel-bg)",
+                color: "var(--profile-panel-color)",
+              }}
+            >
+              <h3>Friends</h3>
+              <List dense={dense} sx={{ height: "700px", overflowY: "scroll" }}>
+                {generate(
+                  <ListItem
+                    secondaryAction={
+                      <IconButton edge="end" aria-label="delete">
+                        <AiFillDelete />
+                      </IconButton>
+                    }
+                  >
+                    <ListItemAvatar>
+                      <Avatar>
+                        <BsPersonFill />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="best friend"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
+                )}
+              </List>
             </Item>
           </Grid>
-        </Grid>
-      </Box>
+        </div>
+      </div>
     </section>
   );
 };
