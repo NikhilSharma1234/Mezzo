@@ -1,17 +1,14 @@
 import "./card.scoped.css";
-// import { withRouter, useHistory } from 'react-router-dom';
 import { FaPlay } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { AudioContext } from "../../context/audioContext.js";
 import "./card.scoped.css";
-import {useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PlayButton({ songData }) {
-  const [playerInfo,, isPlaying, togglePlayer] = useContext(
-    AudioContext
-  );
+  const [playerInfo, , isPlaying, togglePlayer] = useContext(AudioContext);
 
   function handlePlayer(songData) {
     const newPlayerInfo = {
@@ -40,50 +37,58 @@ function PlayButton({ songData }) {
   );
 }
 
-
-function PlaylistCard({ playlistData = {id: "1",title:"playlist title", author: "author", cover: "./testPlaylistCover.jpg"} }) {
-  
+function PlaylistCard({
+  playlistData = {
+    id: "1",
+    title: "playlist title",
+    author: "author",
+    cover: "./testPlaylistCover.jpg",
+  },
+}) {
   const [playlist, setPlaylist] = useState(null);
-  const navigatePlaylist= () => {
+  const navigate = useNavigate();
+  const navigatePlaylist = () => {
     navigate(`/_/playlist/${playlistData.id}`, { replace: true });
   };
 
-
   return (
     <>
-    <button className="card" onClick={navigatePlaylist}>
-      <div>
-        <img src='https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg' alt="playlistCover" />
-      </div>
-
-      <div className="card-body">
-        <h2>{playlistData.title}</h2>
-        <div className="card-caption">
-          <p>{playlistData.author}</p>
-          <PlayButton songData={playlistData} />
+      <button className="card" onClick={navigatePlaylist}>
+        <div>
+          <img
+            src="https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg"
+            alt="playlistCover"
+          />
         </div>
-      </div>
-    </button>
+
+        <div className="card-body">
+          <h2>{playlistData.title}</h2>
+          <div className="card-caption">
+            <p>{playlistData.author}</p>
+            <PlayButton songData={playlistData} />
+          </div>
+        </div>
+      </button>
     </>
   );
 }
 
-export function CreatePlaylist(){
-  return(<></>);
+export function CreatePlaylist() {
+  return <></>;
 }
 
 function NewPlaylistCard() {
-    return (
-      <button className="card" onClick={CreatePlaylist}>
-        <FaPlus/>
-      </button>
-    );
-  }
+  return (
+    <button className="card" onClick={CreatePlaylist}>
+      <FaPlus />
+    </button>
+  );
+}
 
-function PlaylistCards({ playlists}) {
+function PlaylistCards({ playlists }) {
   return (
     <div className="card-grid">
-      <NewPlaylistCard/>
+      <NewPlaylistCard />
       {/* {playlists?.map((value, key) => {
         return <PlaylistCard playlistData={value} />;
       })} */}
