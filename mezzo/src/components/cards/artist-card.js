@@ -9,17 +9,15 @@ function ArtistCard({ artistData }) {
   };
 
   return (
-    <button onClick={() => navigateArtist()} className="artist-card">
-      <div>
+    <div className="artist-card">
         <img
           className="artist-photo"
-          src={artistData.images[1].url}
+          src={artistData.images[0].url}
           alt="artistImage"
+          onClick={() => navigateArtist()}
         />
-      </div>
-
-      <h3>{artistData.name}</h3>
-    </button>
+      <h1 style={{fontSize: 'initial',marginTop: '2vh'}}>{artistData.name}</h1>
+    </div>
   );
 }
 
