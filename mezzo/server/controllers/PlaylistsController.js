@@ -76,26 +76,19 @@ const getAllPlaylists = (req, res) => {
 }
 
 const getPlaylist = (req, res) => {
-    User.findOne({username: req.body.username}, async function(err, user) {
-      if (!user){
-        res.send("username does not exist");
+  try {
+    Playlist.findById(req.query.id, async function(err, playlist) {
+      if (!playlist) {
+        res.send("Playlist not found");
       }
       else {
-        try {
-          Playlist.findById(req.body.id, async function(err, playlist) {
-            if (!playlist) {
-              res.send("Playlist not found");
-            }
-            else {
-              res.json({playlist: playlist});
-            }
-          });
-        } catch (err) {
-          res.send(err);
-          res.sendStatus(400);
-        }
+        res.json({playlist: playlist});
       }
     });
+  } catch (err) {
+    res.send(err);
+    res.sendStatus(400);
+  }
 };
   
 const addSong = (req, res) => {
