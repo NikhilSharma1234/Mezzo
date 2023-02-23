@@ -12,7 +12,7 @@ const passwordReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const getUser = async (req, res) => {
-    User.findOne({username: "NikhilSharma"}, async function(err, user) {
+    User.findOne({username: req.query.username}, async function(err, user) {
       if (user) {
         const userObject = {
           username: user.username,

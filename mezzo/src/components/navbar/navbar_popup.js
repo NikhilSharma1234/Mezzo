@@ -14,6 +14,7 @@ function NavbarPopup() {
 
   const handleLogout = async () => {
     try {
+      localStorage.removeItem('username');
       const logoutStat = await fetch("http://localhost:4000/api/user/logout", {
         method: "POST",
         headers: {
@@ -21,8 +22,6 @@ function NavbarPopup() {
         },
         body: JSON.stringify({success: true})
       })
-      console.log("logoutStat");
-      console.log(logoutStat);
       setLogoutStatus(logoutStat);
     } catch (error) {
       console.log(error);
