@@ -1,5 +1,4 @@
 export async function fetchSeveralTracks(trackIDs) {
-    let combineIDs = trackIDs.join(',');
     const datum = { IDs: trackIDs };
     try {
       const response = await fetch("http://localhost:4000/_/getSeveralTracks", {
@@ -13,12 +12,8 @@ export async function fetchSeveralTracks(trackIDs) {
         throw new Error(`fetchSeveralTracks failed with status: ${response.status}`);
       }
       const data = await response.json();
-  
-      
-        return data;
-      
+      return data;
     } catch (error) {
-      console.error(error);
       return null;
     }
   }

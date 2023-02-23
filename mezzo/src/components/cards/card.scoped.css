@@ -1,3 +1,15 @@
+.card-new {
+  color: var(--song-card-color); 
+  background-color: var(--song-card-bg-color);
+  border: 5px var(--song-card-border-color) solid ;
+  border-radius: 8px;
+  font-size: 1.5vh; 
+  max-height: 400px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .card-grid{
     display: grid;
     grid-template-columns: repeat(6, minmax(150px, 1fr));
@@ -12,6 +24,7 @@
   border-radius: 8px;
   font-size: 1.5vh; 
   max-height: 400px;
+  cursor: pointer;
 }
 
 .card-grid .card .card-body{
