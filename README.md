@@ -91,5 +91,5 @@ We welcome contributions from anyone who is interested in improving Mezzo. To co
 
 - [Nikhil Sharma](https://github.com/NikhilSharma1234)
 - [Aidan Vancil](https://github.com/aidanvancil)
-- [Fiorina Chau](https://github.com/fchau1)
+- [Fiorina Chau](https://github.com/fi0rina1)
 
