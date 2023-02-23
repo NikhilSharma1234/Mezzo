@@ -28,7 +28,6 @@ const Playlist=()=> {
       const songs = await fetchSeveralTracks(playlist.songs);
       setSongs(songs);
     };
-    console.log(playlist)
     if(playlist) fetchPlaylistSongs();
   }, [playlist]);
     

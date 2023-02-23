@@ -161,7 +161,7 @@ function PlaylistCards({ playlists, reloadPlaylists }) {
     <div className="card-grid">
       <NewPlaylistCard reloadPlaylists={reloadPlaylists} />
       {playlists?.map((value, key) => {
-        return <PlaylistCard playlistData={value} />;
+        return <PlaylistCard playlistData={value} key={key}/>;
       })}
     </div>
   );
