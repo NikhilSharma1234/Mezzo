@@ -19,14 +19,56 @@ import AddIcon from '@mui/icons-material/Add';
 
 
 function SimpleDialog(props) {
-  const { onClose, open, playlists } = props;
+  const { onClose, open, playlists, reloadPlaylists } = props;
+  const [form, setForm] = React.useState(null);
+  const [name, setName] = React.useState("");
+  const [bio, setBio] = React.useState("");
 
   const handleClose = () => {
     onClose(null);
   };
+  const subtext = (playlist) => {
+    if (playlist.biography == 'Nothing Here...')
+      return `Playlist | ${playlist.songs.length} songs`
+    else
+      return `Playlist | ${playlist.biography} | ${playlist.songs.length} songs`
+  }
 
   const handleListItemClick = (value) => {
     onClose(value);
+  };
+
+  const reloadAllPlaylists = () => {
+    reloadPlaylists();
+  }
+
+  const handleNameChange = (event) => {
+    event.preventDefault();
+    setName(event.target.value);
+  };
+
+  const handleBioChange = (event) => {
+    event.preventDefault();
+    setBio(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const user = await fetch("http://localhost:4000/api/playlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: 'NikhilSharma', name: name, biography: bio}),
+      });
+      reloadAllPlaylists();
+      setForm(false);
+      setName('');
+      setBio('');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const newPlaylist = () => {
@@ -37,18 +79,19 @@ function SimpleDialog(props) {
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Choose Playlist to add song to</DialogTitle>
       <List sx={{ pt: 0 }}>
-        {playlists.map(({name}) => (
-          <ListItem disableGutters>
-            <ListItemButton onClick={() => handleListItemClick(name)} key={name}>
-              <ListItemText primary={name} />
+        {playlists.map((playlist, index) => (
+          <ListItem disableGutters key={index}>
+            <ListItemButton onClick={() => handleListItemClick(playlist.name)} key={index}>
+              <ListItemText primary={playlist.name} secondary={subtext(playlist)}/>
             </ListItemButton>
           </ListItem>
         ))}
-
+        <hr></hr>
+        {!form &&
         <ListItem disableGutters>
           <ListItemButton
             autoFocus
-            onClick={() => newPlaylist()}
+            onClick={() => setForm(true)}
           >
             <ListItemAvatar>
               <Avatar>
@@ -58,6 +101,33 @@ function SimpleDialog(props) {
             <ListItemText primary="Add playlist" />
           </ListItemButton>
         </ListItem>
+        }
+        {form &&
+        <form class="login-form" onSubmit={handleSubmit}>
+          <label>
+            <h3>Playlist Name:</h3>
+            <input
+              type="text"
+              placeholder="Username"
+              value={name}
+              onChange={handleNameChange}
+              required
+            />
+          </label>
+
+          <label>
+            <h3>Description:</h3>
+            <input
+              type="text"
+              placeholder="Enter a brief description (optional)"
+              value={bio}
+              onChange={handleBioChange}
+            />
+          </label>
+
+          <input className="login-signup-btn" id="login-btn" type="submit" value="Create Playlist" />
+        </form>
+        }
       </List>
     </Dialog>
   );
@@ -68,7 +138,7 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired
 };
 
-export const MusicRow = ({ index, songData, playlists, onLikePressed }) => {
+export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists }) => {
   const [playerInfo, , isPlaying, togglePlayer] = useContext(AudioContext);
   const [showButton, setShowButton] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -138,6 +208,7 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed }) => {
         open={open}
         onClose={handleClose}
         playlists={playlists}
+        reloadPlaylists={reloadPlaylists}
       />
       <td
         className="position-column"
@@ -179,8 +250,8 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed }) => {
           <IconButton onClick={() => likeSong("Liked Songs", songData.id)}>
             <AiFillHeart style={ heartStyling(songData) }/>
           </IconButton>
-          <IconButton onClick={() => handleClickOpen(songData.id)}>
-            <MdOutlinePlaylistAdd style={{ color: 'white' }}/>
+          <IconButton id="add-to-playlist" onClick={() => handleClickOpen(songData.id)}>
+            <MdOutlinePlaylistAdd />
           </IconButton>
         </div>
       </td>
