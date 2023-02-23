@@ -59,4 +59,15 @@ font-size: 22vh;
     padding: 2vh;
     color: var(--btn1-text-color);
     font-size: 5vh;
+    box-shadow: 0 9px #999;
+}
+
+.join-btn:hover {
+    color: white;
+    background: var(--signup-gradient);
+}
+
+.join-btn:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }

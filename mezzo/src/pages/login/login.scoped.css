@@ -63,10 +63,20 @@ main{
     padding: 1vh 10vh;
     border-radius: 10px;
     border: none;
+    box-shadow: 0 9px #999;
 }
+
+.login-signup-btn:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
 #login-btn{
     background: var(--login-gradient);
+}
+
+#login-btn:hover {
+    background: var(--login-gradient2);
 }
 
 #forgot-btn{
@@ -74,7 +84,11 @@ main{
 }
 
 #signup-btn{
-    background-image: var(--signup-gradient)
+    background: var(--signup-gradient)
+}
+
+#signup-btn:hover {
+    background: var(--signup-gradient2);
 }
 
 button:disabled,
