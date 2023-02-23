@@ -58,6 +58,14 @@ const Charts = () => {
     }
   }
 
+  function reloadPlaylists() {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists)
+    };
+    fetchPlaylists();
+  }
+
   return (
     <section className="main_closed main" id="charts-main">
       <h1>Top 100</h1>
@@ -74,7 +82,7 @@ const Charts = () => {
         </thead>
         <tbody>
           {parsedTop100.map((song, index) => {
-            return <MusicRow index={index} songData={song.track} playlists={playlists} onLikePressed={likeSong}/>;
+            return <MusicRow index={index} songData={song.track} playlists={playlists} onLikePressed={likeSong} reloadPlaylists={reloadPlaylists} key={index}/>;
           })}
         </tbody>
       </table>
