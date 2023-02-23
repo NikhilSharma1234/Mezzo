@@ -167,7 +167,6 @@ spotify.post('/getSeveralTracks', async (req, res) => {
     });
     res.json(spotify_tracks.data.tracks);
   }catch(error){
-    console.error(error);
   }
   spotifyToken = "";
 });
