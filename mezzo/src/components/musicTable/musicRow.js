@@ -55,12 +55,13 @@ function SimpleDialog(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const userID = JSON.parse(localStorage.getItem('username'));
       const user = await fetch("http://localhost:4000/api/playlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username: 'NikhilSharma', name: name, biography: bio}),
+        body: JSON.stringify({ username: userID, name: name, biography: bio}),
       });
       reloadAllPlaylists();
       setForm(false);
