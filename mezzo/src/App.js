@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Outlet,
+  Link,
 } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Discover from "./pages/discover/discover";
@@ -16,12 +17,26 @@ import Login from "./pages/login/login";
 import Playlist from "./pages/playlist/playlist";
 import Signup from "./pages/login/signup";
 import ResetPW from "./pages/login/forgot_password";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 import { AudioProvider } from "./context/audioContext.js";
 
 export default function App() {
-  const isAuthenticated = true;
+  const [isAuth, setAuth] = useState(null);
+
+  const handleAuth = (data) => {
+    setAuth(data);
+    if (localStorage.getItem('username')){
+      setAuth(true);
+    }
+  };
+  
+  useEffect(() => {
+    const user = localStorage.getItem('username');
+    if (user) {
+      setAuth(true);
+    }
+  }, []);
 
   const SendTo404 = () => {
     return (
@@ -29,7 +44,7 @@ export default function App() {
         <div className="err_margin">
           <h1 className="err"> 404</h1>
           <h2 className="err">Request Not Found</h2>
-          <h4 className="err">Please Login Or Signup Now!</h4>
+          <h4 className="err">Please <Link to="/login">Login</Link> Or <Link to="/signup">Signup</Link> Now!</h4>
         </div>
       </main>
     );
@@ -38,11 +53,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Master />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Master onAuth={handleAuth}/>} />
+        <Route path="/login" element={<Login onAuth={handleAuth}/>} />
+        <Route path="/signup" element={<Signup onAuth={handleAuth}/>} />
         <Route path="/forgotpw" element={<ResetPW />} />
-        {isAuthenticated ? (
+        {isAuth ? (
           <Route path="/_" element={<Layout />}>
             <Route path="/_/discover" element={<Discover />} />
             <Route path="/_/charts" element={<Charts />} />

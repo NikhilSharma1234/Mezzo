@@ -1,12 +1,13 @@
 export async function likeSongPost(playlist, id) {
   try {
+    const userID = JSON.parse(localStorage.getItem('username'));
     const response = await fetch("http://localhost:4000/api/playlist/add", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: 'NikhilSharma',
+        username: userID,
         song_id: id,
         playlist_name: playlist
       })
