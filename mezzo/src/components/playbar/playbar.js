@@ -59,7 +59,6 @@ const PlayBar = () => {
         >
           <BottomNavigation
             className="playbar"
-            showLabels
             value={value}
             onChange={(event, newValue) => {
               setValue(newValue);
@@ -86,6 +85,7 @@ const PlayBar = () => {
             <Box sx={{ width: 200, pt: 2 }}>
               <Stack spacing={2} direction="row" alignItems="center">
                 <Slider
+                  sx={{color:"white"}}
                   aria-label="Volume"
                   onChange={handleVolume}
                   min={0}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./charts.scoped.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
 import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";

@@ -89,7 +89,7 @@ const Profile = () => {
               {imageIcon ? (
                 <RiImageAddFill id="icon" value={{ color: "white" }} />
               ) : (
-                <img src={profile.profilePicture} alt="Profile Picture" />
+                <img src={profile.profilePicture} alt="Profile" />
               )}
             </Avatar>
           </IconButton>

@@ -2,7 +2,7 @@
 .sidenav {
     height: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     top: 0;
     left: 0;
     font-family: Nunito, serif, sans-serif;
@@ -45,7 +45,7 @@
 
   .toggle {
     position: absolute;
-    bottom: 75px;
+    bottom: 15vh;
     right: 8px;
     background: transparent;
     border: none;
