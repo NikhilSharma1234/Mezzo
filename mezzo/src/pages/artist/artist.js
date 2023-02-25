@@ -49,7 +49,6 @@ const Artist = () => {
     fetchAlbumData();
     fetchAppearsOnData();
     fetchAllRelatedArtists();
-    console.log("TopTracks: ", popularSongs)
   }, [artistID]);
 
   if (artist.length === 0) {

@@ -37,13 +37,13 @@
   width: fit-content;
 }
 
+.profile-header-body h1{
+  font-size: 5vh;
+}
+
 .profile-body{
   display:grid;
   grid-template-columns: 1fr auto;
   grid-gap: 3vh;
   padding: 3vh;
 }
-
-/* .profile-body-left{
- 
-} */
