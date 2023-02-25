@@ -14,10 +14,11 @@ import { useState, useEffect, useContext } from "react";
 import { FaHeart } from "react-icons/fa";
 
 const PlayBar = () => {
-  const [playerInfo, , isPlaying, , setIsPlaying] = useContext(AudioContext);
+  const [playerInfo, , isPlaying, , setIsPlaying, queue, , , , removeFromQueue] = useContext(AudioContext);
   const [audio, setAudio] = useState(null);
   const [value, setValue] = useState(0);
-  const [volume, setVolume] = useState(0.2);
+  const [volume, setVolume] = useState(0.1);
+  const [currentQueueIndex, setCurrentQueueIndex] = useState(-1);
 
   useEffect(() => {
     if (playerInfo.audioUrl) {
@@ -33,8 +34,14 @@ const PlayBar = () => {
         audio.pause();
       }
     }
-    // eslint-disable-next-line
   }, [isPlaying, playerInfo]);
+
+  useEffect(() => {
+    if (currentQueue >= 0 && currentQueueIndex < queue.length) {
+      togglePlayer(queue[currentQueueIndex]);
+      setCurrentQueueIndex((prevIndex) => prevIndex + 1);
+    }
+  }, [audio?.ended])
 
   function togglePlaybarBtn() {
     if (isPlaying || playerInfo.songName === "") {
@@ -49,6 +56,10 @@ const PlayBar = () => {
     if (isPlaying) {
       audio.volume = volume;
     }
+  }
+
+  function playFromQueue(index) {
+    setCurrentQueueIndex(index);
   }
 
   return (
