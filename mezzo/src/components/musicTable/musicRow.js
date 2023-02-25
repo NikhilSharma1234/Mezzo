@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./musicRow.scoped.css";
 import { AudioContext } from "../../context/audioContext.js";
 import { FaPlay } from "react-icons/fa";
@@ -28,7 +28,7 @@ function SimpleDialog(props) {
     onClose(null);
   };
   const subtext = (playlist) => {
-    if (playlist.biography == 'Nothing Here...')
+    if (playlist.biography === 'Nothing Here...')
       return `Playlist | ${playlist.songs.length} songs`
     else
       return `Playlist | ${playlist.biography} | ${playlist.songs.length} songs`

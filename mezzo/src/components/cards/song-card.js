@@ -40,7 +40,7 @@ function PlayButton({ songData }) {
 function Heart(props) {
   return (
     <button className="play_button">
-      <FaHeart size={15} color="var(--song-card-color)" />
+      <FaHeart size={15} color="white" />
     </button>
   );
 }
@@ -67,7 +67,7 @@ function SongCard({ songData }) {
 function SongCards({ songs }) {
   return (
     <div className="card-grid">
-      {songs?.map((value, key) => {
+      {songs?.map((value) => {
         return <SongCard songData={value} />;
       })}
     </div>

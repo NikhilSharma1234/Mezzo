@@ -51,7 +51,7 @@ const Login = (props) => {
         />
       )}
       <div className="form-container">
-        <form class="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <h1 className="login-signin-h1">STREAM WITH MEZZO!</h1>
           <label>
             <h3>Username:</h3>
