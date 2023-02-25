@@ -2,6 +2,11 @@
   font-family: Nunito, serif, sans-serif;
 }
 
+.page-heading{
+  font-size: 8vh;
+  text-align: center;
+}
+
 body {
   margin: 0;
   background-color: var(--background-color);
@@ -45,10 +50,10 @@ body {
   /*cards*/
   --artist-card-color: #7739f9;
   --song-card-color: #db44f2;
-  --song-section-color: #f93968;
-  --song-card-color: #ffffff;
-  --song-card-border-color: #f93968;
+  --card-color: #ffffff;
   --song-card-bg-color: #f93968;
+  --album-card-bg-color: #db44f2;
+  --appears-card-bg-color: #7739f9;
 
   /*login page*/
   --login-gradient: radial-gradient(circle, #db44f2, #7739f9);
@@ -74,10 +79,20 @@ body {
   --charts-color: #000000;
   --charts-button-color: #000000;
 
+  /*album*/
+  --album-table-color: black;
+
   /*profile*/
   --profile-panel-bg: #f93968;
   --profile-panel-color: white;
   --profile-color: black;
+
+  /*album*/
+  --album-panel-bg: #f93968;
+  --album-panel-color: white;
+
+  /*artist page*/
+  --artist-header-color: white;
 
    /*playbar*/
    --playbar-bg: #f93968;
@@ -107,9 +122,11 @@ body {
   /*cards*/
   --song-section-color: #60dff0;
   --artist-card-color: #4cd9c3;
-  --song-card-color: #60dff0;
-  --song-card-border-color: #60dff0;
-  --song-card-bg-color: rgba(255, 255, 255, 0.1);
+  --card-color: white;
+  --song-card-bg-color: #5790f8;
+  --album-card-color: #4ca3d9;
+  --album-card-bg-color: #4ca3d9;
+  --appears-card-bg-color: #60dff0;
 
    /*login page*/
   --login-gradient: radial-gradient(circle, #60dff0, #5790f8);
@@ -132,10 +149,20 @@ body {
   --charts-color: #ffffff;
   --charts-button-color: #ffffff;
 
+   /*album*/
+   --album-table-color: white;
+
   /*profile*/
     --profile-panel-bg: #5790f8;
     --profile-panel-color: white;
     --profile-color: white;
+
+  /*album*/
+  --album-panel-bg: #5790f8;
+  --album-panel-color: white;
+
+  /*artist page*/
+  --artist-header-color: white;
 
   /*playbar*/
   --playbar-bg: #5790f8;

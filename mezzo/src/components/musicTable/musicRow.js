@@ -139,7 +139,7 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired
 };
 
-export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists }) => {
+export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists}) => {
   const [playerInfo, , isPlaying, togglePlayer] = useContext(AudioContext);
   const [showButton, setShowButton] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -191,17 +191,6 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
-
-  // function getWeeks(release) {
-  //   const releaseDate = new Date(release);
-  //   const currentDate = new Date();
-  //   currentDate.setHours(0, 0, 0, 0); // Set the time to midnight
-  //   const formattedDate = currentDate.toLocaleDateString();
-  //   console.log(formattedDate); // Output: the current date in the format MM/DD/YYYY
-  //   const diffInMs = currentDate - releaseDate;
-  //   const diffInWeeks = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 7));
-  //   return diffInWeeks;
-  // }
 
   return (
     <tr>
