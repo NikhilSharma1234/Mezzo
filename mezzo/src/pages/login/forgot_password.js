@@ -8,7 +8,7 @@ class ResetPW extends React.Component {
         <main className="forgot-password-main">
           <div className="form-container">
           <form className="login-form" method="POST" action='/api/user/password'>
-            <h1>Forgot Password?</h1>
+            <h1 className="login-signin-h1">Forgot Password?</h1>
             <label>
               <h3>Email:</h3>
               <input type="text" placeholder="Enter your email" name= "email" required/>

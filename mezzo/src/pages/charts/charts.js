@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./charts.css";
+import "./charts.scoped.css";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
 import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 import { likeSongPost } from "../../utils/likeSongPost.js";
@@ -27,6 +27,7 @@ const Charts = () => {
     fetchPlaylists();
   }, []);
 
+  console.log("chart songs: ", songs)
   let parsedTop100 = songs.map(song => {
     let obj = Object.assign({}, song);
     delete obj.added_by;
@@ -68,7 +69,7 @@ const Charts = () => {
 
   return (
     <section className="main_closed main" id="charts-main">
-      <h1>Top 100</h1>
+      <h1 className="page-heading">Top 100</h1>
       <table border="1">
         <thead>
           <tr>
