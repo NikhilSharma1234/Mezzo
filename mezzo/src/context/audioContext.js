@@ -7,17 +7,24 @@ export function AudioProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(null);
   const [queue, setQueue] = useState([]);
 
-
-
-  function togglePlayer(newPlayerInfo = playerInfo) {
-    if (isPlaying && newPlayerInfo.audioUrl !== playerInfo.audioUrl) {
-      setPlayerInfo(newPlayerInfo);
-      setIsPlaying(true);
-    } else if (isPlaying) {
-      setIsPlaying(false);
+  function togglePlayer(newPlayerInfo = playerInfo, rewind = false, fastForward = false) {
+    if (fastForward) {
+      if (queue.length > 1) {
+        queue.shift();
+        setPlayerInfo(queue[0]);
+        setIsPlaying(true);
+        return;
+      }
     } else {
-      setPlayerInfo(newPlayerInfo);
-      setIsPlaying(true);
+      if ((isPlaying && newPlayerInfo.audioUrl !== playerInfo.audioUrl) || rewind) {
+        setPlayerInfo(newPlayerInfo);
+        setIsPlaying(true);
+      } else if (isPlaying && !rewind) {
+        setIsPlaying(false);
+      } else {
+        setPlayerInfo(newPlayerInfo);
+        setIsPlaying(true);
+      }
     }
   }
 

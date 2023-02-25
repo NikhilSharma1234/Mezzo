@@ -14,11 +14,10 @@ import { useState, useEffect, useContext } from "react";
 import { FaHeart } from "react-icons/fa";
 
 const PlayBar = () => {
-  const [playerInfo, , isPlaying, , setIsPlaying, queue, , , , removeFromQueue] = useContext(AudioContext);
+  const [playerInfo, , isPlaying, togglePlayer, setIsPlaying, queue, , addToQueue, removeFromQueue] = useContext(AudioContext);
   const [audio, setAudio] = useState(null);
   const [value, setValue] = useState(0);
   const [volume, setVolume] = useState(0.1);
-  const [currentQueueIndex, setCurrentQueueIndex] = useState(-1);
 
   useEffect(() => {
     if (playerInfo.audioUrl) {
@@ -36,19 +35,20 @@ const PlayBar = () => {
     }
   }, [isPlaying, playerInfo]);
 
-  useEffect(() => {
-    if (currentQueue >= 0 && currentQueueIndex < queue.length) {
-      togglePlayer(queue[currentQueueIndex]);
-      setCurrentQueueIndex((prevIndex) => prevIndex + 1);
-    }
-  }, [audio?.ended])
-
   function togglePlaybarBtn() {
     if (isPlaying || playerInfo.songName === "") {
       setIsPlaying(false);
     } else {
       setIsPlaying(true);
     }
+  }
+
+  function handleRewind() {
+    togglePlayer(undefined, rewind=true);
+  }
+
+  function handleFastForward(){
+    togglePlayer(undefined, undefined, fastForward=true);
   }
 
   function handleVolume(event, newVolume) {
@@ -58,9 +58,6 @@ const PlayBar = () => {
     }
   }
 
-  function playFromQueue(index) {
-    setCurrentQueueIndex(index);
-  }
 
   return (
       <Box className="playbarbox" sx={{ pb: 7 }}>
@@ -88,12 +85,12 @@ const PlayBar = () => {
                 </div>
             </BottomNavigationAction>
             <BottomNavigationAction icon={<FaHeart className="playbar-btns" />} />
-            <BottomNavigationAction icon={<AiOutlineLeft className="playbar-btns" />} />
+            <BottomNavigationAction icon={<AiOutlineLeft className="playbar-btns" onClick={handleRewind}/>} />
             <BottomNavigationAction
               onClick={togglePlaybarBtn}
               icon={isPlaying ? <BsPauseFill className="playbar-btns" /> : <BsFillPlayFill className="playbar-btns"  />}
             />
-            <BottomNavigationAction icon={<AiOutlineRight className="playbar-btns" />} />
+            <BottomNavigationAction icon={<AiOutlineRight className="playbar-btns" onClick={handleFastForward}/>} />
             <Box sx={{ width: 200, pt: 2 }}>
               <Stack spacing={2} direction="row" alignItems="center">
                 <Slider
