@@ -16,6 +16,7 @@ import Master from "./pages/master/master";
 import Login from "./pages/login/login";
 import Playlist from "./pages/playlist/playlist";
 import Artist from "./pages/artist/artist";
+import Album from "./pages/album/album";
 import Signup from "./pages/login/signup";
 import ResetPW from "./pages/login/forgot_password";
 import React, { useState, useEffect } from "react";
@@ -66,6 +67,7 @@ export default function App() {
             <Route path="/_/profile" element={<Profile />} />
             <Route path="/_/playlist/:playlistID" element={<Playlist />} />
             <Route path="/_/artist/:artistID" element={<Artist />} />
+            <Route path="/_/album/:albumID" element={<Album />} />
           </Route>
         ) : null}
 

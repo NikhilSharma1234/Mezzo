@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDDsmdTQ3jw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+#charts-main {
+    color: var(--charts-color);
+}
+
+#charts-main h1{
+  margin-bottom: 3vh;
+}
+
+table {
+  border-collapse: collapse;
+  border: 0;
+  margin-left: 5vh;
+  margin-right: 5vh;
+}  
+
+.position-column{
+  width: fit-content;
+  padding: 20px;
+  background-color: var(--charts-position-column-bg);
+  text-align: center;
+  color: var(--charts-position-column-color);
+}
+
+#charts-song-title{
+  font-size: 2vh;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.title-column{
+  width: 500vh;
+  padding-left: 10px;
+  min-width: fit-content;
+}
+
+.title-column-song-wrapper{
+text-align: left;
+margin-right: 60px;
+}
+
+tr {
+  border-bottom: 1px solid #000000;
+}
+
+th {
+  height: 30%;
+  width: 100vw;
+  font-size: 27px;
+  border: 0;
+  border-bottom: 1px solid #000000;
+  text-align: left;
+
+
+}
+
+td {
+  font-size: 15px;
+  text-align:left;
+  width: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 0;
+}
+
+td > img {
+  height: 100px;
+  width: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+
+td > button{
+  font-family: 'Nunito', sans-serif;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
+td > button:hover{
+  font-family: 'Nunito', sans-serif;
+  color: var(--charts-position-playbtn-color);
+}
+
+.charts-album-img{
+  float: left;
+}
