@@ -56,7 +56,7 @@ function PlaylistCard({
 
   return (
     <>
-      <button className="card" onClick={navigatePlaylist}>
+      <button className="card" id="album-card" onClick={navigatePlaylist}>
         <div>
           <img
             src="https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg"
