@@ -15,7 +15,11 @@ export async function fetchSearchResults(searchWord, searchType) {
 
     if(searchType.toLowerCase()==="track"){
       return data.tracks.items;
-    } else{
+    } 
+    else if(searchType.toLowerCase()==="album"){
+      return data.albums.items;
+    }
+    else{
       return data.artists.items;
     }
   } catch (error) {

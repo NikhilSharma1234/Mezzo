@@ -1,7 +1,7 @@
-export async function fetchSeveralTracks(trackIDs) {
-    const datum = { IDs: trackIDs };
+export async function fetchRelatedArtists(id) {
+    const datum = { artistID: id };
     try {
-      const response = await fetch("http://localhost:4000/_/getSeveralTracks", {
+      const response = await fetch("http://localhost:4000/_/getRelatedArtists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -9,11 +9,12 @@ export async function fetchSeveralTracks(trackIDs) {
         body: JSON.stringify(datum),
       });
       if (!response.ok) {
-        throw new Error(`fetchSeveralTracks failed with status: ${response.status}`);
+        throw new Error(`fetchArtistTopTracks failed with status: ${response.status}`);
       }
       const data = await response.json();
       return data;
     } catch (error) {
+      console.error(error);
       return null;
     }
   }

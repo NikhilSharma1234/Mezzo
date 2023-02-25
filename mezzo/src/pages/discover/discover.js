@@ -1,6 +1,7 @@
 import SearchBar from "../../components/searchbar/searchbar.js";
 import SongCards from "../../components/cards/song-card.js";
 import ArtistCards from "../../components/cards/artist-card.js";
+import AlbumCards from "../../components/cards/album-card.js";
 import "./discover.scoped.css";
 import { fetchArtistTopTracks } from "../../utils/fetchArtistTopTracks.js";
 import React, { useState, useEffect } from "react";
@@ -10,6 +11,7 @@ const Discover = () => {
   const [searchInput, setSearchInput] = useState("");
   const [songs, setSongs] = useState([]);
   const [artists, setArtists] = useState([]);
+  const [albums, setAlbums] = useState([]);
   const updateSearchInput = (newSearchInput) => {
     setSearchInput(newSearchInput);
   };
@@ -23,6 +25,11 @@ const Discover = () => {
     const fetchTracksData = async () => {
       const tracksData = await fetchSearchResults(searchInput.name, "track");
       setSongs(tracksData);
+    };
+
+    const fetchAlbumsData = async () => {
+      const albumsData = await fetchSearchResults(searchInput.name, "album");
+      setAlbums(albumsData);
     };
 
     const fetchArtistsData = async () => {
@@ -40,6 +47,7 @@ const Discover = () => {
         fetchTracksData();
       }
       fetchArtistsData();
+      fetchAlbumsData();
     }
   }, [searchInput]);
 
@@ -50,17 +58,31 @@ const Discover = () => {
         searchInput={searchInput}
         setSearchInput={updateSearchInput}
       />
-      <section className="Song-Artist-Container">
-        <div>
-          <h3 id="SongHeading">Songs</h3>
 
-          {songs.length !== 0 && <SongCards songs={songs} />}
-        </div>
+      <section className="discover-body">
+        {songs.length !== 0 && (
+          <div className="page-subSection">
+            <h3 id="SongHeading">Songs</h3>
 
-        <div>
-          <h3 id="ArtistHeading">Artists</h3>
-          {artists.length !== 0 && <ArtistCards artists={artists} />}
-        </div>
+            <SongCards songs={songs} />
+          </div>
+        )}
+
+        {albums.length !== 0 && (
+          <div className="page-subSection">
+            <h3 className="artist-heading" id="AlbumHeading">
+              Albums
+            </h3>
+            <AlbumCards albumsData={albums} />
+          </div>
+        )}
+
+        {artists.length !== 0 && (
+          <div className="page-subSection">
+            <h3 id="ArtistHeading">Artists</h3>
+            <ArtistCards artists={artists} />
+          </div>
+        )}
       </section>
     </section>
   );

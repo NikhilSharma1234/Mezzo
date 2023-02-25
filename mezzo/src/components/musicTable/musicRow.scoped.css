@@ -1,0 +1,7 @@
+#add-to-playlist {
+    color: var(--charts-button-color)
+}
+
+#album-row-song-title{
+    padding-left: 2vh;
+}

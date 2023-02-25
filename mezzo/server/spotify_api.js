@@ -69,22 +69,86 @@ spotify.post("/getArtistTopTracks", async (req, res) => {
   spotifyToken = "";
 });
 
-// spotify.post('/getArtist', async (req, res) => {
-//   spotifyToken = "Bearer " + await fetchToken();
-//   try{
-//   const spotify_artist = await axios({
-//     method: "GET",
-//     url: `https://api.spotify.com/v1/artists/${req.body.param1}`,
-//     headers: {  "Accept": "application/json",
-//                 "Content-Type": "application/json",
-//                 "Authorization" : spotifyToken},
-//   });
-//   res.json(spotify_artist);
-//   }catch(error){
-//     console.error(error);
-//   }
-//   spotifyToken = "";
-// });
+spotify.post("/getRelatedArtists", async (req, res) => {
+  spotifyToken = "Bearer " + (await fetchToken());
+  try {
+    const spotify_relatedArtists = await axios({
+      method: "GET",
+      url: `https://api.spotify.com/v1/artists/${req.body.artistID}/related-artists`,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: spotifyToken,
+      },
+      params: {
+        market: "ES",
+      },
+    });
+    res.json(spotify_relatedArtists.data.artists);
+  } catch (error) {
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+spotify.post("/getArtistAlbums", async (req, res) => {
+  spotifyToken = "Bearer " + (await fetchToken());
+  try {
+    const spotify_songs = await axios({
+      method: "GET",
+      url: `https://api.spotify.com/v1/artists/${req.body.artistID}/albums`,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: spotifyToken,
+      },
+      params: {
+        include_groups: req.body.artistGroups,
+        market: 'ES',
+        limit: '10',
+        offset: '0'
+      },
+    });
+    res.json(spotify_songs.data);
+  } catch (error) {
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+spotify.post('/getArtist', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_artist = await axios({
+    method: "GET",
+    url: `https://api.spotify.com/v1/artists/${req.body.artistID}`,
+    headers: {  "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+  });
+  res.json(spotify_artist.data);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+spotify.post('/getAlbum', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_album = await axios({
+    method: "GET",
+    url:`https://api.spotify.com/v1/albums/${req.body.albumID}`,
+    headers: {  "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+  });
+  res.json(spotify_album.data);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
 
 // spotify.post('/getTrack', async (req, res) => {
 //   spotifyToken = "Bearer " + await fetchToken();
@@ -120,7 +184,6 @@ spotify.post('/getSeveralTracks', async (req, res) => {
     });
     res.json(spotify_tracks.data.tracks);
   }catch(error){
-    console.error(error);
   }
   spotifyToken = "";
 });

@@ -3,9 +3,47 @@
   transition: 0.3s;
 }
 
-#icon {
+/* #icon {
   color:white !important;
   z-index: 2;
-  width: 100px;
-  height: 100px;
+  width: 25px;
+  height: 25px;
+} */
+
+.profile-container{
+  margin: 0px;
+  padding:0px;
+  color: var(--profile-color);
+  font-size: 1.5vh;
 }
+
+.profile-header{
+  position: relative;
+  padding: 3vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: 3vh;
+  background-color: var(--profile-panel-bg);
+  
+}
+
+.profile-header > *:nth-child(2) {
+  display: flex;
+  align-items: center;
+  color: var(--profile-panel-color)
+}
+
+.profile-header-body{
+  width: fit-content;
+}
+
+.profile-body{
+  display:grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 3vh;
+  padding: 3vh;
+}
+
+/* .profile-body-left{
+ 
+} */

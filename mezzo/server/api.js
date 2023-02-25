@@ -12,6 +12,7 @@ router.post('/user', UsersController.newUser);
 router.get('/user', UsersController.getUser);
 router.post('/user/password', UsersController.forgotPassword);
 router.get('/user/password', UsersController.resetPassword);
+router.post('/user/editProfileImg', UsersController.newProfilePic)
 
 router.post('/playlist', PlaylistsController.newPlaylist);
 router.get('/playlist', PlaylistsController.getPlaylist);

@@ -1,0 +1,35 @@
+.album-header{
+    width: 100%;
+    height: 40vh;
+    position: relative;
+    display: flex; 
+    justify-content: left; 
+    align-items: center;
+    background-color: var(--album-panel-bg);
+}
+
+.album-header-body{
+    color: var(--artist-header-color);
+    text-shadow: 2px 2px 5px darkslategrey;
+}
+
+.album-header img{
+    width: 30vh;
+    height:auto;
+    margin: 5vh;
+}
+
+.album-header h1{
+    font-size: 10vh;
+}
+
+.album-header p{
+    font-size: 2vh;
+}
+
+#album-table{
+    margin: 5vh;
+    color: var(--album-table-color);
+}
+
+

@@ -1,17 +1,17 @@
 import "./card.scoped.css";
-// import { withRouter, useHistory } from 'react-router-dom';
+import React from "react";
 import { FaPlay } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { AudioContext } from "../../context/audioContext.js";
 import "./card.scoped.css";
-import {useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from '@mui/material/Dialog';
 
 function PlayButton({ songData }) {
-  const [playerInfo,, isPlaying, togglePlayer] = useContext(
-    AudioContext
-  );
+  const [playerInfo, , isPlaying, togglePlayer] = useContext(AudioContext);
 
   function handlePlayer(songData) {
     const newPlayerInfo = {
@@ -40,65 +40,129 @@ function PlayButton({ songData }) {
   );
 }
 
-
-function PlaylistCard({ playlistData = {id: "1",title:"playlist title", author: "author", cover: "./testPlaylistCover.jpg"} }) {
-  
+function PlaylistCard({
+  playlistData = {
+    id: "1",
+    title: "playlist title",
+    author: "author",
+    cover: "./testPlaylistCover.jpg",
+  },
+}) {
   const [playlist, setPlaylist] = useState(null);
-  const handlePlaylistCard = () => {
-    setPlaylist("True")
+  const navigate = useNavigate();
+  const navigatePlaylist = () => {
+    navigate(`/_/playlist/${playlistData._id}`, { replace: true });
   };
-
 
   return (
     <>
-    {playlist && (
-      <Navigate
-        to={{
-          pathname: "/_/playlist",
-          state: {
-            playlistData: playlistData,
-            fromLibrary: true
-          }
-        }}
-        replace={true}
-      />
-    )}
-    <button className="card" onClick={handlePlaylistCard}>
-      <div>
-        <img src='https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg' alt="playlistCover" />
-      </div>
-
-      <div className="card-body">
-        <h2>{playlistData.title}</h2>
-        <div className="card-caption">
-          <p>{playlistData.author}</p>
-          <PlayButton songData={playlistData} />
+      <button className="card" onClick={navigatePlaylist}>
+        <div>
+          <img
+            src="https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg"
+            alt="playlistCover"
+          />
         </div>
-      </div>
-    </button>
+
+        <div className="card-body">
+          <h2>{playlistData.name}</h2>
+          <div className="card-caption">
+            <p>{playlistData.biography}</p>
+            <PlayButton songData={playlistData} />
+          </div>
+        </div>
+      </button>
     </>
   );
 }
 
-export function CreatePlaylist(){
-  return(<></>);
+function NewPlaylistCard(props) {
+  const { reloadPlaylists } = props
+  const [open, setOpen] = React.useState(false);
+  const [name, setName] = React.useState("");
+  const [bio, setBio] = React.useState("");
+
+  const handleOnClose = () => {
+    setOpen(false)
+  }
+  const handleOpen = () => {
+    setOpen(true)
+  }
+  const handleNameChange = (event) => {
+    event.preventDefault();
+    setName(event.target.value);
+  };
+
+  const handleBioChange = (event) => {
+    event.preventDefault();
+    setBio(event.target.value);
+  };
+
+  const reloadAllPlaylists = () => {
+    reloadPlaylists();
+  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const userID = JSON.parse(localStorage.getItem('username'));
+      const user = await fetch("http://localhost:4000/api/playlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: userID, name: name, biography: bio}),
+      });
+      reloadAllPlaylists();
+      setName('');
+      setBio('');
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div className="card-new">
+      <div onClick={handleOpen}>
+        <FaPlus />
+      </div>
+    <Dialog onClose={handleOnClose} open={open}>
+    <DialogTitle>Create a new playlist</DialogTitle>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <label>
+          <h3>Playlist Name:</h3>
+          <input
+            type="text"
+            placeholder="Username"
+            value={name}
+            onChange={handleNameChange}
+            required
+          />
+        </label>
+
+        <label>
+          <h3>Description:</h3>
+          <input
+            type="text"
+            placeholder="Enter a brief description (optional)"
+            value={bio}
+            onChange={handleBioChange}
+          />
+        </label>
+
+        <input className="login-signup-btn" id="login-btn" type="submit" value="Create Playlist" />
+      </form>
+  </Dialog>
+  </div>
+  );
 }
 
-function NewPlaylistCard() {
-    return (
-      <button className="card" onClick={CreatePlaylist}>
-        <FaPlus/>
-      </button>
-    );
-  }
-
-function PlaylistCards({ playlists}) {
+function PlaylistCards({ playlists, reloadPlaylists }) {
   return (
     <div className="card-grid">
-      <NewPlaylistCard/>
-      {/* {playlists?.map((value, key) => {
-        return <PlaylistCard playlistData={value} />;
-      })} */}
+      <NewPlaylistCard reloadPlaylists={reloadPlaylists} />
+      {playlists?.map((value, key) => {
+        return <PlaylistCard playlistData={value} key={key}/>;
+      })}
     </div>
   );
 }

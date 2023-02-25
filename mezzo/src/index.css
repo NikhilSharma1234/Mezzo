@@ -2,6 +2,11 @@
   font-family: Nunito, serif, sans-serif;
 }
 
+.page-heading{
+  font-size: 8vh;
+  text-align: center;
+}
+
 body {
   margin: 0;
   background-color: var(--background-color);
@@ -12,16 +17,13 @@ body {
 }
 
 #user {
-  font-size: 3vh;
+  font-size: 2vh;
   margin: 0;
   position: absolute;
   top: 2vh;
   right: 2vh;
   color: var(--username-color);
-}
-
-.user-container {
-  margin-bottom: 6vh;
+  z-index: 3;
 }
 
 :root {
@@ -29,7 +31,7 @@ body {
   --background-color: #ffffff;
   --searchbar-color: #db32b0;
   --placeholder-text-color: #898989;
-  --username-color: #db32b0;
+  --username-color: black;
   --bg-overlay: rgba(249, 57, 94, 0.8);
   --scroll-bar: #898989;
 
@@ -48,18 +50,20 @@ body {
   /*cards*/
   --artist-card-color: #7739f9;
   --song-card-color: #db44f2;
-  --song-section-color: #f93968;
-  --song-card-color: #ffffff;
-  --song-card-border-color: #f93968;
+  --card-color: #ffffff;
   --song-card-bg-color: #f93968;
+  --album-card-bg-color: #db44f2;
+  --appears-card-bg-color: #7739f9;
 
   /*login page*/
   --login-gradient: radial-gradient(circle, #db44f2, #7739f9);
+  --login-gradient2: radial-gradient(circle, #7739f9, #db44f2);
   --login-form-container-bg-color: #ffffff;
   --login-btn-color: #ffffff;
 
   /*signup page*/
   --signup-gradient: radial-gradient(circle, #f93968, #db44f2);
+  --signup-gradient2: radial-gradient(circle, #db44f2, #f93968);
 
   /*forgot page*/
   --forgot-gradient: radial-gradient(circle, #ee7d31, #e2bd00);
@@ -73,6 +77,22 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #f93968;
   --charts-color: #000000;
+  --charts-button-color: #000000;
+
+  /*album*/
+  --album-table-color: black;
+
+  /*profile*/
+  --profile-panel-bg: #f93968;
+  --profile-panel-color: white;
+  --profile-color: black;
+
+  /*album*/
+  --album-panel-bg: #f93968;
+  --album-panel-color: white;
+
+  /*artist page*/
+  --artist-header-color: white;
 
    /*playbar*/
    --playbar-bg: #f93968;
@@ -83,7 +103,7 @@ body {
   --background-color: #484747;
   --searchbar-color: #4ca3d9;
   --placeholder-text-color: #898989;
-  --username-color: #4ca3d9;
+  --username-color: white;
   --bg-overlay: RGB(87, 144, 248, 0.8);
   --scroll-bar: #898989;
 
@@ -102,13 +122,21 @@ body {
   /*cards*/
   --song-section-color: #60dff0;
   --artist-card-color: #4cd9c3;
-  --song-card-color: #60dff0;
-  --song-card-border-color: #60dff0;
-  --song-card-bg-color: rgba(255, 255, 255, 0.1);
+  --card-color: white;
+  --song-card-bg-color: #5790f8;
+  --album-card-color: #4ca3d9;
+  --album-card-bg-color: #4ca3d9;
+  --appears-card-bg-color: #60dff0;
 
+   /*login page*/
   --login-gradient: radial-gradient(circle, #60dff0, #5790f8);
+  --login-gradient2: radial-gradient(circle, #5790f8, #60dff0);
   --login-form-container-bg-color: #ffffff;
   --login-btn-color: #ffffff;
+
+  /*signup page*/
+  --signup-gradient: radial-gradient(circle, #4cd9c3, #60dff0);
+  --signup-gradient2: radial-gradient(circle, #60dff0, #4cd9c3);
 
   /*buttons*/
   --toggle-color: #60dff0;
@@ -119,6 +147,22 @@ body {
   --charts-position-column-color: #ffffff;
   --charts-position-playbtn-color: #60dff0;
   --charts-color: #ffffff;
+  --charts-button-color: #ffffff;
+
+   /*album*/
+   --album-table-color: white;
+
+  /*profile*/
+    --profile-panel-bg: #5790f8;
+    --profile-panel-color: white;
+    --profile-color: white;
+
+  /*album*/
+  --album-panel-bg: #5790f8;
+  --album-panel-color: white;
+
+  /*artist page*/
+  --artist-header-color: white;
 
   /*playbar*/
   --playbar-bg: #5790f8;

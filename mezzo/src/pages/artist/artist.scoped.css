@@ -1,0 +1,46 @@
+.artist-header{
+    width: 100%;
+    height: 40vh;
+    position: relative;
+    overflow: hidden;
+    display: flex; 
+    justify-content: left; 
+    align-items: center;
+
+    
+}
+
+.artist-header-body{
+    z-index: 1;
+    color: var(--artist-header-color);
+    padding: 4vh;
+    text-shadow: 2px 2px 5px darkslategrey;
+    position: absolute;
+    bottom: 0;
+    margin-left: 4vh;
+}
+
+.artist-header img{
+    width: 100%;
+    height:auto;
+    position: absolute;
+    z-index: 0;
+    border: 0;
+}
+
+.artist-header h1{
+    font-size: 10vh;
+}
+
+.artist-header p{
+    font-size: 2vh;
+}
+
+
+.artist-body{
+    margin: 10vh;
+}
+
+.artist-subSection{
+    margin: 7vh 0vh;
+}

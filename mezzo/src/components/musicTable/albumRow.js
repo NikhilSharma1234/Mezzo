@@ -139,7 +139,7 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired
 };
 
-export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists}) => {
+export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists, albumImg}) => {
   const [playerInfo, , isPlaying, togglePlayer] = useContext(AudioContext);
   const [showButton, setShowButton] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -147,9 +147,9 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
 
   function handlePlayer(song) {
     const newPlayerInfo = {
-      songName: songData.album.name,
+      songName: songData.name,
       artist: songData.artists[0].name,
-      albumImg: songData.album.images[2].url,
+      albumImg: albumImg,
       audioUrl: songData.preview_url,
     };
     togglePlayer(newPlayerInfo);
@@ -169,21 +169,22 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     likeSong(value, chosenSong);
   };
 
-  function findLikedSongs(song) {
-    const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
-    if (likedSongs.songs.includes(song.id))
-      return {
-        color: 'red'
-      };
-    else {
-      return {
-        color: 'black'
-      };
-    }
-  }
+//   function findLikedSongs(song) {
+//     const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
+//     if (likedSongs.songs.includes(song.id))
+//       return {
+//         color: 'red'
+//       };
+//     else {
+//       return {
+//         color: 'black'
+//       };
+//     }
+//   }
 
   const heartStyling = (song) => {
-    return findLikedSongs(song)
+    return
+    // return findLikedSongs(song)
   }
 
   function millisecToMin(millis) {
@@ -191,6 +192,7 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
+
 
   return (
     <tr>
@@ -221,19 +223,8 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
           <p>{index + 1}</p>
         )}
       </td>
-      <td className="title-column">
-        <img
-          className="charts-album-img"
-          src={songData.album.images[2].url}
-          alt=""
-        />
-        <div className="title-column-song-wrapper">
-          <h4 id="charts-song-title">{songData.name}</h4>
-          <p>{songData.artists[0].name}</p>
-        </div>
-      </td>
-      <td>{songData.album.name}</td>
-      <td>{songData.album.release_date}</td>
+      
+      <td id="album-row-song-title">{songData.name}</td>
       <td>{millisecToMin(songData.duration_ms)}</td>
       <td>
         <div style={{ display: "flex", justifyContent: "space-evenly", margin: '0 auto'}}>
