@@ -1,7 +1,7 @@
-import { FaPlay } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaPause } from "react-icons/fa";
-import { AudioContext } from "../../context/audioContext.js";
+// import { FaPlay } from "react-icons/fa";
+// import { FaHeart } from "react-icons/fa";
+// import { FaPause } from "react-icons/fa";
+// import { AudioContext } from "../../context/audioContext.js";
 import "./card.scoped.css";
 import React, {useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ function AlbumCard({ albumData }) {
       <div className="card-body">
         <h2>{albumData.name}</h2>
         <div className="card-caption">
-          <p>{albumData.release_date.slice(0, 4)} · album</p>
+          <p>{albumData.release_date.slice(0, 4)} · {albumData.album_type}</p>
           {/* <Heart />
           <PlayButton songData={songData} /> */}
         </div>
@@ -33,7 +33,7 @@ function AlbumCard({ albumData }) {
 function AlbumCards({ albumsData }) {
   return (
     <div className="card-grid">
-      {albumsData?.map((value, key) => {
+      {albumsData?.map((value) => {
         return <AlbumCard albumData={value} />;
       })}
     </div>

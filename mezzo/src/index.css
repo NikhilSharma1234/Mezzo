@@ -5,6 +5,8 @@
 .page-heading{
   font-size: 8vh;
   text-align: center;
+  color: var(--page-heading-color);
+  margin: 5vh;
 }
 
 body {
@@ -34,6 +36,7 @@ body {
   --username-color: black;
   --bg-overlay: rgba(249, 57, 94, 0.8);
   --scroll-bar: #898989;
+  --page-heading-color: black;
 
   /*menu*/
   --navbar--background-color: #dfdfdf;
@@ -106,6 +109,7 @@ body {
   --username-color: white;
   --bg-overlay: RGB(87, 144, 248, 0.8);
   --scroll-bar: #898989;
+  --page-heading-color: white;
 
   /*menu*/
   --navbar--background-color: #312e2e;

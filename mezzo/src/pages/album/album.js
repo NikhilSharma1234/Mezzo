@@ -10,14 +10,12 @@ import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 const Album = () => {
   const { albumID } = useParams();
   const [album, setAlbum] = useState([]);
-  const [albumTracks, setAlbumTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
 
   useEffect(() => {
     const fetchAlbumData = async () => {
       const albumData = await fetchAlbum(albumID);
       setAlbum(albumData);
-      // setAlbumTracks(albumData.tracks.items)
     };
     fetchAlbumData();
   }, [albumID]);
@@ -92,7 +90,6 @@ const Album = () => {
         </thead>
         <tbody>
           {album.tracks.items.map((song, index) => {
-            {console.log("song: ", song)}
             return <AlbumRow index={index} songData={song} playlists={playlists} onLikePressed={likeSong} reloadPlaylists={reloadPlaylists} key={index} albumImg={album.images[1].url}/>;
           })}
         </tbody>
