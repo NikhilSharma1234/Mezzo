@@ -60,9 +60,6 @@ const Profile = () => {
     input.type = "file";
     input.onchange = (_) => {
       let file = input.files[0];
-      console.log(file);
-      // TODO: save image somewhere
-
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = async () => {
@@ -79,7 +76,6 @@ const Profile = () => {
       <div className="profile-container">
         <div className="profile-header">
           <IconButton onClick={handleAvatarClick}>
-            
             <Avatar
               id="profilePicture"
               sx={{ width: 250, height: 250 }}
