@@ -100,9 +100,32 @@ const resetPassword = async (req, res) => {
     });
 };
 
+
+
+const newProfilePic = async (req, res) => {
+  User.findOne({username: req.body.username}, async function(err, user) {
+    if (!user){
+      console.log("User doesn't exist");
+    } else if(!req.body.photo_id) {
+        res.send("No photo id");
+    }
+      else {
+        try {
+          user.profilePicture=req.body.photo_id
+          user.save();
+        } catch (err) {
+          console.error(err);
+          res.status(400).send(err);
+        }
+      }
+  });
+};
+
+
 module.exports = {
     newUser,
     getUser,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    newProfilePic
 };
