@@ -126,7 +126,24 @@ spotify.post('/getArtist', async (req, res) => {
                 "Content-Type": "application/json",
                 "Authorization" : spotifyToken},
   });
-  res.json(spotify_artist);
+  res.json(spotify_artist.data);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
+spotify.post('/getAlbum', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_album = await axios({
+    method: "GET",
+    url:`https://api.spotify.com/v1/albums/${req.body.albumID}`,
+    headers: {  "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+  });
+  res.json(spotify_album.data);
   }catch(error){
     console.error(error);
   }

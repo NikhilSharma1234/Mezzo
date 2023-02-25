@@ -18,13 +18,26 @@
   }
     
 .card-grid .card {
-  color: var(--song-card-color); 
-  background-color: var(--song-card-bg-color);
-  border: 5px var(--song-card-border-color) solid ;
+  color: var(--card-color); 
   border-radius: 8px;
   font-size: 1.5vh; 
   max-height: 400px;
   cursor: pointer;
+  padding: 5px;
+}
+
+#album-card{
+  background-color: var(--album-card-bg-color);
+}
+
+#album-card:hover{
+  box-shadow: inset 0 0 20px gray, 0 0 20px gray;
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+}
+
+#song-card{
+  background-color: var(--song-card-bg-color);
 }
 
 .card-grid .card .card-body{
