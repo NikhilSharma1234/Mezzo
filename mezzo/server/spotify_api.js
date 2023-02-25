@@ -150,6 +150,29 @@ spotify.post('/getAlbum', async (req, res) => {
   spotifyToken = "";
 });
 
+
+spotify.post('/getNewReleases', async (req, res) => {
+  spotifyToken = "Bearer " + await fetchToken();
+  try{
+  const spotify_releases = await axios({
+    method: "GET",
+    url:`https://api.spotify.com/v1/browse/new-releases`,
+    headers: {  "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization" : spotifyToken},
+    params: {
+      'country': 'SE',
+      'limit': req.body.limit,
+      'offset': '0'
+    }
+  });
+  res.json(spotify_releases.data);
+  }catch(error){
+    console.error(error);
+  }
+  spotifyToken = "";
+});
+
 // spotify.post('/getTrack', async (req, res) => {
 //   spotifyToken = "Bearer " + await fetchToken();
 //   try{
@@ -187,32 +210,6 @@ spotify.post('/getSeveralTracks', async (req, res) => {
   }
   spotifyToken = "";
 });
-
-// spotify.post("/getNewReleases", async (req, res) => {
-//   console.log("hello");
-//   spotifyToken = "Bearer " + (await fetchToken());
-//   try {
-//     console.log("fetching releases");
-//     const spotify_releases = await axios({
-//       method: "GET",
-//       url: "https://api.spotify.com/v1/browse/new-releases",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//         Authorization: spotifyToken,
-//       },
-//       params: {
-//         country: "ES",
-//         limit: "10",
-//         offset: "0",
-//       },
-//     });
-//     res.json(spotify_releases.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-//   spotifyToken = "";
-// });
 
 spotify.post('/getTop100', async (req, res) => {
   spotifyToken = "Bearer " + await fetchToken();
