@@ -47,7 +47,7 @@ function Heart(props) {
 
 function SongCard({ songData }) {
   return (
-    <div className="card">
+    <div className="card" id="song-card">
       <div>
         <img src={songData.album.images[1].url} alt="albumImage" />
       </div>

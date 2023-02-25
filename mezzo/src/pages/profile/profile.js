@@ -13,6 +13,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { RiImageAddFill } from "react-icons/ri";
 import { fetchUserProfile } from "../../utils/fetchUserProfile.js";
+import { editProfilePic } from "../../utils/editProfilePic.js";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "#1A2027",
@@ -44,7 +45,7 @@ const Profile = () => {
     };
 
     fetchProfile();
-  }, []);
+  }, [imageIcon]);
 
   const handleMouseOver = () => {
     setImage(true);
@@ -58,17 +59,27 @@ const Profile = () => {
     let input = document.createElement("input");
     input.type = "file";
     input.onchange = (_) => {
-      let file = input.files;
+      let file = input.files[0];
       console.log(file);
       // TODO: save image somewhere
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = async () => {
+        const base64data = reader.result;
+        await editProfilePic(base64data);
+        setImage(profile.profilePicture);
+      };
     };
     input.click();
   };
+
   return (
     <section className="main_closed main">
       <div className="profile-container">
         <div className="profile-header">
           <IconButton onClick={handleAvatarClick}>
+            
             <Avatar
               id="profilePicture"
               sx={{ width: 250, height: 250 }}
@@ -78,7 +89,7 @@ const Profile = () => {
               {imageIcon ? (
                 <RiImageAddFill id="icon" value={{ color: "white" }} />
               ) : (
-                <BsPersonFill id="icon" />
+                <img src={profile.profilePicture} alt="Profile Picture" />
               )}
             </Avatar>
           </IconButton>

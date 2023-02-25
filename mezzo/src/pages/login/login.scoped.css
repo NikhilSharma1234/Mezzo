@@ -97,7 +97,7 @@ button[disabled]{
     color: black;
 }
 
-h1{
+.login-signin-h1{
     font-size: 5vh;
     text-align: center;
 }
