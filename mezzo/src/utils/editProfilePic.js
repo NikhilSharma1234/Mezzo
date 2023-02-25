@@ -7,7 +7,7 @@ export async function editProfilePic(id) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: 'NikhilSharma',
+          username: JSON.parse(localStorage.getItem('username')),
           photo_id: id
         })
       });
