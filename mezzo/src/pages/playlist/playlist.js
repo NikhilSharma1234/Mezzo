@@ -82,10 +82,15 @@ const Playlist=()=> {
 
 
 <section className="main_closed main" id="charts-main">
-    <h1>{playlist && playlist.name}</h1>
-      {/* <h1>{playlistData.title}</h1> */}
-
-      <table border="1">
+  <div className='album-header'>
+    <img src="https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg" alt="Playlist Image" />
+      <div className="album-header-body">
+        <p>Playlist</p>
+        <h1>{playlist && playlist.name}</h1>
+        <p>{playlist && playlist.songs.length} Songs · {playlist && playlist.biography} </p>
+      </div>
+  </div>
+      <table border="1" style={{marginTop: '30px'}}>
         <thead>
           <tr>
             <th className="position-column">#</th>

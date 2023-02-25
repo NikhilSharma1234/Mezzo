@@ -158,7 +158,7 @@ function NewPlaylistCard(props) {
 
 function PlaylistCards({ playlists, reloadPlaylists }) {
   return (
-    <div className="card-grid">
+    <div className="card-grid" style={{margin: '10px 30px 10px 30px'}}>
       <NewPlaylistCard reloadPlaylists={reloadPlaylists} />
       {playlists?.map((value, key) => {
         return <PlaylistCard playlistData={value} key={key}/>;
