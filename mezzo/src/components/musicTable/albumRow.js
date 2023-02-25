@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./musicRow.scoped.css";
 import { AudioContext } from "../../context/audioContext.js";
-import { FaPlay } from "react-icons/fa";
-import { FaPause } from "react-icons/fa";
+import { FaPlay, FaPause } from "react-icons/fa";
+import { MdOutlineQueueMusic as MDQueue } from "react-icons/md" 
+import { MdChecklistRtl as MDQueueCheck } from "react-icons/md"
 import { AiFillHeart } from 'react-icons/ai';
 import IconButton from '@mui/material/IconButton';
 import { MdOutlinePlaylistAdd } from 'react-icons/md';
@@ -140,19 +141,33 @@ SimpleDialog.propTypes = {
 };
 
 export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists, albumImg}) => {
-  const [playerInfo, , isPlaying, togglePlayer] = useContext(AudioContext);
+  const [playerInfo, , isPlaying, togglePlayer, , queue, addToQueue, , removeQueueElem] = useContext(AudioContext);
   const [showButton, setShowButton] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [chosenSong, setChosenSong] = useState(null);
 
-  function handlePlayer(song) {
+  function convertToPlayer(song){
     const newPlayerInfo = {
       songName: songData.name,
       artist: songData.artists[0].name,
       albumImg: albumImg,
       audioUrl: songData.preview_url,
     };
+    return PlayerInfo;
+  }
+
+  function handlePlayer(song) {
+    newPlayerInfo = convertToPlayer(song);
     togglePlayer(newPlayerInfo);
+  }
+
+  function handleQueueCheck(song) {
+    PlayerInfo = convertToPlayer(song);
+    if (queue.includes(PlayerInfo)) {
+      queue.removeQueueElem(queue.indexOf(PlayerInfo));
+    } else {
+      addToQueue()
+    }
   }
 
   function likeSong(playlistName, id) {
@@ -209,13 +224,22 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
       >
         {songData.preview_url ? (
           showButton === index ? (
-            <button onClick={() => handlePlayer(songData)}>
-              {isPlaying && playerInfo.audioUrl === songData.preview_url ? (
-                <FaPause />
-              ) : (
-                <FaPlay />
-              )}
-            </button>
+            <>
+              <button onClick={() => handlePlayer(songData)}>
+                {isPlaying && playerInfo.audioUrl === songData.preview_url ? (
+                  <FaPause />
+                ) : (
+                  <FaPlay />
+                )}
+              </button>
+              <button onClick={() => handleQueueCheck(songData)}>
+                {queue.includes(convertToPlayer(songData)) ? (
+                  <MDQueueCheck />
+                ) : (
+                  <MDQueue />
+                )}
+              </button>
+            </>
           ) : (
             <p>{index + 1}</p>
           )

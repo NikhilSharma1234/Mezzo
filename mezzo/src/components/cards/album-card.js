@@ -1,6 +1,5 @@
-import { FaPlay } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { FaPause } from "react-icons/fa";
+import { FaPlay, FaHeart, FaPause } from "react-icons/fa";
+import { MdOutlineQueueMusic as MDQueue } from "react-icons/md" 
 import { AudioContext } from "../../context/audioContext.js";
 import "./card.scoped.css";
 import React, {useContext } from "react";

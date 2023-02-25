@@ -1,23 +1,38 @@
 import { FaPlay } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
+import { MdOutlineQueueMusic as MDQueue } from "react-icons/md" 
+import { MdChecklistRtl as MDQueueCheck } from "react-icons/md"
 import { AudioContext } from "../../context/audioContext.js";
 import "./card.scoped.css";
 import {useContext } from "react";
 
 function PlayButton({ songData }) {
-  const [playerInfo,, isPlaying, togglePlayer] = useContext(
-    AudioContext
-  );
+    const [playerInfo, , isPlaying, togglePlayer, , queue, addToQueue, , removeQueueElem] = useContext(AudioContext);
 
-  function handlePlayer(songData) {
+
+  function convertToPlayer(song){
     const newPlayerInfo = {
       songName: songData.name,
-      artist: songData.artist,
-      songImg: songData.album.images[1].url,
+      artist: songData.artists[0].name,
+      albumImg: albumImg,
       audioUrl: songData.preview_url,
     };
+    return PlayerInfo;
+  }
+
+  function handlePlayer(song) {
+    newPlayerInfo = convertToPlayer(song);
     togglePlayer(newPlayerInfo);
+  }
+
+  function handleQueueCheck(song) {
+    PlayerInfo = convertToPlayer(song);
+    if (queue.includes(PlayerInfo)) {
+      queue.removeQueueElem(queue.indexOf(PlayerInfo));
+    } else {
+      addToQueue()
+    }
   }
 
   return (
@@ -33,7 +48,17 @@ function PlayButton({ songData }) {
       ) : (
         <FaPlay />
       )}
+      <>
+        <button onClick={() => handleQueueCheck(songData)}>
+          {queue.includes(convertToPlayer(songData)) ? (
+            <MDQueueCheck />
+          ) : (
+            <MDQueue />
+          )}
+        </button>
+      </>
     </>
+
   );
 }
 

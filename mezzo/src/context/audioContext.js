@@ -10,8 +10,8 @@ export function AudioProvider({ children }) {
   function togglePlayer(newPlayerInfo = playerInfo, rewind = false, fastForward = false) {
     if (fastForward) {
       if (queue.length > 1) {
-        queue.shift();
-        setPlayerInfo(queue[0]);
+        const next_to_play = removeFromQueue();
+        setPlayerInfo(next_to_play);
         setIsPlaying(true);
         return;
       }
@@ -28,21 +28,23 @@ export function AudioProvider({ children }) {
     }
   }
 
-  function addToQueue(newSong) {
-    setQueue((prevQueue) => [...prevQueue, newSong]);
+  function addToQueue(newPlayerInfo = playerInfo) {
+    queue.push(newPlayerInfo)
   }
 
-  function removeFromQueue(index) {
-    setQueue((prevQueue) => {
-      const newQueue = [...prevQueue];
-      newQueue.splice(index, 1);
-      return newQueue;
-    });
+  function removeFromQueue() {
+    const next_to_play = queue[0];
+    queue.shift();
+    return next_to_play;
+  }
+
+  function removeQueueElem(index) {
+    queue.splice(index, 1);
   }
 
   return (
     <AudioContext.Provider
-      value={[playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue]}
+      value={[playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem]}
     >
       {children}
     </AudioContext.Provider>
