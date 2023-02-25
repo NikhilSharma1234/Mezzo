@@ -1,6 +1,6 @@
 #SongHeading {
     font-size: 50px;
-    color: var(--song-section-color);
+    color: var(--song-card-bg-color);
 }
 
 #ArtistHeading {
@@ -8,7 +8,15 @@
     color: var(--artist-card-color);
 }
 
-.Song-Artist-Container{
-    margin-right: 5%;
-    margin-left: 5%;
+#AlbumHeading {
+    font-size: 50px;
+    color: var(--album-card-bg-color);
+}
+
+.discover-body{
+    margin: 5vh;
+}
+
+.page-subSection{
+    margin: 3vh;
 }
