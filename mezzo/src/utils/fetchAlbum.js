@@ -1,7 +1,8 @@
-export async function fetchArtistAlbums(id, groups) {
-    const datum = { artistID: id, artistGroups: groups };
+export async function fetchAlbum(id) {
+    console.log("fetchAlbum: ", id)
+    const datum = { albumID: id};
     try {
-      const response = await fetch("http://localhost:4000/_/getArtistAlbums", {
+      const response = await fetch("http://localhost:4000/_/getAlbum", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -12,7 +13,7 @@ export async function fetchArtistAlbums(id, groups) {
         throw new Error(`fetchArtistTopTracks failed with status: ${response.status}`);
       }
       const data = await response.json();
-      return data.items;
+      return data;
     } catch (error) {
       console.error(error);
       return null;
