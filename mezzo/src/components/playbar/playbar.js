@@ -14,12 +14,12 @@ import { useState, useEffect, useContext } from "react";
 import { FaHeart } from "react-icons/fa";
 
 const PlayBar = () => {
-  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem, isStopped, setIsStopped] = useContext(AudioContext);
+  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem, , setIsStopped] = useContext(AudioContext);
   const [audio, setAudio] = useState(null);
   const [value, setValue] = useState(0);
   const [volume, setVolume] = useState(0.1);
 
-  useEffect(() => {
+   useEffect(() => {
     if (playerInfo.audioUrl) {
       if (isPlaying) {
         if (audio) {
@@ -29,15 +29,16 @@ const PlayBar = () => {
         audioElement.volume = volume;
         audioElement.play();
         setAudio(audioElement);
+        audioElement.onended = function() {
+          console.log('Ended');
+          setIsStopped(true);
+        };
       } else {
         audio.pause();
       }
-
-      audio.addEventListener("ended", () => {
-        setIsStopped(true);
-      });
     }
   }, [isPlaying, playerInfo]);
+
 
   function togglePlaybarBtn() {
     if (isPlaying || playerInfo.songName === "") {
@@ -48,7 +49,7 @@ const PlayBar = () => {
   }
 
   function handleRewind() {
-    togglePlayer(undefined, true);
+    togglePlayer(undefined, true, undefined);
   }
 
   function handleFastForward(){

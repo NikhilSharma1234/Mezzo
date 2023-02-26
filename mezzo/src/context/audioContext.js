@@ -10,8 +10,10 @@ export function AudioProvider({ children }) {
 
   function togglePlayer(newPlayerInfo = playerInfo, rewind = false, fastForward = false) {
     if (fastForward) {
+      console.log('Fast Forward')
       if (queue.length >= 1) {
         const next_to_play = removeFromQueue();
+        console.log(queue);
         setPlayerInfo(next_to_play);
         setIsPlaying(true);
         return;
@@ -32,7 +34,7 @@ export function AudioProvider({ children }) {
         setPlayerInfo(newPlayerInfo);
         setIsPlaying(true);
       } else {
-        setIsPlaying(false);
+        setIsPlaying(true);
       }
     }
   }
