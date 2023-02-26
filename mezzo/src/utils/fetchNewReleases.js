@@ -1,7 +1,7 @@
-export async function fetchArtist(id) {
-    const datum = { artistID: id};
+export async function fetchNewReleases(limitNum) {
+    const datum = {limit: limitNum};
     try {
-      const response = await fetch(process.env.REACT_APP_API_URL + "_/getArtist", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "_/getNewReleases", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -12,7 +12,7 @@ export async function fetchArtist(id) {
         throw new Error(`fetchArtistTopTracks failed with status: ${response.status}`);
       }
       const data = await response.json();
-      return data;
+      return data.albums.items;
     } catch (error) {
       console.error(error);
       return null;

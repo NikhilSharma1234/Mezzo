@@ -15,6 +15,7 @@ function PlayButton({ songData }) {
 
   function handlePlayer(songData) {
     const newPlayerInfo = {
+      songId: songData.id,
       songName: songData.name,
       artist: songData.artist,
       songImg: songData.album.images[1].url,
@@ -56,7 +57,7 @@ function PlaylistCard({
 
   return (
     <>
-      <button className="card" onClick={navigatePlaylist}>
+      <button className="card" id="album-card" onClick={navigatePlaylist}>
         <div>
           <img
             src="https://i.pinimg.com/550x/00/c6/fc/00c6fcf866af801354c66822e24193a9.jpg"
@@ -105,7 +106,7 @@ function NewPlaylistCard(props) {
     event.preventDefault();
     try {
       const userID = JSON.parse(localStorage.getItem('username'));
-      const user = await fetch("http://localhost:4000/api/playlist", {
+      const user = await fetch(process.env.REACT_APP_API_URL + "api/playlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -123,7 +124,7 @@ function NewPlaylistCard(props) {
   return (
     <div className="card-new">
       <div onClick={handleOpen}>
-        <FaPlus />
+        <FaPlus size={60}/>
       </div>
     <Dialog onClose={handleOnClose} open={open}>
     <DialogTitle>Create a new playlist</DialogTitle>
@@ -158,7 +159,7 @@ function NewPlaylistCard(props) {
 
 function PlaylistCards({ playlists, reloadPlaylists }) {
   return (
-    <div className="card-grid">
+    <div className="card-grid" style={{margin: '10px 30px 10px 30px'}}>
       <NewPlaylistCard reloadPlaylists={reloadPlaylists} />
       {playlists?.map((value, key) => {
         return <PlaylistCard playlistData={value} key={key}/>;

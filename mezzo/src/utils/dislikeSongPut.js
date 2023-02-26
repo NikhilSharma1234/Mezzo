@@ -1,7 +1,7 @@
 export async function dislikeSongPut(playlist, id) {
   try {
     const userID = JSON.parse(localStorage.getItem('username'));
-    const response = await fetch("http://localhost:4000/api/playlist/remove", {
+    const response = await fetch(process.env.REACT_APP_API_URL + "api/playlist/remove", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

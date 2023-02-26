@@ -12,13 +12,26 @@ import { BsFillPlayFill, BsPauseFill } from "react-icons/bs";
 import { AudioContext } from "../../context/audioContext.js";
 import { useState, useEffect, useContext } from "react";
 import { FaHeart } from "react-icons/fa";
+import { likeSongPost } from "../../utils/likeSongPost.js";
+import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
+import { dislikeSongPut } from "../../utils/dislikeSongPut.js";
 
 const PlayBar = () => {
-  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem] = useContext(AudioContext);
+  const [playerInfo, , isPlaying, , setIsPlaying, likeSongPressed, setLikeSong] = useContext(AudioContext);
+  const [likedSongsPlaylist, setLikedSongsPlaylist] = useState(null)
   const [audio, setAudio] = useState(null);
   const [value, setValue] = useState(0);
-  const [volume, setVolume] = useState(0.1);
-  let audioElement;
+  const [volume, setVolume] = useState(0.2);
+  const [playlists, setPlaylists] = useState([]);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+      setLikedSongsPlaylist(allPlaylists.playlists.find(({name}) => name === "Liked Songs"));
+    };
+    fetchPlaylists();
+  }, []);
 
   useEffect(() => {  
     if (playerInfo.audioUrl) {
@@ -52,6 +65,37 @@ const PlayBar = () => {
     };
   }, [isPlaying, playerInfo]);
 
+  useEffect(() => {
+    if (value == 1 && playerInfo.songId) {
+      handleLikePress()
+      setValue(0)
+    }
+  }, [value])
+
+  function handleLikePress() {
+    const fetchPlaylistsDislike = async () => {
+      await dislikeSongPut("Liked Songs", playerInfo.songId);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists)
+      setLikedSongsPlaylist(allPlaylists.playlists.find(({name}) => name === "Liked Songs"))
+    };
+    const fetchPlaylists = async () => {
+      await likeSongPost("Liked Songs", playerInfo.songId);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+      setLikedSongsPlaylist(allPlaylists.playlists.find(({name}) => name === "Liked Songs"))
+    };
+
+    const playlist = playlists.find(({name}) => name === "Liked Songs");
+    if (playlist.songs.includes(playerInfo.songId)) {
+      fetchPlaylistsDislike();
+    }
+    else {
+      fetchPlaylists();
+    }
+    setLikeSong(!likeSongPressed);
+  }
+
   function togglePlaybarBtn() {
     if (isPlaying || playerInfo.songName === "") {
       setIsPlaying(false);
@@ -70,8 +114,17 @@ const PlayBar = () => {
       audio.volume = volume;
     }
   }
-
-
+  const heartStyling = () => {
+    if (likedSongsPlaylist && likedSongsPlaylist.songs.includes(playerInfo.songId))
+      return {
+        color: 'red'
+      };
+    else {
+      return {
+        color: 'black'
+      };
+    }
+  }
   return (
       <Box className="playbarbox" sx={{ pb: 7 }}>
         <Paper
@@ -80,24 +133,16 @@ const PlayBar = () => {
         >
           <BottomNavigation
             className="playbar"
-            showLabels
             value={value}
+            showLabels
             onChange={(event, newValue) => {
               setValue(newValue);
             }}
           >
             
-            <BottomNavigationAction className="playbar-btns"  label={playerInfo.songName || ""} >
-              <img
-                  className="charts-album-img"
-                  src={playerInfo.albumImg}
-                  alt=""
-                />
-                <div className="title-column-song-wrapper">
-                <h4 id="charts-song-title">{playerInfo.songName}</h4><p>{playerInfo.artist}</p>
-                </div>
+            <BottomNavigationAction className="playbar-btns"  style={{color: 'white'}} label={playerInfo.songName || "Not playing"}>
             </BottomNavigationAction>
-            <BottomNavigationAction icon={<FaHeart className="playbar-btns" />} />
+            <BottomNavigationAction icon={<FaHeart className="playbar-btns" style={ heartStyling()}/>} />
             <BottomNavigationAction icon={<AiOutlineLeft className="playbar-btns" />} onClick={togglePlaybarBtn}/>
             <BottomNavigationAction
               onClick={togglePlayer}
@@ -107,6 +152,7 @@ const PlayBar = () => {
             <Box sx={{ width: 200, pt: 2 }}>
               <Stack spacing={2} direction="row" alignItems="center">
                 <Slider
+                  sx={{color:"white"}}
                   aria-label="Volume"
                   onChange={handleVolume}
                   min={0}

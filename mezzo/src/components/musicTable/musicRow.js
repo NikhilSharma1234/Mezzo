@@ -59,7 +59,7 @@ function SimpleDialog(props) {
     event.preventDefault();
     try {
       const userID = JSON.parse(localStorage.getItem('username'));
-      const user = await fetch("http://localhost:4000/api/playlist", {
+      const user = await fetch(process.env.REACT_APP_API_URL + "api/playlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -150,6 +150,7 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
 
   function convertToPlayer(song){
     const PlayerInfo = {
+      songId: songData.id,
       songName: songData.name,
       artist: songData.artists[0].name,
       albumImg: songData.album.images[1].url,
@@ -203,6 +204,12 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     return findLikedSongs(song)
   }
 
+  function numberFormatting(index) {
+    let string = index.toString();
+    string = string.padStart(3, '00');
+    return string
+  }
+
   function millisecToMin(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -224,20 +231,18 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
       >
         {songData.preview_url ? (
           showButton === index ? (
-            <>
-              <button onClick={() => handlePlayer(songData)}>
-                {isPlaying && playerInfo.audioUrl === songData.preview_url ? (
-                  <FaPause />
-                ) : (
-                  <FaPlay />
-                )}
-              </button>
-            </>
+            <button onClick={() => handlePlayer()}>
+              {isPlaying && playerInfo.audioUrl === songData.preview_url ? (
+                <FaPause />
+              ) : (
+                <FaPlay />
+              )}
+            </button>
           ) : (
-            <p>{index + 1}</p>
+            <p>{numberFormatting(index + 1)}</p>
           )
         ) : (
-          <p>{index + 1}</p>
+          <p>{numberFormatting(index + 1)}</p>
         )}
       </td>
       <td className="title-column">

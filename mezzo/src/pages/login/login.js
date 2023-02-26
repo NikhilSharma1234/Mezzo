@@ -21,7 +21,7 @@ const Login = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const user = await fetch("http://localhost:4000/api/user/login", {
+      const user = await fetch(process.env.REACT_APP_API_URL + "api/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const Login = (props) => {
         />
       )}
       <div className="form-container">
-        <form class="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <h1 className="login-signin-h1">STREAM WITH MEZZO!</h1>
           <label>
             <h3>Username:</h3>

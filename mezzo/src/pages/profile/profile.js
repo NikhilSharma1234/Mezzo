@@ -9,6 +9,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
+import PlaylistCards from "../../components/cards/playlist-card.js";
+import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 import { AiFillDelete } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
 import { RiImageAddFill } from "react-icons/ri";
@@ -35,6 +37,23 @@ const Profile = () => {
   const [secondary] = React.useState(false);
   const [profile, setProfile] = useState([]);
   const [imageIcon, setImage] = useState(false);
+  const [playlists, setPlaylists] = useState([]);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
+  }, []);
+
+  function reloadPlaylists() {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists)
+    };
+    fetchPlaylists();
+  }
 
   const username = JSON.parse(localStorage.getItem("username"));
 
@@ -60,9 +79,6 @@ const Profile = () => {
     input.type = "file";
     input.onchange = (_) => {
       let file = input.files[0];
-      console.log(file);
-      // TODO: save image somewhere
-
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = async () => {
@@ -79,7 +95,6 @@ const Profile = () => {
       <div className="profile-container">
         <div className="profile-header">
           <IconButton onClick={handleAvatarClick}>
-            
             <Avatar
               id="profilePicture"
               sx={{ width: 250, height: 250 }}
@@ -89,7 +104,7 @@ const Profile = () => {
               {imageIcon ? (
                 <RiImageAddFill id="icon" value={{ color: "white" }} />
               ) : (
-                <img src={profile.profilePicture} alt="Profile Picture" />
+                <img src={profile.profilePicture} alt="Profile" />
               )}
             </Avatar>
           </IconButton>
@@ -112,6 +127,7 @@ const Profile = () => {
             <hr />
             <div className="public-playlists">
               <h3>Public Playlists</h3>
+              <PlaylistCards playlists={playlists} reloadPlaylists={reloadPlaylists}/>
             </div>
           </div>
           <Grid item xs={3}>
@@ -122,7 +138,7 @@ const Profile = () => {
               }}
             >
               <h3>Friends</h3>
-              <List dense={dense} sx={{ height: "700px", overflowY: "scroll" }}>
+              <List dense={dense} sx={{ height: "500px", overflowY: "scroll" }}>
                 {generate(
                   <ListItem
                     secondaryAction={

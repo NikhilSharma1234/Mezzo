@@ -1,6 +1,7 @@
 import "./album.scoped.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetchAlbum } from "../../utils/fetchAlbum.js";
+import { AudioContext } from "../../context/audioContext.js";
 import { useParams } from "react-router-dom";
 import { AlbumRow } from "../../components/musicTable/albumRow.js";
 import { likeSongPost } from "../../utils/likeSongPost.js";
@@ -10,14 +11,22 @@ import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 const Album = () => {
   const { albumID } = useParams();
   const [album, setAlbum] = useState([]);
-  const [albumTracks, setAlbumTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
+  const [likePressed, setLikePressed] = useState(false);
+  const [, , , , , likeSongPressed, setLikeSong] = useContext(AudioContext);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
+  }, [likePressed, likeSongPressed]);
 
   useEffect(() => {
     const fetchAlbumData = async () => {
       const albumData = await fetchAlbum(albumID);
       setAlbum(albumData);
-      // setAlbumTracks(albumData.tracks.items)
     };
     fetchAlbumData();
   }, [albumID]);
@@ -42,6 +51,7 @@ const Album = () => {
     else {
       fetchPlaylists();
     }
+    setLikePressed(!likePressed);
   }
 
   function reloadPlaylists() {
@@ -92,7 +102,6 @@ const Album = () => {
         </thead>
         <tbody>
           {album.tracks.items.map((song, index) => {
-            {console.log("song: ", song)}
             return <AlbumRow index={index} songData={song} playlists={playlists} onLikePressed={likeSong} reloadPlaylists={reloadPlaylists} key={index} albumImg={album.images[1].url}/>;
           })}
         </tbody>

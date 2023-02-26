@@ -20,7 +20,7 @@ function AlbumCard({ albumData }) {
       <div className="card-body">
         <h2>{albumData.name}</h2>
         <div className="card-caption">
-          <p>{albumData.release_date.slice(0, 4)} · album</p>
+          <p>{albumData.release_date.slice(0, 4)} · {albumData.album_type}</p>
           {/* <Heart />
           <PlayButton songData={songData} /> */}
         </div>
@@ -32,7 +32,7 @@ function AlbumCard({ albumData }) {
 function AlbumCards({ albumsData }) {
   return (
     <div className="card-grid">
-      {albumsData?.map((value, key) => {
+      {albumsData?.map((value) => {
         return <AlbumCard albumData={value} />;
       })}
     </div>
