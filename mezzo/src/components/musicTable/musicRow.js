@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./musicRow.scoped.css";
 import { AudioContext } from "../../context/audioContext.js";
 import { FaPlay } from "react-icons/fa";
@@ -31,7 +31,7 @@ function SimpleDialog(props) {
   };
 
   const subtext = (playlist) => {
-    if (playlist.biography == 'Nothing Here...')
+    if (playlist.biography === 'Nothing Here...')
       return `Playlist | ${playlist.songs.length} songs`
     else
       return `Playlist | ${playlist.biography} | ${playlist.songs.length} songs`
@@ -143,30 +143,30 @@ SimpleDialog.propTypes = {
 };
 
 export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlaylists}) => {
-  const [playerInfo, , isPlaying, togglePlayer, , queue, addToQueue, , removeQueueElem] = useContext(AudioContext);
+  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem] = useContext(AudioContext);
   const [showButton, setShowButton] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [chosenSong, setChosenSong] = useState(null);
 
   function convertToPlayer(song){
-    const newPlayerInfo = {
+    const PlayerInfo = {
       songName: songData.name,
       artist: songData.artists[0].name,
-      albumImg: albumImg,
+      albumImg: songData.album.images[1].url,
       audioUrl: songData.preview_url,
     };
     return PlayerInfo;
   }
 
   function handlePlayer(song) {
-    newPlayerInfo = convertToPlayer(song);
+    const newPlayerInfo = convertToPlayer(song);
     togglePlayer(newPlayerInfo);
   }
 
   function handleQueueCheck(song) {
-    PlayerInfo = convertToPlayer(song);
+    const PlayerInfo = convertToPlayer(song);
     if (queue.includes(PlayerInfo)) {
-      queue.removeQueueElem(queue.indexOf(PlayerInfo));
+      removeQueueElem(queue.indexOf(PlayerInfo));
     } else {
       addToQueue()
     }
@@ -232,13 +232,6 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
                   <FaPlay />
                 )}
               </button>
-              <button onClick={() => handleQueueCheck(songData)}>
-                {queue.includes(convertToPlayer(songData)) ? (
-                  <MDQueueCheck />
-                ) : (
-                  <MDQueue />
-                )}
-              </button>
             </>
           ) : (
             <p>{index + 1}</p>
@@ -265,6 +258,13 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
         <div style={{ display: "flex", justifyContent: "space-evenly", margin: '0 auto'}}>
           <IconButton onClick={() => likeSong("Liked Songs", songData.id)}>
             <AiFillHeart style={ heartStyling(songData) }/>
+            <button onClick={() => handleQueueCheck(songData)}>
+              {queue.includes(convertToPlayer(songData)) ? (
+                <MDQueueCheck />
+              ) : (
+                <MDQueue />
+              )}
+            </button>
           </IconButton>
           <IconButton id="add-to-playlist" onClick={() => handleClickOpen(songData.id)}>
             <MdOutlinePlaylistAdd />

@@ -7,33 +7,24 @@ import { AudioContext } from "../../context/audioContext.js";
 import "./card.scoped.css";
 import {useContext } from "react";
 
+function convertToPlayer(songData){
+  const PlayerInfo = {
+    songName: songData.name,
+    artist: songData.artist,
+    songImg: songData.album.images[1].url,
+    audioUrl: songData.preview_url,
+  };
+  return PlayerInfo;
+}
+
+
 function PlayButton({ songData }) {
-    const [playerInfo, , isPlaying, togglePlayer, , queue, addToQueue, , removeQueueElem] = useContext(AudioContext);
-
-
-  function convertToPlayer(song){
-    const newPlayerInfo = {
-      songName: songData.name,
-      artist: songData.artists[0].name,
-      albumImg: albumImg,
-      audioUrl: songData.preview_url,
-    };
-    return PlayerInfo;
-  }
+  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem] = useContext(AudioContext);
 
   function handlePlayer(song) {
-    newPlayerInfo = convertToPlayer(song);
+    const newPlayerInfo = convertToPlayer(song);
     togglePlayer(newPlayerInfo);
-  }
-
-  function handleQueueCheck(song) {
-    PlayerInfo = convertToPlayer(song);
-    if (queue.includes(PlayerInfo)) {
-      queue.removeQueueElem(queue.indexOf(PlayerInfo));
-    } else {
-      addToQueue()
-    }
-  }
+  }  
 
   return (
     <>
@@ -48,15 +39,6 @@ function PlayButton({ songData }) {
       ) : (
         <FaPlay />
       )}
-      <>
-        <button onClick={() => handleQueueCheck(songData)}>
-          {queue.includes(convertToPlayer(songData)) ? (
-            <MDQueueCheck />
-          ) : (
-            <MDQueue />
-          )}
-        </button>
-      </>
     </>
 
   );
@@ -71,6 +53,18 @@ function Heart(props) {
 }
 
 function SongCard({ songData }) {
+  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem] = useContext(AudioContext);
+
+  function handleQueueCheck(song) {
+    const PlayerInfo = convertToPlayer(song);
+    console.log(queue);
+    if (queue.includes(PlayerInfo)) {
+      removeQueueElem(queue.indexOf(PlayerInfo));
+    } else {
+      addToQueue(PlayerInfo)
+    }
+  }
+
   return (
     <div className="card" id="song-card">
       <div>
@@ -83,6 +77,15 @@ function SongCard({ songData }) {
           <p>artist</p>
           <Heart />
           <PlayButton songData={songData} />
+          <>
+            <button className="play_button" onClick={() => handleQueueCheck(songData)}>
+              {queue.includes(convertToPlayer(songData)) ? (
+                <MDQueueCheck />
+              ) : (
+                <MDQueue />
+              )}
+            </button>
+          </>
         </div>
       </div>
     </div>
