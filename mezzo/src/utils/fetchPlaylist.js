@@ -1,6 +1,6 @@
 export async function fetchPlaylist(id) {
   try {
-    const response = await fetch("http://localhost:4000/api/playlist?id=" + id, {
+    const response = await fetch(process.env.REACT_APP_API_URL + "api/playlist?id=" + id, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

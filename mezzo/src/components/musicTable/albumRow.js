@@ -56,7 +56,7 @@ function SimpleDialog(props) {
     event.preventDefault();
     try {
       const userID = JSON.parse(localStorage.getItem('username'));
-      const user = await fetch("http://localhost:4000/api/playlist", {
+      const user = await fetch(process.env.REACT_APP_API_URL + "api/playlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
