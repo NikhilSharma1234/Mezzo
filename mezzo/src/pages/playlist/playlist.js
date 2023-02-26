@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MusicRow } from "../../components/musicTable/musicRow.js";
 import { fetchSeveralTracks } from "../../utils/fetchSeveralTracks.js";
 import { fetchPlaylist } from "../../utils/fetchPlaylist.js";
 import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 import { likeSongPost } from "../../utils/likeSongPost.js";
 import { dislikeSongPut } from "../../utils/dislikeSongPut.js";
+import { AudioContext } from "../../context/audioContext.js";
 
 
 
@@ -14,6 +15,24 @@ const Playlist=()=> {
   const [playlist, setPlaylist] = useState(null);
   const [allPlaylists, setAllPlaylists] = useState(null);
   const [songs, setSongs] = useState([]);
+  const [likePressed, setLikePressed] = useState(false);
+  const [, , , , , likeSongPressed, ] = useContext(AudioContext);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setAllPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
+  }, [likeSongPressed]);
+
+  useEffect(() => {
+    const fetchOnePlaylist = async () => {
+      const playlist = await fetchPlaylist(playlistID);
+      setPlaylist(playlist.playlist);
+    };
+    if (playlist && playlist.name === 'Liked Songs') fetchOnePlaylist();
+  }, [likePressed]);
 
   useEffect(() => {
     const fetchOnePlaylist = async () => {
@@ -66,6 +85,7 @@ const Playlist=()=> {
     else {
       fetchPlaylists();
     }
+    setLikePressed(!likePressed);
   }
 
   return (
