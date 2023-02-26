@@ -2,7 +2,7 @@
 
 # dependencies
 /mezzo/node_modules
-/mezzo/server/.env
+/mezzo/.env
 /mezzo/server/build
 /mezzo/build
 /.pnp

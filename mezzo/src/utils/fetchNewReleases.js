@@ -1,7 +1,7 @@
 export async function fetchNewReleases(limitNum) {
     const datum = {limit: limitNum};
     try {
-      const response = await fetch("http://localhost:4000/_/getNewReleases", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "_/getNewReleases", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

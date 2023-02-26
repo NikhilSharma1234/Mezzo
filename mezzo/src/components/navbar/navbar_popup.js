@@ -15,7 +15,7 @@ function NavbarPopup() {
   const handleLogout = async () => {
     try {
       localStorage.removeItem('username');
-      const logoutStat = await fetch("http://localhost:4000/api/user/logout", {
+      const logoutStat = await fetch(process.env.REACT_APP_API_URL + "api/user/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
