@@ -123,7 +123,7 @@ function NewPlaylistCard(props) {
   return (
     <div className="card-new">
       <div onClick={handleOpen}>
-        <FaPlus />
+        <FaPlus size={60}/>
       </div>
     <Dialog onClose={handleOnClose} open={open}>
     <DialogTitle>Create a new playlist</DialogTitle>
