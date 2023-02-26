@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./charts.scoped.css";
+import { AudioContext } from "../../context/audioContext.js";
 import { fetchTop100 } from "../../utils/fetchTop100.js";
 import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
 import { likeSongPost } from "../../utils/likeSongPost.js";
@@ -9,6 +10,7 @@ import { MusicRow } from "../../components/musicTable/musicRow.js";
 const Charts = () => {
   const [songs, setSongs] = useState([]);
   const [playlists, setPlaylists] = useState([]);
+  const [, , , , , likeSongPressed] = useContext(AudioContext);
 
   useEffect(() => {
     const fetchTop = async () => {
@@ -18,6 +20,14 @@ const Charts = () => {
 
     fetchTop();
   }, []);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
+  }, [likeSongPressed]);
 
   useEffect(() => {
     const fetchPlaylists = async () => {

@@ -42,7 +42,7 @@ const Signup = (props) => {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        const user = await fetch("http://localhost:4000/api/user/", {
+        const user = await fetch(process.env.REACT_APP_API_URL + "api/user/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

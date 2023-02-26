@@ -1,7 +1,7 @@
 export async function fetchArtistTopTracks(id) {
     const datum = { artistID: id };
     try {
-      const response = await fetch("http://localhost:4000/_/getArtistTopTracks", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "_/getArtistTopTracks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

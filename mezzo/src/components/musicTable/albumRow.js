@@ -56,7 +56,7 @@ function SimpleDialog(props) {
     event.preventDefault();
     try {
       const userID = JSON.parse(localStorage.getItem('username'));
-      const user = await fetch("http://localhost:4000/api/playlist", {
+      const user = await fetch(process.env.REACT_APP_API_URL + "api/playlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -147,6 +147,7 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
 
   function handlePlayer(song) {
     const newPlayerInfo = {
+      songId: songData.id,
       songName: songData.name,
       artist: songData.artists[0].name,
       albumImg: albumImg,
@@ -169,28 +170,33 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     likeSong(value, chosenSong);
   };
 
-//   function findLikedSongs(song) {
-//     const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
-//     if (likedSongs.songs.includes(song.id))
-//       return {
-//         color: 'red'
-//       };
-//     else {
-//       return {
-//         color: 'black'
-//       };
-//     }
-//   }
+  function findLikedSongs(song) {
+    const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
+    if (likedSongs.songs.includes(song.id))
+      return {
+        color: 'red'
+      };
+    else {
+      return {
+        color: 'black'
+      };
+    }
+  }
 
   const heartStyling = (song) => {
-    return
-    // return findLikedSongs(song)
+    return findLikedSongs(song)
   }
 
   function millisecToMin(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  }
+
+  function numberFormatting(index) {
+    let string = index.toString();
+    string = string.padStart(3, '00');
+    return string
   }
 
 
@@ -217,10 +223,10 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
               )}
             </button>
           ) : (
-            <p>{index + 1}</p>
+            <p>{numberFormatting(index + 1)}</p>
           )
         ) : (
-          <p>{index + 1}</p>
+          <p>{numberFormatting(index + 1)}</p>
         )}
       </td>
       

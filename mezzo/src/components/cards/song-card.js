@@ -2,6 +2,7 @@ import { FaPlay } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { AudioContext } from "../../context/audioContext.js";
+import IconButton from '@mui/material/IconButton';
 import "./card.scoped.css";
 import {useContext } from "react";
 
@@ -12,6 +13,7 @@ function PlayButton({ songData }) {
 
   function handlePlayer(songData) {
     const newPlayerInfo = {
+      songId: songData.id,
       songName: songData.name,
       artist: songData.artist,
       songImg: songData.album.images[1].url,
@@ -37,15 +39,29 @@ function PlayButton({ songData }) {
   );
 }
 
-function Heart(props) {
-  return (
-    <button className="play_button">
-      <FaHeart size={15} color="white" />
-    </button>
-  );
-}
+function SongCard({ songData, playlists, onLikePressed }) {
 
-function SongCard({ songData }) {
+  function likeSong(playlistName, id) {
+    onLikePressed(playlistName, id);
+  }
+
+  function findLikedSongs(song) {
+    const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
+    if (likedSongs.songs.includes(song.id))
+      return {
+        color: 'red'
+      };
+    else {
+      return {
+        color: 'black'
+      };
+    }
+  }
+
+  const heartStyling = (song) => {
+    return findLikedSongs(song)
+  }
+
   return (
     <div className="card" id="song-card">
       <div>
@@ -56,7 +72,9 @@ function SongCard({ songData }) {
         <h2>{songData.name}</h2>
         <div className="card-caption">
           <p>artist</p>
-          <Heart />
+          <IconButton onClick={() => likeSong("Liked Songs", songData.id)}>
+            <FaHeart size={15} style={ heartStyling(songData) }/>
+          </IconButton>
           <PlayButton songData={songData} />
         </div>
       </div>
@@ -64,11 +82,11 @@ function SongCard({ songData }) {
   );
 }
 
-function SongCards({ songs }) {
+function SongCards({ songs, playlists, onLikePressed }) {
   return (
     <div className="card-grid">
       {songs?.map((value) => {
-        return <SongCard songData={value} />;
+        return <SongCard songData={value} playlists={playlists} onLikePressed={onLikePressed} />;
       })}
     </div>
   );
