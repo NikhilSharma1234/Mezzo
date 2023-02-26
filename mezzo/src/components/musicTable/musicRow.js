@@ -187,6 +187,12 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     return findLikedSongs(song)
   }
 
+  function numberFormatting(index) {
+    let string = index.toString();
+    string = string.padStart(3, '00');
+    return string
+  }
+
   function millisecToMin(millis) {
     var minutes = Math.floor(millis / 60000);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
@@ -216,10 +222,10 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
               )}
             </button>
           ) : (
-            <p>{index + 1}</p>
+            <p>{numberFormatting(index + 1)}</p>
           )
         ) : (
-          <p>{index + 1}</p>
+          <p>{numberFormatting(index + 1)}</p>
         )}
       </td>
       <td className="title-column">
