@@ -11,6 +11,15 @@ const Album = () => {
   const { albumID } = useParams();
   const [album, setAlbum] = useState([]);
   const [playlists, setPlaylists] = useState([]);
+  const [likePressed, setLikePressed] = useState(false);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
+  }, [likePressed]);
 
   useEffect(() => {
     const fetchAlbumData = async () => {
@@ -40,6 +49,7 @@ const Album = () => {
     else {
       fetchPlaylists();
     }
+    setLikePressed(!likePressed);
   }
 
   function reloadPlaylists() {

@@ -170,22 +170,21 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     likeSong(value, chosenSong);
   };
 
-//   function findLikedSongs(song) {
-//     const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
-//     if (likedSongs.songs.includes(song.id))
-//       return {
-//         color: 'red'
-//       };
-//     else {
-//       return {
-//         color: 'black'
-//       };
-//     }
-//   }
+  function findLikedSongs(song) {
+    const likedSongs = playlists.find(({name}) => name === 'Liked Songs');
+    if (likedSongs.songs.includes(song.id))
+      return {
+        color: 'red'
+      };
+    else {
+      return {
+        color: 'black'
+      };
+    }
+  }
 
   const heartStyling = (song) => {
-    return
-    // return findLikedSongs(song)
+    return findLikedSongs(song)
   }
 
   function millisecToMin(millis) {
