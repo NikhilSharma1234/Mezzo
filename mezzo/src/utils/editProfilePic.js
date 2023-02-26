@@ -1,7 +1,7 @@
 
 export async function editProfilePic(id) {
     try {
-      const response = await fetch("http://localhost:4000/api/user/editProfileImg", {
+      const response = await fetch(process.env.REACT_APP_API_URL + "api/user/editProfileImg", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
