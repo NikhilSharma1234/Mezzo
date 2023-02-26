@@ -14,7 +14,6 @@
   
   .sidenav_open {
     width: 18%;
-  
   }
   
   .sidenav_closed {
@@ -28,6 +27,7 @@
     color: #60DFF0;
     display: block;
     transition: 0.3s;
+    margin-top: 10px;
   }
   
   .sidenav a:hover {
@@ -37,6 +37,7 @@
   .sidenav .closebtn {
     position: absolute;
     right: 25px;
+    top: 30px;
     padding: 3px 8px;
     background-color: var(--navbar-close-icon-color);
     border-radius: 2px;

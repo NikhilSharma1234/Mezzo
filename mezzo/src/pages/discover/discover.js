@@ -73,7 +73,7 @@ const Discover = () => {
         setSearchInput={updateSearchInput}
       />
 
-      <section className="discover-body">
+      <div className="discover-body">
 
       {songs.length === 0 ? (
         <>
@@ -119,7 +119,7 @@ const Discover = () => {
         }
 
 
-      </section>
+      </div>
     </section>
   );
 };
