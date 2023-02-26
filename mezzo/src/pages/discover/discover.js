@@ -7,6 +7,9 @@ import { fetchArtistTopTracks } from "../../utils/fetchArtistTopTracks.js";
 import React, { useState, useEffect } from "react";
 import { fetchSearchResults } from "../../utils/fetchSearchResults.js";
 import { fetchNewReleases } from "../../utils/fetchNewReleases.js";
+import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
+import { likeSongPost } from "../../utils/likeSongPost.js";
+import { dislikeSongPut } from "../../utils/dislikeSongPut.js";
 
 const Discover = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -14,6 +17,8 @@ const Discover = () => {
   const [artists, setArtists] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [newReleases, setNewReleases] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
+  const [likePressed, setLikePressed] = useState(false);
   const updateSearchInput = (newSearchInput) => {
     setSearchInput(newSearchInput);
   };
@@ -25,6 +30,14 @@ const Discover = () => {
     };
     fetchNewReleaseData();
   }, []);
+
+  useEffect(() => {
+    const fetchPlaylists = async () => {
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
+    fetchPlaylists();
+  }, [likePressed]);
 
 
   useEffect(() => {
@@ -62,8 +75,27 @@ const Discover = () => {
     }
   }, [searchInput]);
 
+  function likeSong(playlistName, id) {
+    const fetchPlaylistsDislike = async () => {
+      await dislikeSongPut(playlistName, id);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists)
+    };
+    const fetchPlaylists = async () => {
+      await likeSongPost(playlistName, id);
+      const allPlaylists = await fetchAllPlaylists();
+      setPlaylists(allPlaylists.playlists);
+    };
 
-
+    const playlist = playlists.find(({name}) => name === playlistName);
+    if (playlist.songs.includes(id)) {
+      fetchPlaylistsDislike();
+    }
+    else {
+      fetchPlaylists();
+    }
+    setLikePressed(!likePressed);
+  }
   return (
     <section className="main main_closed">
       <h1 className="page-heading">Discover</h1>
@@ -94,7 +126,7 @@ const Discover = () => {
           <div className="page-subSection">
             <h3 id="SongHeading">Songs</h3>
 
-            <SongCards songs={songs} />
+            <SongCards songs={songs} playlists={playlists} onLikePressed={likeSong}/>
           </div>
         )}
 
