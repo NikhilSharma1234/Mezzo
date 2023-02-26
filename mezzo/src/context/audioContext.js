@@ -26,7 +26,7 @@ export function AudioProvider({ children }) {
         const next_to_play = removeFromQueue();
         setPlayerInfo(next_to_play);
         setIsPlaying(true);
-        setStopped(false);
+        setIsStopped(false);
       } else if (rewind) {
         setIsPlaying(false);
         setPlayerInfo(newPlayerInfo);
@@ -53,7 +53,7 @@ export function AudioProvider({ children }) {
 
   return (
     <AudioContext.Provider
-      value={[playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem, isStopped, setIsStopped}
+      value={[playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem, isStopped, setIsStopped]}
     >
       {children}
     </AudioContext.Provider>

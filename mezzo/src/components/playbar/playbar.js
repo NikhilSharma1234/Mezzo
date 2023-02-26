@@ -37,7 +37,7 @@ const PlayBar = () => {
         setIsStopped(true);
       });
     }
-  }, [isPlaying, playerInfo, setIsStopped]);
+  }, [isPlaying, playerInfo]);
 
   function togglePlaybarBtn() {
     if (isPlaying || playerInfo.songName === "") {
