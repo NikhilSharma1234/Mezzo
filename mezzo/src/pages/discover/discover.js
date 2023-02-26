@@ -2,9 +2,10 @@ import SearchBar from "../../components/searchbar/searchbar.js";
 import SongCards from "../../components/cards/song-card.js";
 import ArtistCards from "../../components/cards/artist-card.js";
 import AlbumCards from "../../components/cards/album-card.js";
+import { AudioContext } from "../../context/audioContext.js";
 import "./discover.scoped.css";
 import { fetchArtistTopTracks } from "../../utils/fetchArtistTopTracks.js";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetchSearchResults } from "../../utils/fetchSearchResults.js";
 import { fetchNewReleases } from "../../utils/fetchNewReleases.js";
 import { fetchAllPlaylists } from "../../utils/fetchAllPlaylists.js";
@@ -19,6 +20,7 @@ const Discover = () => {
   const [newReleases, setNewReleases] = useState([]);
   const [playlists, setPlaylists] = useState([]);
   const [likePressed, setLikePressed] = useState(false);
+  const [, , , , , likeSongPressed] = useContext(AudioContext);
   const updateSearchInput = (newSearchInput) => {
     setSearchInput(newSearchInput);
   };
@@ -37,7 +39,7 @@ const Discover = () => {
       setPlaylists(allPlaylists.playlists);
     };
     fetchPlaylists();
-  }, [likePressed]);
+  }, [likePressed, likeSongPressed]);
 
 
   useEffect(() => {
