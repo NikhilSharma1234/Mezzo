@@ -15,6 +15,7 @@ function PlayButton({ songData }) {
 
   function handlePlayer(songData) {
     const newPlayerInfo = {
+      songId: songData.id,
       songName: songData.name,
       artist: songData.artist,
       songImg: songData.album.images[1].url,
