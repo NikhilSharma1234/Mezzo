@@ -6,35 +6,26 @@ export function AudioProvider({ children }) {
   const [playerInfo, setPlayerInfo] = useState({ songName: "", artist: "", albumImg: "", audioUrl: "" });
   const [isPlaying, setIsPlaying] = useState(null);
   const [queue, setQueue] = useState([]);
-  const [isStopped, setIsStopped] = useState(null);
 
-  function togglePlayer(newPlayerInfo = playerInfo, rewind = false, fastForward = false) {
+  function togglePlayer(newPlayerInfo = playerInfo, fastForward = false) {
     if (fastForward) {
       console.log('Fast Forward')
       if (queue.length >= 1) {
         const next_to_play = removeFromQueue();
         console.log(queue);
         setPlayerInfo(next_to_play);
-        setIsPlaying(true);
-        return;
       }
     } else {
-      if ((isPlaying && newPlayerInfo.audioUrl !== playerInfo.audioUrl) || rewind) {
+      if (isPlaying && newPlayerInfo.audioUrl !== playerInfo.audioUrl) {
         setPlayerInfo(newPlayerInfo);
         setIsPlaying(true);
-      } else if (isPlaying && !rewind) {
-        setIsPlaying(false); 
-      } else if (isStopped && queue.length >= 1) { // check if queue is not empty
-        const next_to_play = removeFromQueue();
-        setPlayerInfo(next_to_play);
+      } else if (!isPlaying){
+        console.log('Starting')
+        setPlayerInfo(newPlayerInfo);
         setIsPlaying(true);
-        setIsStopped(false);
-      } else if (rewind) {
+      } else if (isPlaying) {
+        console.log('Pausing')
         setIsPlaying(false);
-        setPlayerInfo(newPlayerInfo);
-        setIsPlaying(true);
-      } else {
-        setIsPlaying(true);
       }
     }
   }
@@ -55,7 +46,7 @@ export function AudioProvider({ children }) {
 
   return (
     <AudioContext.Provider
-      value={[playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem, isStopped, setIsStopped]}
+      value={[playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem]}
     >
       {children}
     </AudioContext.Provider>

@@ -77,15 +77,13 @@ function SongCard({ songData }) {
           <p>artist</p>
           <Heart />
           <PlayButton songData={songData} />
-          <>
-            <button className="play_button" onClick={() => handleQueueCheck(songData)}>
-              {queue.includes(convertToPlayer(songData)) ? (
-                <MDQueueCheck />
-              ) : (
-                <MDQueue />
-              )}
-            </button>
-          </>
+          <button className="play_button" onClick={() => handleQueueCheck(songData)}>
+            {queue.includes(convertToPlayer(songData)) ? (
+              <MDQueueCheck />
+            ) : (
+              <MDQueue />
+            )}
+          </button>
         </div>
       </div>
     </div>

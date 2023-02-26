@@ -14,31 +14,43 @@ import { useState, useEffect, useContext } from "react";
 import { FaHeart } from "react-icons/fa";
 
 const PlayBar = () => {
-  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem, , setIsStopped] = useContext(AudioContext);
+  const [playerInfo, setPlayerInfo, isPlaying, togglePlayer, setIsPlaying, queue, setQueue, addToQueue, removeFromQueue, removeQueueElem] = useContext(AudioContext);
   const [audio, setAudio] = useState(null);
   const [value, setValue] = useState(0);
   const [volume, setVolume] = useState(0.1);
+  let audioElement;
 
-   useEffect(() => {
+  useEffect(() => {  
     if (playerInfo.audioUrl) {
       if (isPlaying) {
         if (audio) {
           audio.pause();
-        }
-        const audioElement = new Audio(playerInfo.audioUrl);
+        } 
+        audioElement = new Audio(playerInfo.audioUrl);
         audioElement.volume = volume;
         audioElement.play();
         setAudio(audioElement);
         audioElement.onended = function() {
-          console.log('Ended');
-          setIsStopped(true);
+          setIsPlaying(false);
+          if (queue.length >= 1){
+            const next_to_play = removeFromQueue();
+            togglePlayer(next_to_play);
+          }
         };
       } else {
-        audio.pause();
+        if (!isPlaying) {
+          if (audio) {
+            audio.pause(); 
+          }  
+        }
       }
     }
+    return () => {
+      if (audioElement) {
+        audioElement.pause();
+      }
+    };
   }, [isPlaying, playerInfo]);
-
 
   function togglePlaybarBtn() {
     if (isPlaying || playerInfo.songName === "") {
@@ -48,12 +60,8 @@ const PlayBar = () => {
     }
   }
 
-  function handleRewind() {
-    togglePlayer(undefined, true, undefined);
-  }
-
   function handleFastForward(){
-    togglePlayer(undefined, undefined, true);
+    togglePlayer(undefined, true);
   }
 
   function handleVolume(event, newVolume) {
@@ -90,12 +98,12 @@ const PlayBar = () => {
                 </div>
             </BottomNavigationAction>
             <BottomNavigationAction icon={<FaHeart className="playbar-btns" />} />
-            <BottomNavigationAction icon={<AiOutlineLeft className="playbar-btns" onClick={handleRewind}/>} />
+            <BottomNavigationAction icon={<AiOutlineLeft className="playbar-btns" />} onClick={togglePlaybarBtn}/>
             <BottomNavigationAction
-              onClick={togglePlaybarBtn}
+              onClick={togglePlayer}
               icon={isPlaying ? <BsPauseFill className="playbar-btns" /> : <BsFillPlayFill className="playbar-btns"  />}
             />
-            <BottomNavigationAction icon={<AiOutlineRight className="playbar-btns" onClick={handleFastForward}/>} />
+            <BottomNavigationAction icon={<AiOutlineRight className="playbar-btns" />} onClick={handleFastForward}/>
             <Box sx={{ width: 200, pt: 2 }}>
               <Stack spacing={2} direction="row" alignItems="center">
                 <Slider
