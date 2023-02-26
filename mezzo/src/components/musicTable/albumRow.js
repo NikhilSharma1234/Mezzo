@@ -194,6 +194,12 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
     return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
   }
 
+  function numberFormatting(index) {
+    let string = index.toString();
+    string = string.padStart(3, '00');
+    return string
+  }
+
 
   return (
     <tr>
@@ -218,10 +224,10 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
               )}
             </button>
           ) : (
-            <p>{index + 1}</p>
+            <p>{numberFormatting(index + 1)}</p>
           )
         ) : (
-          <p>{index + 1}</p>
+          <p>{numberFormatting(index + 1)}</p>
         )}
       </td>
       
