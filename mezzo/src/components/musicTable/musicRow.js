@@ -145,8 +145,9 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
   const [open, setOpen] = React.useState(false);
   const [chosenSong, setChosenSong] = useState(null);
 
-  function handlePlayer(song) {
+  function handlePlayer() {
     const newPlayerInfo = {
+      songId: songData.id,
       songName: songData.album.name,
       artist: songData.artists[0].name,
       albumImg: songData.album.images[2].url,
@@ -207,7 +208,7 @@ export const MusicRow = ({ index, songData, playlists, onLikePressed, reloadPlay
       >
         {songData.preview_url ? (
           showButton === index ? (
-            <button onClick={() => handlePlayer(songData)}>
+            <button onClick={() => handlePlayer()}>
               {isPlaying && playerInfo.audioUrl === songData.preview_url ? (
                 <FaPause />
               ) : (

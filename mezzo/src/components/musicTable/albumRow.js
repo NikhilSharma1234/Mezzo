@@ -147,6 +147,7 @@ export const AlbumRow = ({ index, songData, playlists, onLikePressed, reloadPlay
 
   function handlePlayer(song) {
     const newPlayerInfo = {
+      songId: songData.id,
       songName: songData.name,
       artist: songData.artists[0].name,
       albumImg: albumImg,
