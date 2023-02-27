@@ -6,13 +6,13 @@ const sendEmail = async (email, username, info, link) => {
       host: 'smtp.gmail.com',
       secure: true,
       auth: {
-        user: process.env.EMAIL_HOST,
-        pass: process.env.EMAIL_AUTH,
+        user: process.env.REACT_APP_EMAIL_HOST,
+        pass: process.env.REACT_APP_EMAIL_AUTH,
 
       }
     });
     let mailOptions = {
-      from: process.env.EMAIL_HOST,
+      from: process.env.REACT_APP_EMAIL_HOST,
       to: email,
       subject: 'Forgot Password - Mezzo',
       text: info

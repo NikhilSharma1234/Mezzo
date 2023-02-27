@@ -1,6 +1,6 @@
-require('dotenv').config();
 const express = require('express');
 const path = require('path');
+require('dotenv').config({path: path.join(__dirname, '..', '.env')});
 const bodyParser = require('body-parser');
 const api = require("./api");
 const spotify = require("./spotify_api");
@@ -14,7 +14,7 @@ const cors = require('cors'); //cors stuff
 
 
 const corsOptions = {
- origin: process.env.REACT_APP_CLIENT_URL,
+ origin: process.env.REACT_APP_CLIENT_URL.substring(0, process.env.REACT_APP_CLIENT_URL.length - 1),
  optionsSuccessStatus: 200
 };
 
@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-const port = process.env.PORT || 4000;
+const port = process.env.REACT_APP_PORT || 4000;
 mongoose.set('strictQuery', true);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
@@ -34,7 +34,7 @@ app.use(
   bodyParser.urlencoded({ extended: false }),
   cookieParser(),
   session({ 
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.REACT_APP_SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
     cookie : {
@@ -56,12 +56,12 @@ app.all('*', (req, res) => {
 })
 
 async function main() {
-  if (process.env.MONGO_MODE == "production") {
-    await mongoose.connect(`mongodb://192.168.171.67:27017/${process.env.MONGO_USER}`, {
+  if (process.env.REACT_APP_MONGO_MODE == "production") {
+    await mongoose.connect(`mongodb://192.168.171.67:27017/${process.env.REACT_APP_MONGO_USER}`, {
       useNewUrlParser: true,
       authSource: "admin",
-      user: process.env.MONGO_USER,
-      pass: process.env.MONGO_PASSWORD,
+      user: process.env.REACT_APP_MONGO_USER,
+      pass: process.env.REACT_APP_MONGO_PASSWORD,
     });
   } else {
     console.log("MongoDB connected...")

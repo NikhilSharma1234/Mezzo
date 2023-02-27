@@ -11,11 +11,11 @@ async function fetchToken() {
   let linking = null;
   const token_object = await axios({
     method: "post",
-    url: process.env.API_BASE_LINK,
+    url: process.env.REACT_APP_API_BASE_LINK,
     data: { grant_type: "client_credentials" },
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: process.env.API_AUTHORIZATION,
+      Authorization: process.env.REACT_APP_API_AUTHORIZATION,
     },
   });
   return token_object.data.access_token;
