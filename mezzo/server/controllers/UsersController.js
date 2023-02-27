@@ -49,7 +49,7 @@ const newUser = async (req, res) => {
         res.send("Minimum eight characters, at least one letter, one number and one special character");
       } else {
         newUser.password = await newUser.generateHash(req.body.password);
-        const token = JWT.sign({id: newUser._id}, process.env.JWT_SECRET);
+        const token = JWT.sign({id: newUser._id}, process.env.REACT_APP_JWT_SECRET);
         const token_data = {
           userID: newUser._id,
           token: token,

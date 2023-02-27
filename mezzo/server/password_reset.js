@@ -20,7 +20,7 @@ const forgotPasswordHandler = async (email, password) => {
       token: hash,
       createdAt: Date.now(),
     }).save();
-    const link = `${process.env.CLIENT_URL}/api/user/password?token=${resetToken}&id=${user._id}&pw=${password}`;
+    const link = `${process.env.REACT_APP_CLIENT_URL}/api/user/password?token=${resetToken}&id=${user._id}&pw=${password}`;
     const text = `Dear ${user.username}, \n Click here to activate the password previously created: ${link}`;
     sendEmail(user.email, user.username, text, link);
     return true;
