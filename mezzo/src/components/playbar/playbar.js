@@ -31,7 +31,7 @@ const PlayBar = () => {
       setLikedSongsPlaylist(allPlaylists.playlists.find(({name}) => name === "Liked Songs"));
     };
     fetchPlaylists();
-  }, []);
+  }, [likeSongPressed]);
 
   useEffect(() => {
     if (playerInfo.audioUrl) {
