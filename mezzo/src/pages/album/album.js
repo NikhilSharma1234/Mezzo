@@ -52,6 +52,7 @@ const Album = () => {
       fetchPlaylists();
     }
     setLikePressed(!likePressed);
+    setLikeSong(!likeSongPressed);
   }
 
   function reloadPlaylists() {
