@@ -133,7 +133,7 @@ function NewPlaylistCard(props) {
           <h3>Playlist Name:</h3>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Enter a name for your playlist (required)"
             value={name}
             onChange={handleNameChange}
             required
