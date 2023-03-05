@@ -59,9 +59,9 @@ function SongCard({ songData, playlists, onLikePressed }) {
   }
 
   const heartStyling = (song) => {
-    return findLikedSongs(song)
+    if(playlists) return findLikedSongs(song)
   }
-
+  console.log(songData)
   return (
     <div className="card" id="song-card">
       <div>
@@ -71,7 +71,7 @@ function SongCard({ songData, playlists, onLikePressed }) {
       <div className="card-body">
         <h2>{songData.name}</h2>
         <div className="card-caption">
-          <p>artist</p>
+          <p>{songData.artists[0].name}</p>
           <IconButton onClick={() => likeSong("Liked Songs", songData.id)}>
             <FaHeart size={15} style={ heartStyling(songData) }/>
           </IconButton>
